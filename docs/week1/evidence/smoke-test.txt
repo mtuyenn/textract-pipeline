@@ -1,0 +1,11 @@
+TEXTRACT PIPELINE - S3 TRIGGER SMOKE TEST
+
+Project: TextractDocumentDigitization
+Owner: 24110372-24110381
+DocumentType: TEST
+InvoiceNumber: INV-SMOKE-001
+TestStatus: READY
+
+Purpose:
+Verify that uploading this file to the input/ prefix invokes the
+textract-pipeline-processor Lambda function.

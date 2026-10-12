@@ -1,0 +1,2 @@
+document_id,document_type,invoice_number,invoice_date,vendor_name,currency,total_amount,processing_status
+SYNTHETIC-001,INVOICE,INV-DEMO-001,2026-10-07,Demo Supplies LLC,USD,125.50,SMOKE_TEST_ONLY
