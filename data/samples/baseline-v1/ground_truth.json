@@ -1,0 +1,2441 @@
+{
+  "synthetic": true,
+  "document_count": 30,
+  "language": "English",
+  "documents": [
+    {
+      "s3_key": "input/invoices/invoice-001.png",
+      "document_type": "invoice",
+      "fields": [
+        {
+          "field_name": "VENDOR_NAME",
+          "value": "SAMPLE OFFICE SUPPLY 2",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_ID",
+          "value": "INV-0001",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_DATE",
+          "value": "2026-01-02",
+          "page": 1
+        },
+        {
+          "field_name": "TOTAL",
+          "value": "$39.50",
+          "page": 1
+        }
+      ],
+      "line_items": [
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 1,
+          "fields": {
+            "ITEM": "A4 PAPER BOX",
+            "QUANTITY": "2",
+            "PRICE": "$25.00"
+          }
+        },
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 2,
+          "fields": {
+            "ITEM": "DESK NOTEBOOK",
+            "QUANTITY": "2",
+            "PRICE": "$14.50"
+          }
+        }
+      ],
+      "table_cells": []
+    },
+    {
+      "s3_key": "input/forms/form-002.png",
+      "document_type": "form",
+      "fields": [
+        {
+          "field_name": "FORM ID",
+          "value": "FORM-0002",
+          "page": 1
+        },
+        {
+          "field_name": "FULL NAME",
+          "value": "SYNTHETIC USER 002",
+          "page": 1
+        },
+        {
+          "field_name": "DEPARTMENT",
+          "value": "SALES",
+          "page": 1
+        },
+        {
+          "field_name": "REQUEST DATE",
+          "value": "2026-01-03",
+          "page": 1
+        }
+      ],
+      "line_items": [],
+      "table_cells": [
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 1,
+          "value": "ITEM DESCRIPTION"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 2,
+          "value": "QTY"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 3,
+          "value": "UNIT PRICE"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 4,
+          "value": "AMOUNT"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 1,
+          "value": "A4 PAPER BOX"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 2,
+          "value": "3"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 3,
+          "value": "$12.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 4,
+          "value": "$37.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 1,
+          "value": "DESK NOTEBOOK"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 2,
+          "value": "2"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 3,
+          "value": "$7.25"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 4,
+          "value": "$14.50"
+        }
+      ]
+    },
+    {
+      "s3_key": "input/invoices/invoice-003.png",
+      "document_type": "invoice",
+      "fields": [
+        {
+          "field_name": "VENDOR_NAME",
+          "value": "SAMPLE OFFICE SUPPLY 1",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_ID",
+          "value": "INV-0003",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_DATE",
+          "value": "2026-01-04",
+          "page": 1
+        },
+        {
+          "field_name": "TOTAL",
+          "value": "$27.00",
+          "page": 1
+        }
+      ],
+      "line_items": [
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 1,
+          "fields": {
+            "ITEM": "A4 PAPER BOX",
+            "QUANTITY": "1",
+            "PRICE": "$12.50"
+          }
+        },
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 2,
+          "fields": {
+            "ITEM": "DESK NOTEBOOK",
+            "QUANTITY": "2",
+            "PRICE": "$14.50"
+          }
+        }
+      ],
+      "table_cells": []
+    },
+    {
+      "s3_key": "input/forms/form-004.png",
+      "document_type": "form",
+      "fields": [
+        {
+          "field_name": "FORM ID",
+          "value": "FORM-0004",
+          "page": 1
+        },
+        {
+          "field_name": "FULL NAME",
+          "value": "SYNTHETIC USER 004",
+          "page": 1
+        },
+        {
+          "field_name": "DEPARTMENT",
+          "value": "OPERATIONS",
+          "page": 1
+        },
+        {
+          "field_name": "REQUEST DATE",
+          "value": "2026-01-05",
+          "page": 1
+        }
+      ],
+      "line_items": [],
+      "table_cells": [
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 1,
+          "value": "ITEM DESCRIPTION"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 2,
+          "value": "QTY"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 3,
+          "value": "UNIT PRICE"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 4,
+          "value": "AMOUNT"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 1,
+          "value": "A4 PAPER BOX"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 2,
+          "value": "2"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 3,
+          "value": "$12.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 4,
+          "value": "$25.00"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 1,
+          "value": "DESK NOTEBOOK"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 2,
+          "value": "2"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 3,
+          "value": "$7.25"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 4,
+          "value": "$14.50"
+        }
+      ]
+    },
+    {
+      "s3_key": "input/invoices/invoice-005.png",
+      "document_type": "invoice",
+      "fields": [
+        {
+          "field_name": "VENDOR_NAME",
+          "value": "SAMPLE OFFICE SUPPLY 3",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_ID",
+          "value": "INV-0005",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_DATE",
+          "value": "2026-01-06",
+          "page": 1
+        },
+        {
+          "field_name": "TOTAL",
+          "value": "$52.00",
+          "page": 1
+        }
+      ],
+      "line_items": [
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 1,
+          "fields": {
+            "ITEM": "A4 PAPER BOX",
+            "QUANTITY": "3",
+            "PRICE": "$37.50"
+          }
+        },
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 2,
+          "fields": {
+            "ITEM": "DESK NOTEBOOK",
+            "QUANTITY": "2",
+            "PRICE": "$14.50"
+          }
+        }
+      ],
+      "table_cells": []
+    },
+    {
+      "s3_key": "input/forms/form-006.png",
+      "document_type": "form",
+      "fields": [
+        {
+          "field_name": "FORM ID",
+          "value": "FORM-0006",
+          "page": 1
+        },
+        {
+          "field_name": "FULL NAME",
+          "value": "SYNTHETIC USER 006",
+          "page": 1
+        },
+        {
+          "field_name": "DEPARTMENT",
+          "value": "FINANCE",
+          "page": 1
+        },
+        {
+          "field_name": "REQUEST DATE",
+          "value": "2026-01-07",
+          "page": 1
+        }
+      ],
+      "line_items": [],
+      "table_cells": [
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 1,
+          "value": "ITEM DESCRIPTION"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 2,
+          "value": "QTY"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 3,
+          "value": "UNIT PRICE"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 4,
+          "value": "AMOUNT"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 1,
+          "value": "A4 PAPER BOX"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 2,
+          "value": "1"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 3,
+          "value": "$12.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 4,
+          "value": "$12.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 1,
+          "value": "DESK NOTEBOOK"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 2,
+          "value": "2"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 3,
+          "value": "$7.25"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 4,
+          "value": "$14.50"
+        }
+      ]
+    },
+    {
+      "s3_key": "input/invoices/invoice-007.png",
+      "document_type": "invoice",
+      "fields": [
+        {
+          "field_name": "VENDOR_NAME",
+          "value": "SAMPLE OFFICE SUPPLY 2",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_ID",
+          "value": "INV-0007",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_DATE",
+          "value": "2026-01-08",
+          "page": 1
+        },
+        {
+          "field_name": "TOTAL",
+          "value": "$39.50",
+          "page": 1
+        }
+      ],
+      "line_items": [
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 1,
+          "fields": {
+            "ITEM": "A4 PAPER BOX",
+            "QUANTITY": "2",
+            "PRICE": "$25.00"
+          }
+        },
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 2,
+          "fields": {
+            "ITEM": "DESK NOTEBOOK",
+            "QUANTITY": "2",
+            "PRICE": "$14.50"
+          }
+        }
+      ],
+      "table_cells": []
+    },
+    {
+      "s3_key": "input/forms/form-008.png",
+      "document_type": "form",
+      "fields": [
+        {
+          "field_name": "FORM ID",
+          "value": "FORM-0008",
+          "page": 1
+        },
+        {
+          "field_name": "FULL NAME",
+          "value": "SYNTHETIC USER 008",
+          "page": 1
+        },
+        {
+          "field_name": "DEPARTMENT",
+          "value": "SALES",
+          "page": 1
+        },
+        {
+          "field_name": "REQUEST DATE",
+          "value": "2026-01-09",
+          "page": 1
+        }
+      ],
+      "line_items": [],
+      "table_cells": [
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 1,
+          "value": "ITEM DESCRIPTION"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 2,
+          "value": "QTY"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 3,
+          "value": "UNIT PRICE"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 4,
+          "value": "AMOUNT"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 1,
+          "value": "A4 PAPER BOX"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 2,
+          "value": "3"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 3,
+          "value": "$12.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 4,
+          "value": "$37.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 1,
+          "value": "DESK NOTEBOOK"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 2,
+          "value": "2"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 3,
+          "value": "$7.25"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 4,
+          "value": "$14.50"
+        }
+      ]
+    },
+    {
+      "s3_key": "input/invoices/invoice-009.png",
+      "document_type": "invoice",
+      "fields": [
+        {
+          "field_name": "VENDOR_NAME",
+          "value": "SAMPLE OFFICE SUPPLY 1",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_ID",
+          "value": "INV-0009",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_DATE",
+          "value": "2026-01-10",
+          "page": 1
+        },
+        {
+          "field_name": "TOTAL",
+          "value": "$27.00",
+          "page": 1
+        }
+      ],
+      "line_items": [
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 1,
+          "fields": {
+            "ITEM": "A4 PAPER BOX",
+            "QUANTITY": "1",
+            "PRICE": "$12.50"
+          }
+        },
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 2,
+          "fields": {
+            "ITEM": "DESK NOTEBOOK",
+            "QUANTITY": "2",
+            "PRICE": "$14.50"
+          }
+        }
+      ],
+      "table_cells": []
+    },
+    {
+      "s3_key": "input/forms/form-010.png",
+      "document_type": "form",
+      "fields": [
+        {
+          "field_name": "FORM ID",
+          "value": "FORM-0010",
+          "page": 1
+        },
+        {
+          "field_name": "FULL NAME",
+          "value": "SYNTHETIC USER 010",
+          "page": 1
+        },
+        {
+          "field_name": "DEPARTMENT",
+          "value": "OPERATIONS",
+          "page": 1
+        },
+        {
+          "field_name": "REQUEST DATE",
+          "value": "2026-01-11",
+          "page": 1
+        }
+      ],
+      "line_items": [],
+      "table_cells": [
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 1,
+          "value": "ITEM DESCRIPTION"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 2,
+          "value": "QTY"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 3,
+          "value": "UNIT PRICE"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 4,
+          "value": "AMOUNT"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 1,
+          "value": "A4 PAPER BOX"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 2,
+          "value": "2"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 3,
+          "value": "$12.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 4,
+          "value": "$25.00"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 1,
+          "value": "DESK NOTEBOOK"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 2,
+          "value": "2"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 3,
+          "value": "$7.25"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 4,
+          "value": "$14.50"
+        }
+      ]
+    },
+    {
+      "s3_key": "input/invoices/invoice-011.png",
+      "document_type": "invoice",
+      "fields": [
+        {
+          "field_name": "VENDOR_NAME",
+          "value": "SAMPLE OFFICE SUPPLY 3",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_ID",
+          "value": "INV-0011",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_DATE",
+          "value": "2026-01-12",
+          "page": 1
+        },
+        {
+          "field_name": "TOTAL",
+          "value": "$52.00",
+          "page": 1
+        }
+      ],
+      "line_items": [
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 1,
+          "fields": {
+            "ITEM": "A4 PAPER BOX",
+            "QUANTITY": "3",
+            "PRICE": "$37.50"
+          }
+        },
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 2,
+          "fields": {
+            "ITEM": "DESK NOTEBOOK",
+            "QUANTITY": "2",
+            "PRICE": "$14.50"
+          }
+        }
+      ],
+      "table_cells": []
+    },
+    {
+      "s3_key": "input/forms/form-012.png",
+      "document_type": "form",
+      "fields": [
+        {
+          "field_name": "FORM ID",
+          "value": "FORM-0012",
+          "page": 1
+        },
+        {
+          "field_name": "FULL NAME",
+          "value": "SYNTHETIC USER 012",
+          "page": 1
+        },
+        {
+          "field_name": "DEPARTMENT",
+          "value": "FINANCE",
+          "page": 1
+        },
+        {
+          "field_name": "REQUEST DATE",
+          "value": "2026-01-13",
+          "page": 1
+        }
+      ],
+      "line_items": [],
+      "table_cells": [
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 1,
+          "value": "ITEM DESCRIPTION"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 2,
+          "value": "QTY"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 3,
+          "value": "UNIT PRICE"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 4,
+          "value": "AMOUNT"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 1,
+          "value": "A4 PAPER BOX"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 2,
+          "value": "1"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 3,
+          "value": "$12.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 4,
+          "value": "$12.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 1,
+          "value": "DESK NOTEBOOK"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 2,
+          "value": "2"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 3,
+          "value": "$7.25"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 4,
+          "value": "$14.50"
+        }
+      ]
+    },
+    {
+      "s3_key": "input/invoices/invoice-013.png",
+      "document_type": "invoice",
+      "fields": [
+        {
+          "field_name": "VENDOR_NAME",
+          "value": "SAMPLE OFFICE SUPPLY 2",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_ID",
+          "value": "INV-0013",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_DATE",
+          "value": "2026-01-14",
+          "page": 1
+        },
+        {
+          "field_name": "TOTAL",
+          "value": "$39.50",
+          "page": 1
+        }
+      ],
+      "line_items": [
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 1,
+          "fields": {
+            "ITEM": "A4 PAPER BOX",
+            "QUANTITY": "2",
+            "PRICE": "$25.00"
+          }
+        },
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 2,
+          "fields": {
+            "ITEM": "DESK NOTEBOOK",
+            "QUANTITY": "2",
+            "PRICE": "$14.50"
+          }
+        }
+      ],
+      "table_cells": []
+    },
+    {
+      "s3_key": "input/forms/form-014.png",
+      "document_type": "form",
+      "fields": [
+        {
+          "field_name": "FORM ID",
+          "value": "FORM-0014",
+          "page": 1
+        },
+        {
+          "field_name": "FULL NAME",
+          "value": "SYNTHETIC USER 014",
+          "page": 1
+        },
+        {
+          "field_name": "DEPARTMENT",
+          "value": "SALES",
+          "page": 1
+        },
+        {
+          "field_name": "REQUEST DATE",
+          "value": "2026-01-15",
+          "page": 1
+        }
+      ],
+      "line_items": [],
+      "table_cells": [
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 1,
+          "value": "ITEM DESCRIPTION"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 2,
+          "value": "QTY"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 3,
+          "value": "UNIT PRICE"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 4,
+          "value": "AMOUNT"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 1,
+          "value": "A4 PAPER BOX"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 2,
+          "value": "3"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 3,
+          "value": "$12.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 4,
+          "value": "$37.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 1,
+          "value": "DESK NOTEBOOK"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 2,
+          "value": "2"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 3,
+          "value": "$7.25"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 4,
+          "value": "$14.50"
+        }
+      ]
+    },
+    {
+      "s3_key": "input/invoices/invoice-015.png",
+      "document_type": "invoice",
+      "fields": [
+        {
+          "field_name": "VENDOR_NAME",
+          "value": "SAMPLE OFFICE SUPPLY 1",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_ID",
+          "value": "INV-0015",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_DATE",
+          "value": "2026-01-16",
+          "page": 1
+        },
+        {
+          "field_name": "TOTAL",
+          "value": "$27.00",
+          "page": 1
+        }
+      ],
+      "line_items": [
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 1,
+          "fields": {
+            "ITEM": "A4 PAPER BOX",
+            "QUANTITY": "1",
+            "PRICE": "$12.50"
+          }
+        },
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 2,
+          "fields": {
+            "ITEM": "DESK NOTEBOOK",
+            "QUANTITY": "2",
+            "PRICE": "$14.50"
+          }
+        }
+      ],
+      "table_cells": []
+    },
+    {
+      "s3_key": "input/forms/form-016.png",
+      "document_type": "form",
+      "fields": [
+        {
+          "field_name": "FORM ID",
+          "value": "FORM-0016",
+          "page": 1
+        },
+        {
+          "field_name": "FULL NAME",
+          "value": "SYNTHETIC USER 016",
+          "page": 1
+        },
+        {
+          "field_name": "DEPARTMENT",
+          "value": "OPERATIONS",
+          "page": 1
+        },
+        {
+          "field_name": "REQUEST DATE",
+          "value": "2026-01-17",
+          "page": 1
+        }
+      ],
+      "line_items": [],
+      "table_cells": [
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 1,
+          "value": "ITEM DESCRIPTION"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 2,
+          "value": "QTY"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 3,
+          "value": "UNIT PRICE"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 4,
+          "value": "AMOUNT"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 1,
+          "value": "A4 PAPER BOX"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 2,
+          "value": "2"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 3,
+          "value": "$12.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 4,
+          "value": "$25.00"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 1,
+          "value": "DESK NOTEBOOK"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 2,
+          "value": "2"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 3,
+          "value": "$7.25"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 4,
+          "value": "$14.50"
+        }
+      ]
+    },
+    {
+      "s3_key": "input/invoices/invoice-017.png",
+      "document_type": "invoice",
+      "fields": [
+        {
+          "field_name": "VENDOR_NAME",
+          "value": "SAMPLE OFFICE SUPPLY 3",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_ID",
+          "value": "INV-0017",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_DATE",
+          "value": "2026-01-18",
+          "page": 1
+        },
+        {
+          "field_name": "TOTAL",
+          "value": "$52.00",
+          "page": 1
+        }
+      ],
+      "line_items": [
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 1,
+          "fields": {
+            "ITEM": "A4 PAPER BOX",
+            "QUANTITY": "3",
+            "PRICE": "$37.50"
+          }
+        },
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 2,
+          "fields": {
+            "ITEM": "DESK NOTEBOOK",
+            "QUANTITY": "2",
+            "PRICE": "$14.50"
+          }
+        }
+      ],
+      "table_cells": []
+    },
+    {
+      "s3_key": "input/forms/form-018.png",
+      "document_type": "form",
+      "fields": [
+        {
+          "field_name": "FORM ID",
+          "value": "FORM-0018",
+          "page": 1
+        },
+        {
+          "field_name": "FULL NAME",
+          "value": "SYNTHETIC USER 018",
+          "page": 1
+        },
+        {
+          "field_name": "DEPARTMENT",
+          "value": "FINANCE",
+          "page": 1
+        },
+        {
+          "field_name": "REQUEST DATE",
+          "value": "2026-01-19",
+          "page": 1
+        }
+      ],
+      "line_items": [],
+      "table_cells": [
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 1,
+          "value": "ITEM DESCRIPTION"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 2,
+          "value": "QTY"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 3,
+          "value": "UNIT PRICE"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 4,
+          "value": "AMOUNT"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 1,
+          "value": "A4 PAPER BOX"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 2,
+          "value": "1"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 3,
+          "value": "$12.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 4,
+          "value": "$12.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 1,
+          "value": "DESK NOTEBOOK"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 2,
+          "value": "2"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 3,
+          "value": "$7.25"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 4,
+          "value": "$14.50"
+        }
+      ]
+    },
+    {
+      "s3_key": "input/invoices/invoice-019.png",
+      "document_type": "invoice",
+      "fields": [
+        {
+          "field_name": "VENDOR_NAME",
+          "value": "SAMPLE OFFICE SUPPLY 2",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_ID",
+          "value": "INV-0019",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_DATE",
+          "value": "2026-01-20",
+          "page": 1
+        },
+        {
+          "field_name": "TOTAL",
+          "value": "$39.50",
+          "page": 1
+        }
+      ],
+      "line_items": [
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 1,
+          "fields": {
+            "ITEM": "A4 PAPER BOX",
+            "QUANTITY": "2",
+            "PRICE": "$25.00"
+          }
+        },
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 2,
+          "fields": {
+            "ITEM": "DESK NOTEBOOK",
+            "QUANTITY": "2",
+            "PRICE": "$14.50"
+          }
+        }
+      ],
+      "table_cells": []
+    },
+    {
+      "s3_key": "input/forms/form-020.png",
+      "document_type": "form",
+      "fields": [
+        {
+          "field_name": "FORM ID",
+          "value": "FORM-0020",
+          "page": 1
+        },
+        {
+          "field_name": "FULL NAME",
+          "value": "SYNTHETIC USER 020",
+          "page": 1
+        },
+        {
+          "field_name": "DEPARTMENT",
+          "value": "SALES",
+          "page": 1
+        },
+        {
+          "field_name": "REQUEST DATE",
+          "value": "2026-01-21",
+          "page": 1
+        }
+      ],
+      "line_items": [],
+      "table_cells": [
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 1,
+          "value": "ITEM DESCRIPTION"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 2,
+          "value": "QTY"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 3,
+          "value": "UNIT PRICE"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 4,
+          "value": "AMOUNT"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 1,
+          "value": "A4 PAPER BOX"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 2,
+          "value": "3"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 3,
+          "value": "$12.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 4,
+          "value": "$37.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 1,
+          "value": "DESK NOTEBOOK"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 2,
+          "value": "2"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 3,
+          "value": "$7.25"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 4,
+          "value": "$14.50"
+        }
+      ]
+    },
+    {
+      "s3_key": "input/invoices/invoice-021.png",
+      "document_type": "invoice",
+      "fields": [
+        {
+          "field_name": "VENDOR_NAME",
+          "value": "SAMPLE OFFICE SUPPLY 1",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_ID",
+          "value": "INV-0021",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_DATE",
+          "value": "2026-01-22",
+          "page": 1
+        },
+        {
+          "field_name": "TOTAL",
+          "value": "$27.00",
+          "page": 1
+        }
+      ],
+      "line_items": [
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 1,
+          "fields": {
+            "ITEM": "A4 PAPER BOX",
+            "QUANTITY": "1",
+            "PRICE": "$12.50"
+          }
+        },
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 2,
+          "fields": {
+            "ITEM": "DESK NOTEBOOK",
+            "QUANTITY": "2",
+            "PRICE": "$14.50"
+          }
+        }
+      ],
+      "table_cells": []
+    },
+    {
+      "s3_key": "input/forms/form-022.png",
+      "document_type": "form",
+      "fields": [
+        {
+          "field_name": "FORM ID",
+          "value": "FORM-0022",
+          "page": 1
+        },
+        {
+          "field_name": "FULL NAME",
+          "value": "SYNTHETIC USER 022",
+          "page": 1
+        },
+        {
+          "field_name": "DEPARTMENT",
+          "value": "OPERATIONS",
+          "page": 1
+        },
+        {
+          "field_name": "REQUEST DATE",
+          "value": "2026-01-23",
+          "page": 1
+        }
+      ],
+      "line_items": [],
+      "table_cells": [
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 1,
+          "value": "ITEM DESCRIPTION"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 2,
+          "value": "QTY"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 3,
+          "value": "UNIT PRICE"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 4,
+          "value": "AMOUNT"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 1,
+          "value": "A4 PAPER BOX"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 2,
+          "value": "2"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 3,
+          "value": "$12.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 4,
+          "value": "$25.00"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 1,
+          "value": "DESK NOTEBOOK"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 2,
+          "value": "2"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 3,
+          "value": "$7.25"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 4,
+          "value": "$14.50"
+        }
+      ]
+    },
+    {
+      "s3_key": "input/invoices/invoice-023.png",
+      "document_type": "invoice",
+      "fields": [
+        {
+          "field_name": "VENDOR_NAME",
+          "value": "SAMPLE OFFICE SUPPLY 3",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_ID",
+          "value": "INV-0023",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_DATE",
+          "value": "2026-01-24",
+          "page": 1
+        },
+        {
+          "field_name": "TOTAL",
+          "value": "$52.00",
+          "page": 1
+        }
+      ],
+      "line_items": [
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 1,
+          "fields": {
+            "ITEM": "A4 PAPER BOX",
+            "QUANTITY": "3",
+            "PRICE": "$37.50"
+          }
+        },
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 2,
+          "fields": {
+            "ITEM": "DESK NOTEBOOK",
+            "QUANTITY": "2",
+            "PRICE": "$14.50"
+          }
+        }
+      ],
+      "table_cells": []
+    },
+    {
+      "s3_key": "input/forms/form-024.png",
+      "document_type": "form",
+      "fields": [
+        {
+          "field_name": "FORM ID",
+          "value": "FORM-0024",
+          "page": 1
+        },
+        {
+          "field_name": "FULL NAME",
+          "value": "SYNTHETIC USER 024",
+          "page": 1
+        },
+        {
+          "field_name": "DEPARTMENT",
+          "value": "FINANCE",
+          "page": 1
+        },
+        {
+          "field_name": "REQUEST DATE",
+          "value": "2026-01-25",
+          "page": 1
+        }
+      ],
+      "line_items": [],
+      "table_cells": [
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 1,
+          "value": "ITEM DESCRIPTION"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 2,
+          "value": "QTY"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 3,
+          "value": "UNIT PRICE"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 4,
+          "value": "AMOUNT"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 1,
+          "value": "A4 PAPER BOX"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 2,
+          "value": "1"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 3,
+          "value": "$12.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 4,
+          "value": "$12.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 1,
+          "value": "DESK NOTEBOOK"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 2,
+          "value": "2"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 3,
+          "value": "$7.25"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 4,
+          "value": "$14.50"
+        }
+      ]
+    },
+    {
+      "s3_key": "input/invoices/invoice-025.png",
+      "document_type": "invoice",
+      "fields": [
+        {
+          "field_name": "VENDOR_NAME",
+          "value": "SAMPLE OFFICE SUPPLY 2",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_ID",
+          "value": "INV-0025",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_DATE",
+          "value": "2026-01-26",
+          "page": 1
+        },
+        {
+          "field_name": "TOTAL",
+          "value": "$39.50",
+          "page": 1
+        }
+      ],
+      "line_items": [
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 1,
+          "fields": {
+            "ITEM": "A4 PAPER BOX",
+            "QUANTITY": "2",
+            "PRICE": "$25.00"
+          }
+        },
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 2,
+          "fields": {
+            "ITEM": "DESK NOTEBOOK",
+            "QUANTITY": "2",
+            "PRICE": "$14.50"
+          }
+        }
+      ],
+      "table_cells": []
+    },
+    {
+      "s3_key": "input/forms/form-026.png",
+      "document_type": "form",
+      "fields": [
+        {
+          "field_name": "FORM ID",
+          "value": "FORM-0026",
+          "page": 1
+        },
+        {
+          "field_name": "FULL NAME",
+          "value": "SYNTHETIC USER 026",
+          "page": 1
+        },
+        {
+          "field_name": "DEPARTMENT",
+          "value": "SALES",
+          "page": 1
+        },
+        {
+          "field_name": "REQUEST DATE",
+          "value": "2026-01-27",
+          "page": 1
+        }
+      ],
+      "line_items": [],
+      "table_cells": [
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 1,
+          "value": "ITEM DESCRIPTION"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 2,
+          "value": "QTY"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 3,
+          "value": "UNIT PRICE"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 4,
+          "value": "AMOUNT"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 1,
+          "value": "A4 PAPER BOX"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 2,
+          "value": "3"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 3,
+          "value": "$12.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 4,
+          "value": "$37.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 1,
+          "value": "DESK NOTEBOOK"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 2,
+          "value": "2"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 3,
+          "value": "$7.25"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 4,
+          "value": "$14.50"
+        }
+      ]
+    },
+    {
+      "s3_key": "input/invoices/invoice-027.png",
+      "document_type": "invoice",
+      "fields": [
+        {
+          "field_name": "VENDOR_NAME",
+          "value": "SAMPLE OFFICE SUPPLY 1",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_ID",
+          "value": "INV-0027",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_DATE",
+          "value": "2026-01-28",
+          "page": 1
+        },
+        {
+          "field_name": "TOTAL",
+          "value": "$27.00",
+          "page": 1
+        }
+      ],
+      "line_items": [
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 1,
+          "fields": {
+            "ITEM": "A4 PAPER BOX",
+            "QUANTITY": "1",
+            "PRICE": "$12.50"
+          }
+        },
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 2,
+          "fields": {
+            "ITEM": "DESK NOTEBOOK",
+            "QUANTITY": "2",
+            "PRICE": "$14.50"
+          }
+        }
+      ],
+      "table_cells": []
+    },
+    {
+      "s3_key": "input/forms/form-028.png",
+      "document_type": "form",
+      "fields": [
+        {
+          "field_name": "FORM ID",
+          "value": "FORM-0028",
+          "page": 1
+        },
+        {
+          "field_name": "FULL NAME",
+          "value": "SYNTHETIC USER 028",
+          "page": 1
+        },
+        {
+          "field_name": "DEPARTMENT",
+          "value": "OPERATIONS",
+          "page": 1
+        },
+        {
+          "field_name": "REQUEST DATE",
+          "value": "2026-01-29",
+          "page": 1
+        }
+      ],
+      "line_items": [],
+      "table_cells": [
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 1,
+          "value": "ITEM DESCRIPTION"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 2,
+          "value": "QTY"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 3,
+          "value": "UNIT PRICE"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 4,
+          "value": "AMOUNT"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 1,
+          "value": "A4 PAPER BOX"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 2,
+          "value": "2"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 3,
+          "value": "$12.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 4,
+          "value": "$25.00"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 1,
+          "value": "DESK NOTEBOOK"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 2,
+          "value": "2"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 3,
+          "value": "$7.25"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 4,
+          "value": "$14.50"
+        }
+      ]
+    },
+    {
+      "s3_key": "input/invoices/invoice-029.png",
+      "document_type": "invoice",
+      "fields": [
+        {
+          "field_name": "VENDOR_NAME",
+          "value": "SAMPLE OFFICE SUPPLY 3",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_ID",
+          "value": "INV-0029",
+          "page": 1
+        },
+        {
+          "field_name": "INVOICE_RECEIPT_DATE",
+          "value": "2026-01-30",
+          "page": 1
+        },
+        {
+          "field_name": "TOTAL",
+          "value": "$52.00",
+          "page": 1
+        }
+      ],
+      "line_items": [
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 1,
+          "fields": {
+            "ITEM": "A4 PAPER BOX",
+            "QUANTITY": "3",
+            "PRICE": "$37.50"
+          }
+        },
+        {
+          "expense_index": 1,
+          "group_index": 1,
+          "line_number": 2,
+          "fields": {
+            "ITEM": "DESK NOTEBOOK",
+            "QUANTITY": "2",
+            "PRICE": "$14.50"
+          }
+        }
+      ],
+      "table_cells": []
+    },
+    {
+      "s3_key": "input/forms/form-030.png",
+      "document_type": "form",
+      "fields": [
+        {
+          "field_name": "FORM ID",
+          "value": "FORM-0030",
+          "page": 1
+        },
+        {
+          "field_name": "FULL NAME",
+          "value": "SYNTHETIC USER 030",
+          "page": 1
+        },
+        {
+          "field_name": "DEPARTMENT",
+          "value": "FINANCE",
+          "page": 1
+        },
+        {
+          "field_name": "REQUEST DATE",
+          "value": "2026-01-31",
+          "page": 1
+        }
+      ],
+      "line_items": [],
+      "table_cells": [
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 1,
+          "value": "ITEM DESCRIPTION"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 2,
+          "value": "QTY"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 3,
+          "value": "UNIT PRICE"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 1,
+          "column": 4,
+          "value": "AMOUNT"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 1,
+          "value": "A4 PAPER BOX"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 2,
+          "value": "1"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 3,
+          "value": "$12.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 2,
+          "column": 4,
+          "value": "$12.50"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 1,
+          "value": "DESK NOTEBOOK"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 2,
+          "value": "2"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 3,
+          "value": "$7.25"
+        },
+        {
+          "table_number": 1,
+          "page": 1,
+          "row": 3,
+          "column": 4,
+          "value": "$14.50"
+        }
+      ]
+    }
+  ],
+  "async_demo": {
+    "local_path": "async-demo/multipage-form.pdf",
+    "s3_key": "input/forms/multipage-form.pdf"
+  }
+}
