@@ -1,0 +1,90 @@
+{
+  "started_at": "2026-10-17T17:11:04+07:00",
+  "region": "us-east-1",
+  "result": "PASSED_CORE_SMOKE",
+  "account": "535709085695",
+  "resources": {
+    "TableName": "textract-full-results",
+    "BucketName": "textract-full-535709085695-us-east-1",
+    "PollerName": "textract-full-poller",
+    "TopicArn": "arn:aws:sns:us-east-1:535709085695:textract-full-notifications",
+    "ProcessorName": "textract-full-processor",
+    "CollectorName": "textract-full-collector",
+    "ExporterName": "textract-full-exporter"
+  },
+  "package_sha256": "f98475f3d1dca36e2f56d31587030bab15b5683e2f91f90d83d49a518a972b13",
+  "uploads": [
+    {
+      "key": "input/invoices/invoice-001.png",
+      "document_id": "bca2cb23d23c8e8b239a5d73da74a48a13cc0d57bd1e798cc033fb991aa19efc",
+      "version_id": "04NvihQaDg1X_RYBBbmsmJmeiU0Df5ML",
+      "etag": "70f361342564e128fb5a6333457953b8"
+    },
+    {
+      "key": "input/forms/form-002.png",
+      "document_id": "3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535",
+      "version_id": "GM3DU0XbEJD6eTCWzHLGn6Ekr7j1pZhk",
+      "etag": "0c27937c9e4670c977a56969ea27f641"
+    },
+    {
+      "key": "input/forms/multipage-form.pdf",
+      "document_id": "fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373"
+    }
+  ],
+  "states": {
+    "bca2cb23d23c8e8b239a5d73da74a48a13cc0d57bd1e798cc033fb991aa19efc": "COMPLETED",
+    "3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535": "COMPLETED",
+    "fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373": "COMPLETED"
+  },
+  "duplicate": {
+    "results": [
+      {
+        "document_id": "bca2cb23d23c8e8b239a5d73da74a48a13cc0d57bd1e798cc033fb991aa19efc",
+        "status": "DUPLICATE_OR_IN_PROGRESS"
+      }
+    ]
+  },
+  "export": {
+    "exports": {
+      "documents": {
+        "rows": 6,
+        "s3_uri": "s3://textract-full-535709085695-us-east-1/output/exports/documents.csv"
+      },
+      "fields": {
+        "rows": 46,
+        "s3_uri": "s3://textract-full-535709085695-us-east-1/output/exports/fields.csv"
+      },
+      "line_items": {
+        "rows": 4,
+        "s3_uri": "s3://textract-full-535709085695-us-east-1/output/exports/line_items.csv"
+      },
+      "table_cells": {
+        "rows": 120,
+        "s3_uri": "s3://textract-full-535709085695-us-east-1/output/exports/table_cells.csv"
+      },
+      "table_rows": {
+        "rows": 42,
+        "s3_uri": "s3://textract-full-535709085695-us-east-1/output/exports/table_rows.csv"
+      }
+    }
+  },
+  "output_filter_configuration": {
+    "Id": "YjI4OGRmY2ItNzdiYS00MTE4LWFlZTUtMTQwY2M0YjI5NDEx",
+    "LambdaFunctionArn": "arn:aws:lambda:us-east-1:535709085695:function:textract-full-processor",
+    "Events": [
+      "s3:ObjectCreated:*"
+    ],
+    "Filter": {
+      "Key": {
+        "FilterRules": [
+          {
+            "Name": "Prefix",
+            "Value": "input/"
+          }
+        ]
+      }
+    }
+  },
+  "email_receipt": "MANUAL_CHECK_REQUIRED",
+  "output_negative_invocation_test": "MANUAL_CHECK_REQUIRED; configuration verified only"
+}

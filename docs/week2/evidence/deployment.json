@@ -1,0 +1,39 @@
+{
+  "account": "535709085695",
+  "region": "us-east-1",
+  "stack": "textract-full",
+  "package_sha256": "f98475f3d1dca36e2f56d31587030bab15b5683e2f91f90d83d49a518a972b13",
+  "artifact_bucket": "textract-pipeline-535709085695",
+  "artifact_key": "artifacts/textract-full/f98475f3d1dca36e2f56d31587030bab15b5683e2f91f90d83d49a518a972b13.zip",
+  "stack_status": "CREATE_COMPLETE",
+  "outputs": [
+    {
+      "OutputKey": "TableName",
+      "OutputValue": "textract-full-results"
+    },
+    {
+      "OutputKey": "BucketName",
+      "OutputValue": "textract-full-535709085695-us-east-1"
+    },
+    {
+      "OutputKey": "PollerName",
+      "OutputValue": "textract-full-poller"
+    },
+    {
+      "OutputKey": "TopicArn",
+      "OutputValue": "arn:aws:sns:us-east-1:535709085695:textract-full-notifications"
+    },
+    {
+      "OutputKey": "ProcessorName",
+      "OutputValue": "textract-full-processor"
+    },
+    {
+      "OutputKey": "CollectorName",
+      "OutputValue": "textract-full-collector"
+    },
+    {
+      "OutputKey": "ExporterName",
+      "OutputValue": "textract-full-exporter"
+    }
+  ]
+}

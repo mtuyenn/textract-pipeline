@@ -1,0 +1,356 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Textract Learner Lab pipeline - existing LabRole, no IAM resources
+Parameters:
+  Prefix:
+    Type: String
+    Default: textract-full
+    AllowedPattern: '[a-z][a-z0-9-]{2,25}'
+  Owner:
+    Type: String
+    Default: 24110372-24110381
+    MinLength: 1
+  LabRoleArn:
+    Type: String
+    AllowedPattern: 'arn:aws:iam::[0-9]{12}:role/LabRole'
+  ArtifactBucket:
+    Type: String
+  ArtifactKey:
+    Type: String
+  NotificationEmail:
+    Type: String
+    Default: ''
+  PollingState:
+    Type: String
+    Default: ENABLED
+    AllowedValues: [ENABLED, DISABLED]
+Conditions:
+  HasEmail: !Not [!Equals [!Ref NotificationEmail, '']]
+Rules:
+  AllowedRegion:
+    Assertions:
+      - Assert: !Contains [[us-east-1, us-west-2], !Ref 'AWS::Region']
+        AssertDescription: Only us-east-1 and us-west-2 are allowed
+Resources:
+  Results:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      TableName: !Sub '${Prefix}-results'
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - {AttributeName: PK, AttributeType: S}
+        - {AttributeName: SK, AttributeType: S}
+        - {AttributeName: work_pk, AttributeType: S}
+        - {AttributeName: due_at, AttributeType: N}
+      KeySchema:
+        - {AttributeName: PK, KeyType: HASH}
+        - {AttributeName: SK, KeyType: RANGE}
+      GlobalSecondaryIndexes:
+        - IndexName: WorkIndex
+          KeySchema:
+            - {AttributeName: work_pk, KeyType: HASH}
+            - {AttributeName: due_at, KeyType: RANGE}
+          Projection: {ProjectionType: ALL}
+      Tags:
+        - {Key: Project, Value: TextractDocumentDigitization}
+        - {Key: Owner, Value: !Ref Owner}
+  Notifications:
+    Type: AWS::SNS::Topic
+    Properties:
+      TopicName: !Sub '${Prefix}-notifications'
+      Tags:
+        - {Key: Project, Value: TextractDocumentDigitization}
+        - {Key: Owner, Value: !Ref Owner}
+  EmailSubscription:
+    Type: AWS::SNS::Subscription
+    Condition: HasEmail
+    Properties:
+      TopicArn: !Ref Notifications
+      Protocol: email
+      Endpoint: !Ref NotificationEmail
+  NotificationsPolicy:
+    Type: AWS::SNS::TopicPolicy
+    Properties:
+      Topics: [!Ref Notifications]
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: AccountAdministration
+            Effect: Allow
+            Principal: {AWS: !Sub 'arn:aws:iam::${AWS::AccountId}:root'}
+            Action:
+              - sns:AddPermission
+              - sns:DeleteTopic
+              - sns:GetDataProtectionPolicy
+              - sns:GetTopicAttributes
+              - sns:ListSubscriptionsByTopic
+              - sns:ListTagsForResource
+              - sns:Publish
+              - sns:PutDataProtectionPolicy
+              - sns:RemovePermission
+              - sns:SetTopicAttributes
+              - sns:Subscribe
+            Resource: !Ref Notifications
+          - Sid: CloudWatchProjectAlarms
+            Effect: Allow
+            Principal: {Service: cloudwatch.amazonaws.com}
+            Action: 'sns:Publish'
+            Resource: !Ref Notifications
+            Condition:
+              StringEquals: {'aws:SourceAccount': !Ref 'AWS::AccountId'}
+              ArnEquals:
+                aws:SourceArn:
+                  - !Sub 'arn:aws:cloudwatch:${AWS::Region}:${AWS::AccountId}:alarm:${Prefix}-document-errors'
+                  - !Sub 'arn:aws:cloudwatch:${AWS::Region}:${AWS::AccountId}:alarm:${Prefix}-lambda-errors'
+  ProcessorLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub '/aws/lambda/${Prefix}-processor'
+      RetentionInDays: 14
+      Tags:
+        - {Key: Project, Value: TextractDocumentDigitization}
+        - {Key: Owner, Value: !Ref Owner}
+  CollectorLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub '/aws/lambda/${Prefix}-collector'
+      RetentionInDays: 14
+      Tags:
+        - {Key: Project, Value: TextractDocumentDigitization}
+        - {Key: Owner, Value: !Ref Owner}
+  ExporterLog:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub '/aws/lambda/${Prefix}-exporter'
+      RetentionInDays: 14
+      Tags:
+        - {Key: Project, Value: TextractDocumentDigitization}
+        - {Key: Owner, Value: !Ref Owner}
+  Processor:
+    Type: AWS::Lambda::Function
+    DependsOn: ProcessorLog
+    Properties:
+      FunctionName: !Sub '${Prefix}-processor'
+      Runtime: python3.13
+      Handler: textract_pipeline.handlers.processor.lambda_handler
+      Role: !Ref LabRoleArn
+      Timeout: 180
+      MemorySize: 1024
+      Code: {S3Bucket: !Ref ArtifactBucket, S3Key: !Ref ArtifactKey}
+      Environment:
+        Variables:
+          RESULTS_TABLE: !Ref Results
+          DATA_BUCKET: !Sub '${Prefix}-${AWS::AccountId}-${AWS::Region}'
+          NOTIFICATION_TOPIC_ARN: !Ref Notifications
+          LEASE_SECONDS: '240'
+          MAX_JOBS_PER_TICK: '10'
+      Tags:
+        - {Key: Project, Value: TextractDocumentDigitization}
+        - {Key: Owner, Value: !Ref Owner}
+  Collector:
+    Type: AWS::Lambda::Function
+    DependsOn: CollectorLog
+    Properties:
+      FunctionName: !Sub '${Prefix}-collector'
+      Runtime: python3.13
+      Handler: textract_pipeline.handlers.collector.lambda_handler
+      Role: !Ref LabRoleArn
+      Timeout: 180
+      MemorySize: 1024
+      Code: {S3Bucket: !Ref ArtifactBucket, S3Key: !Ref ArtifactKey}
+      Environment:
+        Variables:
+          RESULTS_TABLE: !Ref Results
+          DATA_BUCKET: !Sub '${Prefix}-${AWS::AccountId}-${AWS::Region}'
+          NOTIFICATION_TOPIC_ARN: !Ref Notifications
+          LEASE_SECONDS: '240'
+          MAX_JOBS_PER_TICK: '10'
+      Tags:
+        - {Key: Project, Value: TextractDocumentDigitization}
+        - {Key: Owner, Value: !Ref Owner}
+  Exporter:
+    Type: AWS::Lambda::Function
+    DependsOn: ExporterLog
+    Properties:
+      FunctionName: !Sub '${Prefix}-exporter'
+      Runtime: python3.13
+      Handler: textract_pipeline.handlers.exporter.lambda_handler
+      Role: !Ref LabRoleArn
+      Timeout: 180
+      MemorySize: 512
+      Code: {S3Bucket: !Ref ArtifactBucket, S3Key: !Ref ArtifactKey}
+      Environment:
+        Variables:
+          RESULTS_TABLE: !Ref Results
+          DATA_BUCKET: !Sub '${Prefix}-${AWS::AccountId}-${AWS::Region}'
+      Tags:
+        - {Key: Project, Value: TextractDocumentDigitization}
+        - {Key: Owner, Value: !Ref Owner}
+  S3InvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !GetAtt Processor.Arn
+      Action: lambda:InvokeFunction
+      Principal: s3.amazonaws.com
+      SourceAccount: !Ref 'AWS::AccountId'
+      SourceArn: !Sub 'arn:aws:s3:::${Prefix}-${AWS::AccountId}-${AWS::Region}'
+  Documents:
+    Type: AWS::S3::Bucket
+    DependsOn: S3InvokePermission
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      BucketName: !Sub '${Prefix}-${AWS::AccountId}-${AWS::Region}'
+      OwnershipControls:
+        Rules: [{ObjectOwnership: BucketOwnerEnforced}]
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault: {SSEAlgorithm: AES256}
+      VersioningConfiguration: {Status: Enabled}
+      LifecycleConfiguration:
+        Rules:
+          - Id: AbortIncompleteMultipart
+            Status: Enabled
+            AbortIncompleteMultipartUpload: {DaysAfterInitiation: 1}
+      NotificationConfiguration:
+        LambdaConfigurations:
+          - Event: 's3:ObjectCreated:*'
+            Function: !GetAtt Processor.Arn
+            Filter:
+              S3Key:
+                Rules: [{Name: prefix, Value: input/}]
+      Tags:
+        - {Key: Project, Value: TextractDocumentDigitization}
+        - {Key: Owner, Value: !Ref Owner}
+  BucketTlsPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref Documents
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Deny
+            Principal: '*'
+            Action: 's3:*'
+            Resource: [!GetAtt Documents.Arn, !Sub '${Documents.Arn}/*']
+            Condition: {Bool: {'aws:SecureTransport': 'false'}}
+  Poller:
+    Type: AWS::Events::Rule
+    Properties:
+      Name: !Sub '${Prefix}-poller'
+      ScheduleExpression: 'rate(1 minute)'
+      State: !Ref PollingState
+      Targets: [{Arn: !GetAtt Collector.Arn, Id: Collector}]
+      Tags:
+        - {Key: Project, Value: TextractDocumentDigitization}
+        - {Key: Owner, Value: !Ref Owner}
+  PollInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !GetAtt Collector.Arn
+      Action: lambda:InvokeFunction
+      Principal: events.amazonaws.com
+      SourceAccount: !Ref 'AWS::AccountId'
+      SourceArn: !GetAtt Poller.Arn
+  ProcessorAsyncErrors:
+    Type: AWS::Lambda::EventInvokeConfig
+    Properties:
+      FunctionName: !Ref Processor
+      Qualifier: '$LATEST'
+      MaximumRetryAttempts: 2
+      MaximumEventAgeInSeconds: 21600
+      DestinationConfig: {OnFailure: {Destination: !Ref Notifications}}
+  CollectorAsyncErrors:
+    Type: AWS::Lambda::EventInvokeConfig
+    Properties:
+      FunctionName: !Ref Collector
+      Qualifier: '$LATEST'
+      MaximumRetryAttempts: 2
+      MaximumEventAgeInSeconds: 21600
+      DestinationConfig: {OnFailure: {Destination: !Ref Notifications}}
+  ProcessorFailureMetric:
+    Type: AWS::Logs::MetricFilter
+    Properties:
+      LogGroupName: !Ref ProcessorLog
+      FilterPattern: '"document_error"'
+      MetricTransformations:
+        - {MetricNamespace: !Ref Prefix, MetricName: DocumentErrors, MetricValue: '1', DefaultValue: 0}
+  CollectorFailureMetric:
+    Type: AWS::Logs::MetricFilter
+    Properties:
+      LogGroupName: !Ref CollectorLog
+      FilterPattern: '"document_error"'
+      MetricTransformations:
+        - {MetricNamespace: !Ref Prefix, MetricName: DocumentErrors, MetricValue: '1', DefaultValue: 0}
+  DocumentErrorsAlarm:
+    Type: AWS::CloudWatch::Alarm
+    DependsOn: NotificationsPolicy
+    Properties:
+      AlarmName: !Sub '${Prefix}-document-errors'
+      Namespace: !Ref Prefix
+      MetricName: DocumentErrors
+      Statistic: Sum
+      Period: 300
+      EvaluationPeriods: 1
+      Threshold: 1
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+      AlarmActions: [!Ref Notifications]
+      Tags:
+        - {Key: Project, Value: TextractDocumentDigitization}
+        - {Key: Owner, Value: !Ref Owner}
+  LambdaErrorsAlarm:
+    Type: AWS::CloudWatch::Alarm
+    DependsOn: NotificationsPolicy
+    Properties:
+      AlarmName: !Sub '${Prefix}-lambda-errors'
+      Metrics:
+        - Id: total
+          Expression: e1+e2+e3
+          ReturnData: true
+        - Id: e1
+          ReturnData: false
+          MetricStat:
+            Metric: {Namespace: AWS/Lambda, MetricName: Errors, Dimensions: [{Name: FunctionName, Value: !Ref Processor}]}
+            Period: 300
+            Stat: Sum
+        - Id: e2
+          ReturnData: false
+          MetricStat:
+            Metric: {Namespace: AWS/Lambda, MetricName: Errors, Dimensions: [{Name: FunctionName, Value: !Ref Collector}]}
+            Period: 300
+            Stat: Sum
+        - Id: e3
+          ReturnData: false
+          MetricStat:
+            Metric: {Namespace: AWS/Lambda, MetricName: Errors, Dimensions: [{Name: FunctionName, Value: !Ref Exporter}]}
+            Period: 300
+            Stat: Sum
+      EvaluationPeriods: 1
+      Threshold: 1
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      TreatMissingData: notBreaching
+      AlarmActions: [!Ref Notifications]
+      Tags:
+        - {Key: Project, Value: TextractDocumentDigitization}
+        - {Key: Owner, Value: !Ref Owner}
+  Dashboard:
+    Type: AWS::CloudWatch::Dashboard
+    Properties:
+      DashboardName: !Sub '${Prefix}-pipeline'
+      DashboardBody: !Sub |
+        {"widgets":[{"type":"metric","width":24,"height":8,"properties":{"region":"${AWS::Region}","title":"Lambda Invocations, Errors, Throttles","stat":"Sum","period":300,"metrics":[["AWS/Lambda","Invocations","FunctionName","${Processor}"],["AWS/Lambda","Errors","FunctionName","${Processor}"],["AWS/Lambda","Throttles","FunctionName","${Processor}"],["AWS/Lambda","Invocations","FunctionName","${Collector}"],["AWS/Lambda","Errors","FunctionName","${Collector}"],["AWS/Lambda","Throttles","FunctionName","${Collector}"],["AWS/Lambda","Invocations","FunctionName","${Exporter}"]]}},{"type":"metric","width":24,"height":8,"properties":{"region":"${AWS::Region}","title":"Lambda Duration p95 (ms)","stat":"p95","period":300,"metrics":[["AWS/Lambda","Duration","FunctionName","${Processor}"],["AWS/Lambda","Duration","FunctionName","${Collector}"],["AWS/Lambda","Duration","FunctionName","${Exporter}"]]}}]}
+Outputs:
+  BucketName: {Value: !Ref Documents}
+  TableName: {Value: !Ref Results}
+  TopicArn: {Value: !Ref Notifications}
+  ProcessorName: {Value: !Ref Processor}
+  CollectorName: {Value: !Ref Collector}
+  ExporterName: {Value: !Ref Exporter}
+  PollerName: {Value: !Ref Poller}

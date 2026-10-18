@@ -1,0 +1,121 @@
+﻿document_id,s3_key,table_number,page,row,column,row_span,column_span,merged,value,confidence,entity_types,table_title,table_footer
+3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535,input/forms/form-002.png,1,1,1,1,1,1,False,FORM ID:,91.69921875,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535,input/forms/form-002.png,1,1,1,2,1,1,False,FORM-0002,93.84765625,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535,input/forms/form-002.png,1,1,2,1,1,1,False,FULL NAME:,89.990234375,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535,input/forms/form-002.png,1,1,2,2,1,1,False,SYNTHETIC USER 002,92.138671875,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535,input/forms/form-002.png,1,1,3,1,1,1,False,DEPARTMENT:,91.259765625,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535,input/forms/form-002.png,1,1,3,2,1,1,False,SALES,93.408203125,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535,input/forms/form-002.png,1,1,4,1,1,1,False,REQUEST DATE:,89.94140625,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535,input/forms/form-002.png,1,1,4,2,1,1,False,2026-01-03,92.08984375,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535,input/forms/form-002.png,2,1,1,1,1,1,False,ITEM DESCRIPTION,95.3125,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535,input/forms/form-002.png,2,1,1,2,1,1,False,QTY,91.064453125,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535,input/forms/form-002.png,2,1,1,3,1,1,False,UNIT PRICE,93.603515625,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535,input/forms/form-002.png,2,1,1,4,1,1,False,AMOUNT,92.041015625,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535,input/forms/form-002.png,2,1,2,1,1,1,False,A4 PAPER BOX,92.3828125,[],,Generated for Textract evaluation; all values are fabricated.
+3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535,input/forms/form-002.png,2,1,2,2,1,1,False,3,88.232421875,[],,Generated for Textract evaluation; all values are fabricated.
+3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535,input/forms/form-002.png,2,1,2,3,1,1,False,$12.50,90.72265625,[],,Generated for Textract evaluation; all values are fabricated.
+3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535,input/forms/form-002.png,2,1,2,4,1,1,False,$37.50,89.16015625,[],,Generated for Textract evaluation; all values are fabricated.
+3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535,input/forms/form-002.png,2,1,3,1,1,1,False,DESK NOTEBOOK,94.091796875,[],,Generated for Textract evaluation; all values are fabricated.
+3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535,input/forms/form-002.png,2,1,3,2,1,1,False,2,89.892578125,[],,Generated for Textract evaluation; all values are fabricated.
+3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535,input/forms/form-002.png,2,1,3,3,1,1,False,$7.25,92.3828125,[],,Generated for Textract evaluation; all values are fabricated.
+3f53f1ba1294914da5e6a1ea1eb9d7d01cbb9952d83df1fa17a93297f3dc1535,input/forms/form-002.png,2,1,3,4,1,1,False,$14.50,90.8203125,[],,Generated for Textract evaluation; all values are fabricated.
+4d89b2c52742bc3dfee02ff27298529c4da3712a05098366710cf948ae1cfbe5,input/forms/form-002.png,1,1,1,1,1,1,False,FORM ID:,91.69921875,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+4d89b2c52742bc3dfee02ff27298529c4da3712a05098366710cf948ae1cfbe5,input/forms/form-002.png,1,1,1,2,1,1,False,FORM-0002,93.84765625,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+4d89b2c52742bc3dfee02ff27298529c4da3712a05098366710cf948ae1cfbe5,input/forms/form-002.png,1,1,2,1,1,1,False,FULL NAME:,89.990234375,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+4d89b2c52742bc3dfee02ff27298529c4da3712a05098366710cf948ae1cfbe5,input/forms/form-002.png,1,1,2,2,1,1,False,SYNTHETIC USER 002,92.138671875,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+4d89b2c52742bc3dfee02ff27298529c4da3712a05098366710cf948ae1cfbe5,input/forms/form-002.png,1,1,3,1,1,1,False,DEPARTMENT:,91.259765625,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+4d89b2c52742bc3dfee02ff27298529c4da3712a05098366710cf948ae1cfbe5,input/forms/form-002.png,1,1,3,2,1,1,False,SALES,93.408203125,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+4d89b2c52742bc3dfee02ff27298529c4da3712a05098366710cf948ae1cfbe5,input/forms/form-002.png,1,1,4,1,1,1,False,REQUEST DATE:,89.94140625,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+4d89b2c52742bc3dfee02ff27298529c4da3712a05098366710cf948ae1cfbe5,input/forms/form-002.png,1,1,4,2,1,1,False,2026-01-03,92.08984375,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+4d89b2c52742bc3dfee02ff27298529c4da3712a05098366710cf948ae1cfbe5,input/forms/form-002.png,2,1,1,1,1,1,False,ITEM DESCRIPTION,95.3125,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+4d89b2c52742bc3dfee02ff27298529c4da3712a05098366710cf948ae1cfbe5,input/forms/form-002.png,2,1,1,2,1,1,False,QTY,91.064453125,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+4d89b2c52742bc3dfee02ff27298529c4da3712a05098366710cf948ae1cfbe5,input/forms/form-002.png,2,1,1,3,1,1,False,UNIT PRICE,93.603515625,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+4d89b2c52742bc3dfee02ff27298529c4da3712a05098366710cf948ae1cfbe5,input/forms/form-002.png,2,1,1,4,1,1,False,AMOUNT,92.041015625,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+4d89b2c52742bc3dfee02ff27298529c4da3712a05098366710cf948ae1cfbe5,input/forms/form-002.png,2,1,2,1,1,1,False,A4 PAPER BOX,92.3828125,[],,Generated for Textract evaluation; all values are fabricated.
+4d89b2c52742bc3dfee02ff27298529c4da3712a05098366710cf948ae1cfbe5,input/forms/form-002.png,2,1,2,2,1,1,False,3,88.232421875,[],,Generated for Textract evaluation; all values are fabricated.
+4d89b2c52742bc3dfee02ff27298529c4da3712a05098366710cf948ae1cfbe5,input/forms/form-002.png,2,1,2,3,1,1,False,$12.50,90.72265625,[],,Generated for Textract evaluation; all values are fabricated.
+4d89b2c52742bc3dfee02ff27298529c4da3712a05098366710cf948ae1cfbe5,input/forms/form-002.png,2,1,2,4,1,1,False,$37.50,89.16015625,[],,Generated for Textract evaluation; all values are fabricated.
+4d89b2c52742bc3dfee02ff27298529c4da3712a05098366710cf948ae1cfbe5,input/forms/form-002.png,2,1,3,1,1,1,False,DESK NOTEBOOK,94.091796875,[],,Generated for Textract evaluation; all values are fabricated.
+4d89b2c52742bc3dfee02ff27298529c4da3712a05098366710cf948ae1cfbe5,input/forms/form-002.png,2,1,3,2,1,1,False,2,89.892578125,[],,Generated for Textract evaluation; all values are fabricated.
+4d89b2c52742bc3dfee02ff27298529c4da3712a05098366710cf948ae1cfbe5,input/forms/form-002.png,2,1,3,3,1,1,False,$7.25,92.3828125,[],,Generated for Textract evaluation; all values are fabricated.
+4d89b2c52742bc3dfee02ff27298529c4da3712a05098366710cf948ae1cfbe5,input/forms/form-002.png,2,1,3,4,1,1,False,$14.50,90.8203125,[],,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,1,1,1,1,1,1,False,FORM ID:,90.8203125,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,1,1,1,2,1,1,False,FORM-0002,93.505859375,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,1,1,2,1,1,1,False,FULL NAME:,89.208984375,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,1,1,2,2,1,1,False,SYNTHETIC USER 002,91.845703125,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,1,1,3,1,1,1,False,DEPARTMENT:,90.673828125,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,1,1,3,2,1,1,False,SALES,93.310546875,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,1,1,4,1,1,1,False,REQUEST DATE:,89.2578125,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,1,1,4,2,1,1,False,2026-01-03,91.89453125,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,2,1,1,1,1,1,False,ITEM DESCRIPTION,95.80078125,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,2,1,1,2,1,1,False,QTY,92.08984375,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,2,1,1,3,1,1,False,UNIT PRICE,94.23828125,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,2,1,1,4,1,1,False,AMOUNT,91.89453125,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,2,1,2,1,1,1,False,A4 PAPER BOX,94.921875,[],,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,2,1,2,2,1,1,False,3,91.259765625,[],,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,2,1,2,3,1,1,False,$12.50,93.359375,[],,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,2,1,2,4,1,1,False,$37.50,91.064453125,[],,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,2,1,3,1,1,1,False,DESK NOTEBOOK,95.458984375,[],,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,2,1,3,2,1,1,False,2,91.748046875,[],,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,2,1,3,3,1,1,False,$7.25,93.896484375,[],,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,2,1,3,4,1,1,False,$14.50,91.552734375,[],,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,3,2,1,1,1,1,False,FORM ID:,90.966796875,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,3,2,1,2,1,1,False,FORM-0004,93.65234375,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,3,2,2,1,1,1,False,FULL NAME:,89.16015625,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,3,2,2,2,1,1,False,SYNTHETIC USER 004,91.796875,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,3,2,3,1,1,1,False,DEPARTMENT:,90.8203125,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,3,2,3,2,1,1,False,OPERATIONS,93.505859375,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,3,2,4,1,1,1,False,REQUEST DATE:,89.013671875,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,3,2,4,2,1,1,False,2026-01-05,91.650390625,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,4,2,1,1,1,1,False,ITEM DESCRIPTION,95.99609375,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,4,2,1,2,1,1,False,QTY,92.236328125,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,4,2,1,3,1,1,False,UNIT PRICE,94.287109375,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,4,2,1,4,1,1,False,AMOUNT,91.552734375,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,4,2,2,1,1,1,False,A4 PAPER BOX,94.873046875,[],,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,4,2,2,2,1,1,False,2,91.2109375,[],,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,4,2,2,3,1,1,False,$12.50,93.1640625,[],,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,4,2,2,4,1,1,False,$25.00,90.478515625,[],,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,4,2,3,1,1,1,False,DESK NOTEBOOK,95.849609375,[],,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,4,2,3,2,1,1,False,2,92.138671875,[],,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,4,2,3,3,1,1,False,$7.25,94.140625,[],,Generated for Textract evaluation; all values are fabricated.
+6b1e8845ecea8f11275a29596cbcb3ee39e1bd1f58c2c56b64b52b7e1288698e,input/forms/multipage-form.pdf,4,2,3,4,1,1,False,$14.50,91.40625,[],,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,1,1,1,1,1,1,False,FORM ID:,90.8203125,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,1,1,1,2,1,1,False,FORM-0002,93.505859375,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,1,1,2,1,1,1,False,FULL NAME:,89.208984375,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,1,1,2,2,1,1,False,SYNTHETIC USER 002,91.845703125,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,1,1,3,1,1,1,False,DEPARTMENT:,90.673828125,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,1,1,3,2,1,1,False,SALES,93.310546875,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,1,1,4,1,1,1,False,REQUEST DATE:,89.2578125,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,1,1,4,2,1,1,False,2026-01-03,91.89453125,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,2,1,1,1,1,1,False,ITEM DESCRIPTION,95.80078125,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,2,1,1,2,1,1,False,QTY,92.08984375,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,2,1,1,3,1,1,False,UNIT PRICE,94.23828125,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,2,1,1,4,1,1,False,AMOUNT,91.89453125,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,2,1,2,1,1,1,False,A4 PAPER BOX,94.921875,[],,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,2,1,2,2,1,1,False,3,91.259765625,[],,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,2,1,2,3,1,1,False,$12.50,93.359375,[],,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,2,1,2,4,1,1,False,$37.50,91.064453125,[],,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,2,1,3,1,1,1,False,DESK NOTEBOOK,95.458984375,[],,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,2,1,3,2,1,1,False,2,91.748046875,[],,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,2,1,3,3,1,1,False,$7.25,93.896484375,[],,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,2,1,3,4,1,1,False,$14.50,91.552734375,[],,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,3,2,1,1,1,1,False,FORM ID:,90.966796875,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,3,2,1,2,1,1,False,FORM-0004,93.65234375,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,3,2,2,1,1,1,False,FULL NAME:,89.16015625,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,3,2,2,2,1,1,False,SYNTHETIC USER 004,91.796875,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,3,2,3,1,1,1,False,DEPARTMENT:,90.8203125,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,3,2,3,2,1,1,False,OPERATIONS,93.505859375,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,3,2,4,1,1,1,False,REQUEST DATE:,89.013671875,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,3,2,4,2,1,1,False,2026-01-05,91.650390625,[],SYNTHETIC DATA - NOT A REAL TRANSACTION,
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,4,2,1,1,1,1,False,ITEM DESCRIPTION,95.99609375,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,4,2,1,2,1,1,False,QTY,92.236328125,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,4,2,1,3,1,1,False,UNIT PRICE,94.287109375,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,4,2,1,4,1,1,False,AMOUNT,91.552734375,"[""COLUMN_HEADER""]",,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,4,2,2,1,1,1,False,A4 PAPER BOX,94.873046875,[],,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,4,2,2,2,1,1,False,2,91.2109375,[],,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,4,2,2,3,1,1,False,$12.50,93.1640625,[],,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,4,2,2,4,1,1,False,$25.00,90.478515625,[],,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,4,2,3,1,1,1,False,DESK NOTEBOOK,95.849609375,[],,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,4,2,3,2,1,1,False,2,92.138671875,[],,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,4,2,3,3,1,1,False,$7.25,94.140625,[],,Generated for Textract evaluation; all values are fabricated.
+fde3b73cc571e6586f5000c1c68a36fad70b620444d269b0e6ad6e0cdf2ed373,input/forms/multipage-form.pdf,4,2,3,4,1,1,False,$14.50,91.40625,[],,Generated for Textract evaluation; all values are fabricated.

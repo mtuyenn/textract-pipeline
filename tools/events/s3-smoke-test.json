@@ -1,0 +1,16 @@
+{
+  "Records": [
+    {
+      "eventSource": "aws:s3",
+      "eventName": "ObjectCreated:Put",
+      "s3": {
+        "bucket": {"name": "textract-pipeline-535709085695"},
+        "object": {
+          "key": "input/forms/sample-form.png",
+          "size": 12345,
+          "eTag": "0123456789abcdef"
+        }
+      }
+    }
+  ]
+}

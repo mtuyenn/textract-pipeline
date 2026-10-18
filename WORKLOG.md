@@ -1,4 +1,4 @@
-# BÁO CÁO TIẾN ĐỘ TUẦN 1 — MÔN ĐIỆN TOÁN ĐÁM MÂY
+# WORKLOG DỰ ÁN — TIẾN ĐỘ TUẦN 1 VÀ TUẦN 2
 
 > **Dự án:** Số hóa hóa đơn và biểu mẫu với Amazon Textract  
 > **Giảng viên hướng dẫn:** TS. Huỳnh Xuân Phụng  
@@ -35,3 +35,26 @@ Trong Tuần 1, nhóm tập trung thực hiện Giai đoạn 1 của đồ án (
 |:---:|---|---|:---:|
 | **24110372** | **Ninh Nguyễn Minh Tuyên** | - Nghiên cứu quy ước đặt tên tài nguyên và thiết lập các thẻ Project, Owner; kiểm tra môi trường AWS Academy Learner Lab, Region us-east-1 và IAM role LabRole.<br>- Khởi tạo các tài nguyên nền tảng trên AWS Console, bao gồm S3 bucket và các prefix input/, output/, DynamoDB table và SNS topic cùng email subscription.<br>- Cấu hình hàm Lambda Processor ở mức khung chức năng; kiểm tra và xử lý sự cố liên quan đến quyền gọi hàm Lambda từ S3.<br>- Thiết lập S3 event notification để kích hoạt Lambda Processor khi có đối tượng mới được tải lên prefix input/.<br>- Thực hiện kiểm thử bằng tệp smoke-test.txt, theo dõi nhật ký trên CloudWatch và đối chiếu invocation sau khi tải tệp vào prefix output/. | **10 giờ** |
 | **24110381** | **Nguyễn Quốc Việt** | - Nghiên cứu tài liệu kỹ thuật về cơ chế hoạt động và vai trò của các dịch vụ AWS được sử dụng trong hệ thống, bao gồm S3, Lambda, Textract, DynamoDB, SNS và CloudWatch.<br>- Xây dựng bản phác thảo kiến trúc tổng thể, xác định phạm vi kiểm thử của tuần 1 và phân biệt các chức năng dự kiến triển khai trong các giai đoạn tiếp theo.<br>- Chuẩn bị mã nguồn khung cho hàm Lambda Exporter và các tệp dữ liệu giả phục vụ kiểm thử, bao gồm tệp văn bản và tệp CSV.<br>- Phối hợp kiểm thử luồng sự kiện, thu thập ảnh chụp minh chứng từ AWS Console và CloudWatch.<br>- Tổng hợp kết quả triển khai, ghi nhận các hạng mục đã hoàn thành và báo cáo tuần 1. | **8 giờ** |
+
+
+## Tuần 2 — Triển khai và kiểm thử trên AWS
+
+Trong tuần 2, nhóm hoàn thiện phần xử lý tài liệu bằng Lambda, đóng gói chương trình rồi triển khai lên AWS Learner Lab. Sau khi stack chạy, nhóm thử với hóa đơn, biểu mẫu và PDF nhiều trang để kiểm tra các bước xử lý và kết quả xuất ra.
+
+### Công việc đã làm
+
+- Đóng gói ba Lambda Processor, Collector và Exporter. Gói `textract-pipeline.zip` có dung lượng 16.661.135 byte; các bước kiểm tra gói và handler đều đạt.
+- Triển khai stack `textract-full` trên account `535709085695`, Region `us-east-1`. Stack tạo thành công với trạng thái `CREATE_COMPLETE`.
+- Thử `invoice-001.png`, `form-002.png` và `multipage-form.pdf`. Cả ba tài liệu đều xử lý xong với trạng thái `COMPLETED`; PDF hai trang được xử lý qua Collector.
+- Gửi lại sự kiện hóa đơn để thử chống trùng. Hệ thống trả `DUPLICATE_OR_IN_PROGRESS`.
+- Thử tệp `invalid-smoke.txt`. Hệ thống từ chối tệp với mã `InvalidDocument` và gửi email thông báo SNS.
+- Chạy Exporter và tạo năm tệp CSV. Dữ liệu tổng hợp lúc xuất có 6 documents, 46 fields, 4 line_items, 120 table_cells và 42 table_rows.
+
+### Phân công công việc tuần 2
+
+| MSSV | Họ và tên | Công việc thực hiện | Số giờ |
+|:---:|---|---|:---:|
+| **24110372** | **Ninh Nguyễn Minh Tuyên** | Viết và hoàn thiện phần code Lambda xử lý tài liệu, đóng gói chương trình và triển khai stack bằng AWS CLI. | 12 giờ |
+| **24110381** | **Nguyễn Quốc Việt** | Tham gia triển khai và kiểm tra tài nguyên trên AWS; chạy các bài test, kiểm tra email và file CSV; tổng hợp ảnh minh chứng và viết báo cáo tuần 2. | 10 giờ |
+
+**Tài liệu tuần 2:** [README](docs/week2/README.md), [báo cáo](docs/week2/BaoCaoTuan2.docx), [bằng chứng và CSV](docs/week2/evidence/).
