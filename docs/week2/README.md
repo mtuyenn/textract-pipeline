@@ -120,7 +120,17 @@ Exporter tạo năm tệp trong `output/exports/`. Số dòng dưới đây là 
 - Script triển khai và smoke test: [deploy.ps1](../../tools/deploy.ps1), [smoke_aws.py](../../tools/smoke_aws.py)
 - Báo cáo Word: [BaoCaoTuan2.docx](BaoCaoTuan2.docx)
 - Phân công công việc: [WORKLOG.md](../../WORKLOG.md)
+- Commit hoàn thiện mã Lambda và kiểm thử: https://github.com/mtuyenn/textract-pipeline/commit/9894e142186feae14948effc3670087c8f06e928
+- Commit Worklog và bằng chứng triển khai tuần 2: https://github.com/mtuyenn/textract-pipeline/commit/d54211aefbc5ca4678b4197d1e60ace764cca5a5
+- Commit README và ảnh minh chứng tuần 2: https://github.com/mtuyenn/textract-pipeline/commit/bbe3342d6e9421f12fdee9a24f39dccc3845b9bf
 
-## 9. Hạn chế và công việc tiếp theo
+## 9. Hạn chế
 
 Smoke test xác nhận luồng xử lý và xuất dữ liệu hoạt động với bộ mẫu đã chạy. Tuần 2 chưa đánh giá độ chính xác trích xuất trên toàn bộ bộ dữ liệu chuẩn; đây là phần cần thực hiện ở giai đoạn đánh giá tiếp theo. Manifest cũng đánh dấu kiểm tra thủ công riêng cho việc không phát sinh invocation khi ghi vào `output/` là `NOT_RUN`, vì vậy báo cáo chỉ ghi nhận cấu hình trigger giới hạn ở `input/`, không kết luận bài kiểm tra âm này đã hoàn thành.
+
+## 10. Kế hoạch tuần 3
+
+1. Chạy pipeline với bộ ít nhất 30 tài liệu mẫu có dữ liệu chuẩn (ground truth) để đánh giá kết quả trên Textract thật.
+2. Đối chiếu các trường trích xuất với ground truth, tổng hợp độ chính xác theo loại tài liệu và nhóm trường; lưu kết quả đánh giá làm minh chứng.
+3. Phân tích các trường hợp trích xuất sai, hoàn thiện bước chuẩn hóa dữ liệu khi cần và bổ sung kiểm thử hồi quy cho các lỗi đã tìm thấy.
+4. Cập nhật báo cáo kết quả, nêu rõ giới hạn của bộ dữ liệu, độ chính xác và chi phí AWS ghi nhận được.

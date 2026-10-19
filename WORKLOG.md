@@ -58,3 +58,16 @@ Trong tuần 2, nhóm hoàn thiện phần xử lý tài liệu bằng Lambda, �
 | **24110381** | **Nguyễn Quốc Việt** | Tham gia triển khai và kiểm tra tài nguyên trên AWS; chạy các bài test, kiểm tra email và file CSV; tổng hợp ảnh minh chứng và viết báo cáo tuần 2. | 10 giờ |
 
 **Tài liệu tuần 2:** [README](docs/week2/README.md), [báo cáo](docs/week2/BaoCaoTuan2.docx), [bằng chứng và CSV](docs/week2/evidence/).
+
+### Kế hoạch tuần 3
+
+- Chạy pipeline với bộ ít nhất 30 tài liệu mẫu có dữ liệu chuẩn (ground truth) để đánh giá kết quả trích xuất trên Textract thật.
+- Đối chiếu kết quả với ground truth, tổng hợp độ chính xác theo loại tài liệu và nhóm trường, rồi lưu kết quả đánh giá làm minh chứng.
+- Phân tích các trường hợp trích xuất sai, hoàn thiện chuẩn hóa dữ liệu nếu cần và bổ sung kiểm thử hồi quy cho các lỗi đã tìm thấy.
+- Cập nhật báo cáo kết quả, giới hạn của bộ dữ liệu, độ chính xác và chi phí AWS ghi nhận được.
+
+### Commit liên quan đến công việc tuần 2
+
+- Hoàn thiện mã Lambda, xử lý Textract, xuất CSV và kiểm thử — `9894e142186feae14948effc3670087c8f06e928`: https://github.com/mtuyenn/textract-pipeline/commit/9894e142186feae14948effc3670087c8f06e928
+- Bổ sung Worklog và tài liệu triển khai tuần 2 — `d54211aefbc5ca4678b4197d1e60ace764cca5a5`: https://github.com/mtuyenn/textract-pipeline/commit/d54211aefbc5ca4678b4197d1e60ace764cca5a5
+- Bổ sung báo cáo và ảnh minh chứng tuần 2 — `bbe3342d6e9421f12fdee9a24f39dccc3845b9bf`: https://github.com/mtuyenn/textract-pipeline/commit/bbe3342d6e9421f12fdee9a24f39dccc3845b9bf
