@@ -64,7 +64,7 @@ Nguồn demo mới: [smoke.json](../../artifacts/runs/20261024-014837-week3-prod
 
 CSV của demo mới nằm trong [exports](../../artifacts/runs/20261024-014837-week3-product-demo-3988825a/exports). Export toàn bảng có 68 dòng documents, 367 fields, 64 line_items, 760 table_cells và 266 table_rows vì giữ cả revision/lượt cũ; evaluator vẫn chấm đúng 30 source key của ground truth, không tính 68 dòng là 68 tài liệu mẫu độc lập. PDF của demo mới có pages=2, COMPLETED và notification_status=DELIVERED trong documents.csv. Các CSV được lưu kèm minh chứng Git: [documents.csv](evidence/20261024-014837-product-demo/exports/documents.csv), [fields.csv](evidence/20261024-014837-product-demo/exports/fields.csv), [line_items.csv](evidence/20261024-014837-product-demo/exports/line_items.csv), [table_cells.csv](evidence/20261024-014837-product-demo/exports/table_cells.csv) và [table_rows.csv](evidence/20261024-014837-product-demo/exports/table_rows.csv).
 
-![Các CSV trong thư mục output/exports trên S3](assets/chat-20261024-020120-01-s3-five-csv-exports.png)
+![Các CSV trong thư mục output/exports trên S3](assets/s3-exported-csv-files.png)
 
 ## 3. Tích hợp pipeline và xuất CSV
 
@@ -101,7 +101,7 @@ Evaluation ban đầu báo table cells bằng 0% vì dùng số thứ tự bản
 
 Ảnh CLI dưới đây thuộc evaluation ban đầu và còn hiển thị table cells 0%. Số liệu hiện tại lấy từ evaluation sau sửa cách ghép bảng đã liên kết ở trên.
 
-![CLI chạy 30 tài liệu và evaluation ban đầu](assets/Screenshot%202026-10-24%20003130.png)
+![CLI chạy 30 tài liệu và evaluation ban đầu](assets/demo-evaluation-initial-cli.png)
 
 Bộ mẫu là tài liệu tổng hợp theo template, không có dữ liệu cá nhân thật. Kết quả này chưa đại diện cho ảnh chụp thực tế, tiếng Việt hoặc nhiều bố cục khác nhau.
 
@@ -119,13 +119,13 @@ Các ảnh do sinh viên cung cấp trong buổi làm việc đã được đố
 | Execution role của ba Lambda chính | Cả Processor, Collector và Exporter đều hiện `LabRole` |
 | Quyền S3 invoke Processor | Giới hạn theo đúng SourceAccount và ARN bucket chính |
 
-![Chặn truy cập công khai của bucket chính](assets/Screenshot%202026-10-24%20012100.png)
+![Chặn truy cập công khai của bucket chính](assets/s3-block-public-access.png)
 
-![Bucket policy yêu cầu HTTPS](assets/image%20copy.png)
+![Bucket policy yêu cầu HTTPS](assets/s3-https-only-bucket-policy.png)
 
-![Danh sách các Lambda trong stack](assets/chat-20261024-013031-01-lambda-functions.png)
+![Danh sách các Lambda trong stack](assets/lambda-functions-overview.png)
 
-![Kết quả đánh giá 30 tài liệu của lượt demo](assets/chat-20261024-015142-02-demo-evaluation.png)
+![Kết quả đánh giá 30 tài liệu của lượt demo](assets/demo-evaluation-summary.png)
 
 Console có thông báo explicit deny `iam:GetPolicy` cho phiên đăng nhập `voclabs`. Ghi nhận đây là hạn chế đọc IAM policy của phiên lab; không suy diễn thành kết luận mọi API nghiệp vụ bị từ chối. Kết quả chạy thật và tên execution role là các bằng chứng độc lập. Phần này xác nhận những cấu hình đã xem, chưa phải một cuộc kiểm toán toàn bộ quyền IAM.
 
@@ -133,9 +133,9 @@ Console có thông báo explicit deny `iam:GetPolicy` cho phiên đăng nhập `
 
 CloudWatch có dashboard `textract-full-pipeline`, các log group của ba Lambda có retention 14 ngày và hai alarm `textract-full-lambda-errors`, `textract-full-document-errors`. Ở thời điểm kiểm tra Console, cả hai alarm đều OK.
 
-![Dashboard CloudWatch của stack chính](assets/Screenshot%202026-10-24%20004503.png)
+![Dashboard CloudWatch của stack chính](assets/cloudwatch-dashboard-metrics-one-day.png)
 
-![Lịch sử alarm CloudWatch](assets/chat-20261024-010737-01-alarm-history.png)
+![Lịch sử alarm CloudWatch](assets/cloudwatch-lambda-alarm-history.png)
 
 Lịch sử alarm do sinh viên cung cấp cho thấy alarm Lambda từng chuyển sang ALARM sau datapoint total=1 tại `2026-10-17T12:20:00Z`, rồi về OK lúc `2026-10-23T17:18:20Z` sau datapoint total=0 tại `2026-10-23T17:13:00Z`. Đây lần lượt là 19:20 ngày 17/10 và 00:18:20 ngày 24/10 theo giờ Việt Nam. Lịch sử này không xác định nguyên nhân gốc và không chứng minh lỗi xảy ra liên tục giữa hai mốc.
 
@@ -143,11 +143,11 @@ Tìm chuỗi `ERROR` trong Processor/Collector và `document_error` trong Collec
 
 Topic chính `textract-full-notifications` có email subscription Confirmed. Hộp thư nhận nhiều email `Textract COMPLETED` lúc 00:28, khớp các document ID/source key trong lượt chạy. Hộp thư còn có email alarm cũ ngày 17/10. Không lấy tổng số thư trong Gmail làm số email riêng của run mới.
 
-![Subscription của topic chính đã Confirmed](assets/Screenshot%202026-10-24%20011324.png)
+![Subscription của topic chính đã Confirmed](assets/sns-confirmed-email-subscription.png)
 
-![Email hoàn tất của lượt chạy 30 tài liệu](assets/Screenshot%202026-10-24%20011016.png)
+![Email hoàn tất của lượt chạy 30 tài liệu](assets/sns-completion-emails-batch.png)
 
-![Email hoàn tất và cảnh báo từ các lượt cũ](assets/Screenshot%202026-10-24%20011029.png)
+![Email hoàn tất và cảnh báo từ các lượt cũ](assets/sns-completion-and-alarm-emails.png)
 
 ## 7. Phạm vi minh chứng cho trigger output
 
