@@ -72,38 +72,34 @@ Trong tuần 2, nhóm hoàn thiện phần xử lý tài liệu bằng Lambda, �
 - Bổ sung Worklog và tài liệu triển khai tuần 2 — `d54211aefbc5ca4678b4197d1e60ace764cca5a5`: https://github.com/mtuyenn/textract-pipeline/commit/d54211aefbc5ca4678b4197d1e60ace764cca5a5
 - Bổ sung báo cáo và ảnh minh chứng tuần 2 — `bbe3342d6e9421f12fdee9a24f39dccc3845b9bf`: https://github.com/mtuyenn/textract-pipeline/commit/bbe3342d6e9421f12fdee9a24f39dccc3845b9bf
 
-## Tuần 3 — Tích hợp, bảo mật, giám sát và đánh giá trên AWS
+## Tuần 3 — Tích hợp, bảo mật và giám sát
 
-### Công việc có bằng chứng thực hiện
+Trong tuần 3, nhóm tiếp tục dùng stack `textract-full` đã triển khai ở tuần 2. Nhóm chạy lại pipeline với bộ tài liệu mẫu, chấm kết quả bằng ground truth, kiểm tra cấu hình S3/Lambda và theo dõi CloudWatch, SNS.
 
-| Hạng mục | Công việc và kết quả đã ghi nhận | Bằng chứng |
-| --- | --- | --- |
-| Công cụ đánh giá và quản lý run | Cập nhật smoke để xác nhận phiên Learner Lab, account và dữ liệu synthetic; evaluator nhận run thật, lưu snapshot/provenance, đối chiếu bảng theo vị trí hàng/cột cùng trang | `tools/smoke_aws.py`, `tools/evaluate.py`, manifest các run |
-| Batch 30 tài liệu | Ngày 24/10 lúc 00:28, chạy 15 hóa đơn và 15 biểu mẫu qua stack `textract-full`; cả 30 COMPLETED, xuất năm CSV | `20261024-002810-aws-smoke-accuracy-fc93f0c6` |
-| Phân tích độ chính xác | Fields 105/120 (87,5%); line item fields 90/90; table cells sau sửa cách ghép bảng 180/180. Giữ precision và 15 mismatch VENDOR_NAME; không tuyên bố toàn hệ thống chính xác 100% | `20261024-003342-evaluation-table-remap-a35eb328` và các evaluation tiếp theo |
-| Bảo mật | Đối chiếu Console: S3 chặn public, HTTPS-only policy, SSE-S3, Versioning Enabled, tags Project/Owner; ba Lambda chính dùng LabRole. Ghi nhận giới hạn `iam:GetPolicy` của lab | Ảnh Console do nhóm cung cấp trong buổi làm việc; phần bảo mật trong báo cáo tuần 3 |
-| CloudWatch và SNS | Xem dashboard/log groups, retention, hai alarms và lịch sử thay đổi trạng thái; xác nhận subscription của topic chính và email COMPLETED đã nhận | Ảnh CloudWatch/Gmail/SNS trong `docs/week3/assets` và ảnh bổ sung trong cuộc trao đổi |
-| IaC và quản lý tài nguyên | Tiếp tục dùng CloudFormation stack tuần 2; phân biệt bộ `textract-full-*` với bộ tuần 1, xác định bucket cũ vẫn chứa ZIP triển khai; chưa thực hiện cleanup | Deployment manifest và báo cáo tuần 2/3 |
-| Demo sản phẩm trên AWS | Ngày 24/10 từ 01:48:38 đến 01:50:51, chạy 30 ảnh + PDF hai trang: 31/31 COMPLETED, duplicate được chặn, xuất/tải CSV. Evaluation lúc 01:51:02–01:51:03 chấm 30 ảnh và tái lập kết quả trước đó | `20261024-014837-week3-product-demo-3988825a`, `20261024-015102-evaluation-b21f4135` |
-| Tổng hợp hồ sơ | Viết báo cáo tuần 3, liên kết run/ảnh, cập nhật tiến độ vốn còn ghi NOT_RUN từ 11/10; kiểm tra hash/size các run được đối chiếu | `docs/week3/README.md`, `docs/plan.md`, các manifest |
+### Công việc đã làm
 
-### Phân công và số giờ
+- Chạy batch baseline gồm 30 ảnh tổng hợp: 15 hóa đơn và 15 biểu mẫu. Cả 30 tài liệu hoàn tất; phát lại sự kiện của một tài liệu đã xử lý trả về `DUPLICATE_OR_IN_PROGRESS`.
+- Chạy demo đầu-cuối với 30 ảnh và một PDF hai trang. Cả 31 tài liệu đạt `COMPLETED`; PDF được xử lý bất đồng bộ qua Collector. Hai tệp không hợp lệ được ghi nhận `REJECTED`.
+- Chạy evaluator trên 30 ảnh có ground truth. Fields khớp 105/120 (87,50% recall), line item fields 90/90, table cells 180/180 và line item rows 30/30. Nhóm rà soát mismatch `VENDOR_NAME` và cách ghép bảng theo trang/hàng/cột.
+- Chạy Exporter, kiểm tra năm CSV `documents.csv`, `fields.csv`, `line_items.csv`, `table_cells.csv`, `table_rows.csv` trong `output/exports/`.
+- Kiểm tra S3 Block Public Access, HTTPS-only bucket policy, SSE-S3, versioning, tags và execution role `LabRole` của ba Lambda.
+- Theo dõi dashboard, log group, alarm và SNS. Subscription email đã xác nhận; hộp thư nhận thông báo hoàn tất, từ chối và cảnh báo. CloudWatch có datapoint Collector Errors khác 0; nhóm chưa xác định được nguyên nhân gốc.
+- Thử tải CSV vào `output/`; trong khoảng thời gian quan sát không thấy Processor bắt đầu xử lý object đó.
+- Cost Explorer ngày 25/10 hiển thị khoảng 0,21 USD cho giai đoạn 18–25/10; đây là số liệu tại thời điểm truy vấn và có thể thay đổi khi AWS cập nhật billing.
 
-Hai thành viên của nhóm là Ninh Nguyễn Minh Tuyên (24110372) và Nguyễn Quốc Việt (24110381). Bằng chứng hiện có xác nhận các kết quả chung ở bảng trên; không đủ để xác định chính xác phần việc và số giờ thực tế của từng người. Phiên CLI trong minh chứng sử dụng tài khoản Learner Lab có MSSV 24110372, nhưng thời gian bắt đầu/kết thúc run là thời gian thực thi chương trình, không phải tổng giờ làm việc của cá nhân.
+### Phân công và thời gian ước tính
 
-| MSSV | Họ và tên | Phân bổ công việc thực tế theo cá nhân | Số giờ thực tế tuần 3 |
-| --- | --- | --- | --- |
-| 24110372 | Ninh Nguyễn Minh Tuyên | Chưa có nguồn xác nhận đầy đủ; tham chiếu các kết quả chung đã ghi nhận ở trên | Chưa xác nhận |
-| 24110381 | Nguyễn Quốc Việt | Chưa có nguồn xác nhận đầy đủ; tham chiếu các kết quả chung đã ghi nhận ở trên | Chưa xác nhận |
+Thời gian dưới đây là ước tính theo các đầu việc đã thực hiện trong tuần.
 
-Yêu cầu tối thiểu của môn học là 8 giờ/SV/tuần. Không dùng số giờ tối thiểu làm số giờ thực tế nếu chưa có nhật ký xác nhận. Phần này được ghi nhận là thông tin hồ sơ còn thiếu, không suy diễn từ số phút script chạy.
+| MSSV | Họ và tên | Phần việc | Giờ ước tính |
+|:---:|---|---|:---:|
+| **24110372** | **Ninh Nguyễn Minh Tuyên** | Chạy batch 30 tài liệu và demo 31 tài liệu trên Learner Lab (3 giờ); kiểm tra trạng thái, chống trùng, tài liệu lỗi và CSV (2 giờ); đối chiếu ground truth, xem mismatch và kết quả evaluator (3 giờ); tổng hợp kết quả demo và viết báo cáo (2 giờ). | **10 giờ** |
+| **24110381** | **Nguyễn Quốc Việt** | Rà soát stack, cấu hình bucket và quyền Lambda (2 giờ); kiểm tra dashboard, log group và alarm CloudWatch (2 giờ); xác nhận SNS subscription và email (1,5 giờ); đối chiếu CSV/chi phí và chuẩn bị phần tổng kết, kế hoạch tuần 4 (2,5 giờ). | **8 giờ** |
 
-### Phần AI hỗ trợ
+### Ghi chú và việc tiếp theo
 
-AI hỗ trợ đọc source/bằng chứng, cập nhật công cụ smoke/evaluation, phân tích mismatch và cách ghép bảng, hướng dẫn thao tác Console, soạn báo cáo/worklog và kiểm tra tính toàn vẹn file. Các lượt AWS được sinh viên thực thi trong phiên Learner Lab của mình. Việc chấm lại offline của trợ lý được ghi riêng, không thay thế bằng chứng chạy Textract thật. Sinh viên cần giải thích được cấu hình/mã nguồn và cách tính số liệu khi vấn đáp.
+Nhóm có dùng ChatGPT/Codex để hỗ trợ rà mã nguồn, diễn giải kết quả evaluator và soạn thảo nội dung. Thành viên nhóm tự chạy các lệnh AWS trong Learner Lab, thao tác trên Console và đối chiếu kết quả. Bộ mẫu hiện là tài liệu tổng hợp tiếng Anh nên chưa đại diện cho tài liệu thực tế hoặc tiếng Việt.
 
-**Báo cáo tuần 3:** [README](docs/week3/README.md). Phép thử độc lập upload output để đo invocation trước/sau chưa có kết quả hoàn chỉnh và không được ghi PASS. Chi phí cuối kỳ, video demo và cleanup được theo dõi trong kế hoạch tuần 4.
+Trong tuần 4, nhóm sẽ tiếp tục phân tích Collector Errors và mismatch `VENDOR_NAME`, chạy kiểm thử hồi quy, theo dõi chi phí, chuẩn bị demo nghiệm thu và rà soát tài nguyên có chính sách `Retain` trước khi dọn môi trường.
 
-**Commit công việc tuần 3:** `f736267c6b8ea0e99cb941c87195dc7de6d29d9b` — [Hoàn thiện báo cáo và minh chứng tuần 3](https://github.com/mtuyenn/textract-pipeline/commit/f736267c6b8ea0e99cb941c87195dc7de6d29d9b).
-
-**Bộ minh chứng demo mới:** [20261024-014837-product-demo](docs/week3/evidence/20261024-014837-product-demo/README.md), gồm 30 ảnh tổng hợp + PDF + ground truth, năm CSV thật, kết quả smoke/evaluation, manifest và terminal; có lệnh tái lập chấm offline.
+**Báo cáo tuần 3:** [Báo cáo Word](docs/week3/BaoCaoTuan3.docx) · [Báo cáo Markdown](docs/week3/README.md)
