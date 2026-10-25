@@ -44,14 +44,33 @@ Các yêu cầu chức năng chính đã được demo: xử lý hóa đơn, bi�
 
 ### 7. Mã nguồn và minh chứng trên GitHub
 
-- [Báo cáo tuần 3 chi tiết, kèm ảnh Console và giải thích giới hạn](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/README.md)
-- [Bộ minh chứng demo ngày 24/10](https://github.com/mtuyenn/textract-pipeline/tree/main/docs/week3/evidence/20261024-014837-product-demo): dữ liệu 30 ảnh, ground truth, PDF hai trang, kết quả smoke/evaluation, terminal và năm CSV đã xuất.
-- [Ảnh minh chứng tuần 3](https://github.com/mtuyenn/textract-pipeline/tree/main/docs/week3/assets)
-- [Script smoke test AWS](https://github.com/mtuyenn/textract-pipeline/blob/main/tools/smoke_aws.py), [script đánh giá](https://github.com/mtuyenn/textract-pipeline/blob/main/tools/evaluate.py) và [script tạo bộ mẫu](https://github.com/mtuyenn/textract-pipeline/blob/main/tools/generate_samples.py).
-- [Template CloudFormation](https://github.com/mtuyenn/textract-pipeline/blob/main/infra/template.yaml), [mã Lambda](https://github.com/mtuyenn/textract-pipeline/tree/main/src/textract_pipeline) và [kiểm thử](https://github.com/mtuyenn/textract-pipeline/tree/main/tests).
-- [Kế hoạch dự án](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/plan.md), [hồ sơ kiểm chứng](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/verification.md), [hướng dẫn triển khai](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/guides/deployment.md), [hướng dẫn kiểm thử](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/guides/testing.md), [hướng dẫn vận hành](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/guides/operations.md) và [worklog](https://github.com/mtuyenn/textract-pipeline/blob/main/WORKLOG.md).
-
-Các liên kết trên trỏ tới nhánh `main`. [Commit tuần 3](https://github.com/mtuyenn/textract-pipeline/commit/f736267c6b8ea0e99cb941c87195dc7de6d29d9b) chứa mã nguồn, báo cáo và bộ minh chứng đã nêu.
+- [Báo cáo tuần 3 chi tiết](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/README.md)
+- [Kết quả smoke test AWS](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/evidence/20261024-014837-product-demo/smoke.json)
+- [Kết quả đánh giá 30 tài liệu](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/evidence/20261024-014837-product-demo/evaluation.json)
+- [Ground truth của bộ 30 tài liệu](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/evidence/20261024-014837-product-demo/dataset/ground_truth.json)
+- [Nhật ký terminal chạy demo](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/evidence/20261024-014837-product-demo/demo-terminal.txt)
+- [CSV documents](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/evidence/20261024-014837-product-demo/exports/documents.csv)
+- [CSV fields](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/evidence/20261024-014837-product-demo/exports/fields.csv)
+- [CSV line_items](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/evidence/20261024-014837-product-demo/exports/line_items.csv)
+- [CSV table_cells](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/evidence/20261024-014837-product-demo/exports/table_cells.csv)
+- [CSV table_rows](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/evidence/20261024-014837-product-demo/exports/table_rows.csv)
+- [Lambda Processor](https://github.com/mtuyenn/textract-pipeline/blob/main/src/textract_pipeline/handlers/processor.py)
+- [Lambda Collector](https://github.com/mtuyenn/textract-pipeline/blob/main/src/textract_pipeline/handlers/collector.py)
+- [Lambda Exporter](https://github.com/mtuyenn/textract-pipeline/blob/main/src/textract_pipeline/handlers/exporter.py)
+- [Script chạy smoke test](https://github.com/mtuyenn/textract-pipeline/blob/main/tools/smoke_aws.py)
+- [Script đánh giá độ chính xác](https://github.com/mtuyenn/textract-pipeline/blob/main/tools/evaluate.py)
+- [Script tạo dữ liệu mẫu](https://github.com/mtuyenn/textract-pipeline/blob/main/tools/generate_samples.py)
+- [CloudFormation template](https://github.com/mtuyenn/textract-pipeline/blob/main/infra/template.yaml)
+- [Kiểm thử quản lý artifact](https://github.com/mtuyenn/textract-pipeline/blob/main/tests/tools/test_artifact_management.py)
+- [Kiểm thử evaluator và bộ mẫu](https://github.com/mtuyenn/textract-pipeline/blob/main/tests/tools/test_evaluation_samples.py)
+- [Ảnh dashboard CloudWatch](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/assets/cloudwatch-dashboard-metrics-one-day.png)
+- [Ảnh lịch sử alarm CloudWatch](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/assets/cloudwatch-lambda-alarm-history.png)
+- [Ảnh danh sách Lambda](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/assets/lambda-functions-overview.png)
+- [Ảnh S3 Block Public Access](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/assets/s3-block-public-access.png)
+- [Ảnh S3 policy HTTPS](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/assets/s3-https-only-bucket-policy.png)
+- [Ảnh năm CSV xuất trên S3](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/assets/s3-exported-csv-files.png)
+- [Ảnh SNS email subscription đã xác nhận](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/assets/sns-confirmed-email-subscription.png)
+- [Worklog dự án](https://github.com/mtuyenn/textract-pipeline/blob/main/WORKLOG.md)
 
 ## Khai báo sử dụng AI trong form
 
