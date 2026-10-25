@@ -1,133 +1,92 @@
-# Báo cáo tuần 3 — Tích hợp, bảo mật và giám sát
+# Báo cáo tuần 3 — Tích hợp, bảo mật và giám sát pipeline Textract
 
-## 1. Mục tiêu
+**Môn học:** Điện toán đám mây
+**Giảng viên hướng dẫn:** TS. Huỳnh Xuân Phụng
+**Nhóm sinh viên:** Ninh Nguyễn Minh Tuyên (24110372), Nguyễn Quốc Việt (24110381)
+**Học kỳ:** 1, năm học 2026–2027
 
-Trong tuần 3, nhóm em tiếp tục hoàn thiện và chạy thử hệ thống số hóa hóa đơn, biểu mẫu trên AWS. Nhóm kiểm tra luồng S3 → Lambda → Textract → DynamoDB, chức năng xuất CSV, đánh giá kết quả trên 30 tài liệu, đồng thời rà soát cấu hình bảo mật và theo dõi hệ thống bằng CloudWatch, SNS.
+## Tóm tắt kết quả
 
-Nhóm sử dụng lại stack CloudFormation `textract-full` đã triển khai ở tuần 2, không tạo thêm một pipeline riêng.
+Trong tuần 3, nhóm hoàn thiện và vận hành pipeline số hóa tài liệu trên AWS. Lượt demo đầu-cuối xử lý thành công 31 tài liệu, gồm 15 hóa đơn, 15 biểu mẫu và một PDF hai trang. Nhóm đánh giá bộ baseline 30 ảnh bằng ground truth, kiểm tra xử lý trùng và routing, xuất CSV, theo dõi dashboard CloudWatch và kiểm tra email SNS. Fields đạt 87,50% recall theo evaluator; line item rows và table cells đạt 100% recall trên bộ mẫu.
 
-| Thành phần | Giá trị |
+Nhóm sử dụng AWS Academy Learner Lab và stack `textract-full` đã triển khai bằng CloudFormation ở tuần 2. Các kết quả `COMPLETED` cho biết xử lý đã kết thúc; độ chính xác được đánh giá riêng bằng ground truth.
+
+## 1. Mục tiêu và phạm vi
+
+Trong tuần 3, nhóm tập trung kiểm tra luồng S3 → Lambda → Textract → DynamoDB, xuất dữ liệu CSV, đánh giá tối thiểu 30 tài liệu, rà soát bảo mật, giám sát bằng CloudWatch và xác nhận thông báo SNS. Nhóm tiếp tục sử dụng hạ tầng hiện có, không tạo một pipeline riêng.
+
+**Môi trường:** AWS Academy Learner Lab, account `535709085695`, Region `us-east-1`.
+
+## 2. Kiến trúc và tài nguyên AWS
+
+Khi tài liệu được tải lên prefix `input/` của S3, sự kiện tạo object kích hoạt Lambda Processor. Processor nhận diện loại tài liệu và gọi `AnalyzeExpense` cho hóa đơn hoặc `AnalyzeDocument` với `FORMS` và `TABLES` cho biểu mẫu. Kết quả và trạng thái được lưu vào DynamoDB. Với tác vụ bất đồng bộ, Lambda Collector lấy kết quả Textract và cập nhật dữ liệu. SNS gửi thông báo trạng thái; Lambda Exporter tổng hợp dữ liệu thành CSV trong `output/exports/`.
+
+| Tài nguyên | Giá trị |
 | --- | --- |
-| Môi trường | AWS Academy Learner Lab |
-| Account | `535709085695` |
-| Region | `us-east-1` |
-| Stack | `textract-full` |
-| S3 bucket | `textract-full-535709085695-us-east-1` |
-| DynamoDB | `textract-full-results` |
+| CloudFormation stack | `textract-full` |
+| S3 bucket dữ liệu | `textract-full-535709085695-us-east-1` |
+| DynamoDB table | `textract-full-results` |
 | Lambda | `textract-full-processor`, `textract-full-collector`, `textract-full-exporter` |
 | SNS topic | `textract-full-notifications` |
-| Execution role | `LabRole` do Learner Lab cấp |
+| Execution role | `LabRole` có sẵn trong Learner Lab |
 
-Tuần 1 nhóm em tạo tài nguyên với tên `textract-pipeline-*`; tuần 2 chuyển pipeline chính sang CloudFormation với tên `textract-full-*`. Bucket tuần 1 `textract-pipeline-535709085695` vẫn được dùng để lưu gói ZIP triển khai, vì vậy nhóm không xóa bucket này. Chi tiết nằm trong [deployment evidence tuần 2](../week2/evidence/deployment.json). Sơ đồ và cấu hình hạ tầng: [sơ đồ kiến trúc](../architecture.md), [CloudFormation template](../../infra/template.yaml).
+Stack được triển khai thành công ở tuần 2. Trong tuần 3, nhóm kiểm tra template và cập nhật stack; lần cập nhật hoàn tất với trạng thái `UPDATE_COMPLETE`. Một số tài nguyên dữ liệu có chính sách `Retain`, vì vậy cần kiểm tra riêng trước khi dọn môi trường AWS.
 
-## 2. Các công việc đã thực hiện
+## 3. Triển khai và chạy thử
 
-### 2.1. Chạy pipeline với tài liệu mẫu
+Trước khi thao tác, nhóm khởi động Learner Lab, dùng temporary credentials của phiên hiện tại và xác nhận danh tính bằng AWS STS. Credentials không được ghi vào báo cáo.
 
-Nhóm tạo bộ dữ liệu tổng hợp gồm 30 ảnh PNG: 15 hóa đơn và 15 biểu mẫu, kèm ground truth để so sánh kết quả. Khi tải tài liệu lên prefix `input/`, S3 kích hoạt Processor. Processor gọi `AnalyzeExpense` cho hóa đơn và `AnalyzeDocument` với `FORMS`/`TABLES` cho biểu mẫu; kết quả được ghi vào DynamoDB. Tài liệu PDF nhiều trang được xử lý bất đồng bộ: Collector lấy kết quả Textract sau khi tác vụ hoàn tất rồi cập nhật DynamoDB.
+Bộ baseline gồm 30 ảnh PNG tổng hợp, gồm 15 hóa đơn và 15 biểu mẫu. Nhóm tải ảnh lên `input/`, theo dõi trạng thái trong DynamoDB, phát lại một sự kiện cùng `VersionId` để kiểm tra chống trùng, rồi chạy Exporter. Lượt smoke `20261024-002810-aws-smoke-accuracy-fc93f0c6` hoàn tất 30/30 ảnh. Khi phát lại sự kiện, Processor trả `DUPLICATE_OR_IN_PROGRESS`.
 
-Ngày 24/10/2026 nhóm chạy batch 30 ảnh. Cả 30 tài liệu có trạng thái `COMPLETED`. Nhóm phát lại sự kiện của tài liệu đã xử lý để kiểm tra chống trùng; Processor trả về `DUPLICATE_OR_IN_PROGRESS`.
+Ngày 24/10/2026, nhóm chạy demo đầu-cuối gồm 30 ảnh và một PDF hai trang. Run `20261024-014837-week3-product-demo-3988825a` hoàn tất 31/31 tài liệu. PDF có trạng thái `SUBMITTED` trong lúc Textract xử lý bất đồng bộ, sau đó chuyển thành `COMPLETED`. Hai tài liệu đầu vào không hợp lệ được pipeline ghi nhận `REJECTED`.
 
-Sau đó nhóm chạy demo đầu-cuối lần nữa với 30 ảnh và một PDF hai trang. Run `20261024-014837-week3-product-demo-3988825a` hoàn tất **31/31 tài liệu**. Evaluation `20261024-015102-evaluation-b21f4135` chấm 30 ảnh có ground truth; PDF được dùng để minh họa luồng bất đồng bộ, không tính vào mẫu số accuracy.
+Nhóm cũng kiểm tra routing bằng cách đưa một CSV vào `output/`. Trong khoảng thời gian theo dõi, không thấy Processor bắt đầu xử lý object này; kết quả phù hợp với cấu hình chỉ kích hoạt xử lý từ prefix `input/`.
 
-Các bước demo đã thực hiện:
+## 4. Đánh giá độ chính xác
 
-1. Khởi động Learner Lab và chạy smoke test bằng credentials của phiên lab.
-2. Tải 30 ảnh và PDF hai trang lên S3, sau đó chờ Lambda/Textract xử lý.
-3. Đối chiếu trạng thái tài liệu trong DynamoDB; kiểm tra sự kiện trùng.
-4. Chạy Exporter để tạo năm CSV trong `output/exports/` trên S3.
-5. Chấm kết quả CSV với ground truth của 30 ảnh.
+Evaluator sử dụng 30 ảnh có ground truth. PDF hai trang được dùng để kiểm tra xử lý bất đồng bộ, không tính vào mẫu số đánh giá. Kết quả của run `20261024-015102-evaluation-b21f4135`:
 
-Bộ minh chứng có thể xem trong [thư mục demo trên GitHub](evidence/20261024-014837-product-demo/README.md), gồm dữ liệu mẫu, ground truth, smoke/evaluation JSON, manifest, nội dung terminal và năm CSV. Run ID nguồn: `20261024-014837-week3-product-demo-3988825a` và `20261024-015102-evaluation-b21f4135`.
-
-![Danh sách các Lambda trong stack](assets/lambda-functions-overview.png)
-
-### 2.2. Xuất CSV
-
-Exporter tạo các tệp `documents.csv`, `fields.csv`, `line_items.csv`, `table_cells.csv` và `table_rows.csv`. Các tệp được ghi lên S3 tại `output/exports/`; smoke test cũng tải bản sao về thư mục `exports/` của run trên máy. **Upload tài liệu lên S3 không tự tải CSV về máy tính.**
-
-CSV là bản xuất tổng hợp nên có dữ liệu từ những lần chạy trước. Bản xuất của demo mới có 68 dòng documents, 367 fields, 64 line items, 760 table cells và 266 table rows. Các con số này không phải số lượng tài liệu mẫu dùng để chấm; evaluator chỉ chấm 30 source key có ground truth. Có thể mở từng tệp trong [bộ minh chứng](evidence/20261024-014837-product-demo/exports/).
-
-![Năm tệp CSV trong thư mục output/exports trên S3](assets/s3-exported-csv-files.png)
-
-### 2.3. Đánh giá kết quả trích xuất
-
-Kết quả evaluation của 30 ảnh:
-
-| Nhóm dữ liệu | Khớp / kỳ vọng | Số dự đoán | Accuracy/recall | Precision |
+| Nhóm chỉ tiêu | Khớp / kỳ vọng | Dự đoán | Recall | Precision |
 | --- | ---: | ---: | ---: | ---: |
 | Fields | 105 / 120 | 154 | 87,50% | 68,18% |
 | Line item fields | 90 / 90 | 150 | 100,00% | 60,00% |
 | Table cells | 180 / 180 | 300 | 100,00% | 60,00% |
 | Line item rows | 30 / 30 | 30 | 100,00% | 100,00% |
 
-Trong evaluator, accuracy/recall là số mục ground truth được khớp chia cho tổng số mục ground truth; precision là số mục khớp chia cho tổng số dự đoán. Vì vậy, accuracy 100% không có nghĩa mọi dự đoán đều đúng: một số trường/ô dự đoán nằm ngoài ground truth làm precision thấp hơn.
+Recall là tỷ lệ giá trị ground truth được khớp; precision là tỷ lệ dự đoán khớp. Precision thấp hơn cho thấy Textract còn trả thêm trường ngoài ground truth. Trong nhóm fields có 15 giá trị chưa khớp, đều thuộc `VENDOR_NAME`; một số trường hợp Textract đọc được nội dung nhưng gán nhãn `OTHER`.
 
-15 mismatch của nhóm fields đều thuộc `VENDOR_NAME`. Có trường hợp Textract đọc được nội dung tên nhà cung cấp nhưng gán loại trường là `OTHER`. Lần chấm table cells đầu tiên cho kết quả 0% do ground truth và Textract đánh số bảng khác nhau. Nhóm điều chỉnh cách ghép bảng theo tài liệu, trang và vị trí hàng/cột, rồi chấm lại CSV đã lưu được 180/180. Kết quả table cells cần được hiểu trong giới hạn cách ghép có tham chiếu ground truth; lần chấm lại không gọi Textract.
+Lần chấm table cells đầu tiên không tìm được ô khớp do số thứ tự bảng giữa ground truth và Textract khác nhau. Nhóm điều chỉnh cách ghép bảng theo tài liệu, trang, hàng và cột rồi chấm lại. Kết quả 180/180 cần được hiểu trong giới hạn cách ghép có tham chiếu ground truth; đây không phải phép đo độc lập về khả năng phát hiện bảng.
 
-![Kết quả evaluation ban đầu trên terminal](assets/demo-evaluation-initial-cli.png)
+Bộ mẫu là tài liệu tổng hợp bằng tiếng Anh theo template cố định, chưa đại diện cho ảnh chụp thực tế, tài liệu tiếng Việt, ảnh mờ hoặc bố cục khác.
 
-Bộ tài liệu là dữ liệu tổng hợp bằng tiếng Anh theo template, không chứa dữ liệu cá nhân thật. Kết quả hiện tại chưa đại diện cho tài liệu chụp thực tế, tài liệu tiếng Việt hoặc nhiều kiểu bố cục khác nhau.
+## 5. Bảo mật
 
-### 2.4. Kiểm tra bảo mật
+Nhóm kiểm tra bucket dữ liệu chính trên AWS Console:
 
-Nhóm kiểm tra cấu hình bucket và Lambda trên AWS Console:
+- Bật đủ bốn tùy chọn S3 Block Public Access.
+- Bật versioning và mã hóa mặc định SSE-S3.
+- Bucket policy từ chối `s3:*` khi `aws:SecureTransport=false`, yêu cầu kết nối HTTPS.
+- Ba Lambda chính sử dụng `LabRole` do Learner Lab cấp.
+- Quyền gọi Processor từ S3 giới hạn theo account nguồn và ARN bucket.
 
-| Hạng mục | Kết quả |
-| --- | --- |
-| S3 Block Public Access | Bật đủ bốn tùy chọn |
-| Bucket policy | Từ chối `s3:*` khi `aws:SecureTransport=false`, yêu cầu HTTPS |
-| Versioning | Enabled |
-| Mã hóa mặc định | SSE-S3 |
-| Tags | `Project=TextractDocumentDigitization`, `Owner=24110372-24110381` |
-| Execution role của Processor, Collector, Exporter | `LabRole` |
-| Quyền S3 gọi Processor | Giới hạn theo SourceAccount và ARN của bucket chính |
+Khi kiểm tra IAM policy trên Console, phiên `voclabs` gặp explicit deny với quyền `iam:GetPolicy`. Đây là giới hạn đọc policy của Learner Lab; nhóm kiểm tra riêng hoạt động của pipeline và không suy rộng thành lỗi của các API xử lý tài liệu.
 
-![S3 bật đủ tùy chọn Block Public Access](assets/s3-block-public-access.png)
+## 6. Giám sát, cảnh báo và SNS
 
-![Bucket policy từ chối kết nối không dùng HTTPS](assets/s3-https-only-bucket-policy.png)
+Nhóm theo dõi dashboard `textract-full-pipeline`, log group Lambda với retention 14 ngày và hai alarm `textract-full-lambda-errors`, `textract-full-document-errors`. CloudWatch ghi nhận Collector Errors khác 0 trong khoảng thời gian hiển thị. Nhóm chưa xác định được nguyên nhân gốc của các datapoint lỗi.
 
-Khi xem cấu hình quyền trên Console, phiên `voclabs` báo explicit deny với `iam:GetPolicy`. Đây là giới hạn quyền đọc IAM policy của Learner Lab; nhóm không suy rộng thành lỗi của các API xử lý tài liệu. Phần kiểm tra này xác nhận các cấu hình đã xem, chưa phải kiểm toán toàn bộ quyền IAM.
+History của alarm Lambda ghi nhận datapoint bằng 1 lúc 19:20 ngày 17/10/2026; alarm chuyển về `OK` lúc 00:18 ngày 24/10 sau datapoint bằng 0 lúc 00:13. Các mốc này xác nhận thay đổi trạng thái, nhưng chưa giải thích nguyên nhân hoặc diễn biến liên tục ở giữa. Tìm `ERROR` trong log Processor/Collector và `document_error` trong Collector không trả về sự kiện khớp trong phạm vi đã kiểm tra; điều đó không phủ nhận metric lỗi lịch sử.
 
-### 2.5. CloudWatch và SNS
+SNS topic `textract-full-notifications` có email subscription ở trạng thái `Confirmed`. Hộp thư nhận được email `COMPLETED`, `REJECTED` và cảnh báo CloudWatch. Cost Explorer ngày 25/10 hiển thị tổng khoảng **0,21 USD** trong giai đoạn 18–25/10; chi phí Textract được ghi nhận ngày 18/10. Đây là số liệu tại thời điểm truy vấn và có thể thay đổi khi AWS cập nhật billing.
 
-Nhóm theo dõi dashboard `textract-full-pipeline`, log group của Lambda (retention 14 ngày) và hai alarm `textract-full-lambda-errors`, `textract-full-document-errors`. Ở lần mở Console, hai alarm hiển thị `OK`.
+## 7. CSV và lưu trữ
 
-History cho thấy alarm Lambda từng chuyển sang `ALARM` sau datapoint `total=1` lúc `2026-10-17T12:20:00Z`, rồi chuyển về `OK` lúc `2026-10-23T17:18:20Z`, sau datapoint `total=0` lúc `2026-10-23T17:13:00Z`. Đây là các mốc 19:20 ngày 17/10 và 00:18 ngày 24/10 theo giờ Việt Nam. Ảnh Console ngày 25/10 cũng ghi nhận alarm document errors ở trạng thái `ALARM` sau một datapoint lỗi. Nhóm chưa xác định được nguyên nhân gốc của các datapoint này.
+Lambda Exporter tạo năm CSV trong `output/exports/`: `documents.csv`, `fields.csv`, `line_items.csv`, `table_cells.csv` và `table_rows.csv`. Smoke script tải bản sao về thư mục kết quả của lượt chạy trên máy tính. Upload tài liệu lên S3 không tự tải CSV về máy.
 
-Nhóm tìm `ERROR` trong log Processor/Collector và `document_error` trong Collector nhưng không thấy sự kiện khớp trong phạm vi đã xem. Việc tìm không thấy log đó không phủ nhận metric lỗi trong lịch sử alarm.
+CSV tổng hợp có thể chứa dữ liệu từ các lượt xử lý trước. Evaluator chỉ dùng 30 source key có ground truth để tính điểm; số dòng của CSV tổng hợp không phải số tài liệu được đánh giá.
 
-SNS topic `textract-full-notifications` có email subscription ở trạng thái Confirmed. Hộp thư nhận được email `Textract COMPLETED` của batch và email alarm. Nhóm đối chiếu nội dung email với document ID/source key; không lấy tổng số thư trong hộp thư làm số email riêng của run mới.
+## 8. Kết luận và kế hoạch tuần 4
 
-![Dashboard CloudWatch của pipeline](assets/cloudwatch-dashboard-metrics-one-day.png)
+Trong tuần 3, nhóm đã demo luồng xử lý 31 tài liệu, đánh giá 30 ảnh, kiểm tra chống xử lý trùng, routing, xuất CSV, cấu hình bảo mật S3, CloudWatch và SNS. Kết quả fields đạt 87,50% recall; line item rows và table cells đạt 100% recall trên bộ mẫu hiện tại. Các kết quả này có giới hạn do bộ mẫu tổng hợp và chưa đại diện cho tài liệu thực tế đa dạng.
 
-![Lịch sử alarm Lambda](assets/cloudwatch-lambda-alarm-history.png)
-
-![Subscription email SNS đã xác nhận](assets/sns-confirmed-email-subscription.png)
-
-![Email thông báo hoàn thành batch](assets/sns-completion-emails-batch.png)
-
-### 2.6. IaC và chi phí
-
-Tuần 3 nhóm tiếp tục sử dụng stack `textract-full` được triển khai bằng CloudFormation từ tuần 2. Template triển khai các tài nguyên chính; các Lambda dùng `LabRole` có sẵn của Learner Lab. Trong tuần này nhóm rà soát cấu hình và chạy demo trên stack hiện có, không dựng lại hạ tầng.
-
-Khi kiểm tra Cost Explorer ngày 25/10, tổng chi phí hiển thị khoảng **0,21 USD** cho giai đoạn 18–25/10; khoản Textract được ghi nhận vào ngày 18/10. Đây là số liệu tại thời điểm truy vấn và có thể thay đổi khi AWS cập nhật billing.
-
-## 3. Kết quả và phần cần tiếp tục
-
-Qua các lượt chạy, nhóm đã có bằng chứng cho luồng xử lý hóa đơn, biểu mẫu và PDF; lưu kết quả vào DynamoDB; chống xử lý trùng; xuất năm CSV; nhận thông báo SNS; và đánh giá 30 ảnh có ground truth. Kết quả fields đạt 87,50% accuracy/recall, nên hệ thống vẫn cần cải thiện phân loại `VENDOR_NAME` và được thử thêm trên tài liệu thực tế.
-
-Một phép thử riêng upload một tệp vào `output/`, ghi invocation trước/sau và đối chiếu log để xác nhận prefix này không kích hoạt Processor chưa có kết quả hoàn chỉnh trên stack chính. Vì vậy nhóm không tính phép thử đó là PASS. Việc phân tích nguyên nhân các datapoint lỗi, theo dõi chi phí cuối kỳ, quay video demo và cleanup được tiếp tục trong tuần 4.
-
-## 4. Tài liệu và mã nguồn
-
-- [Bộ minh chứng demo, ground truth và CSV](evidence/20261024-014837-product-demo/README.md)
-- [Ảnh AWS Console](assets/)
-- [CloudFormation template](../../infra/template.yaml)
-- [Mã Lambda](../../src/textract_pipeline/)
-- [Script smoke test AWS](../../tools/smoke_aws.py), [script đánh giá](../../tools/evaluate.py), [script tạo dữ liệu mẫu](../../tools/generate_samples.py)
-- [Kế hoạch dự án](../plan.md), [hồ sơ kiểm chứng](../verification.md), [worklog](../../WORKLOG.md)
-
-## 5. Khai báo sử dụng AI
-
-Trong quá trình làm báo cáo và rà soát mã nguồn, nhóm có sử dụng ChatGPT/Codex để hỗ trợ xem kết quả smoke/evaluation, diễn giải các chỉ số, chỉnh công cụ đánh giá và soạn thảo tài liệu. Nhóm em tự khởi động Learner Lab, chạy demo bằng phiên AWS của mình, thao tác trên Console và đối chiếu kết quả với dữ liệu thực tế. Nhóm chịu trách nhiệm kiểm tra và giải thích nội dung đã nộp.
+Sang tuần 4, nhóm tiếp tục phân tích Collector Errors và mismatch `VENDOR_NAME`, chạy kiểm thử hồi quy, theo dõi chi phí, chuẩn bị demo nghiệm thu và rà soát tài nguyên AWS có chính sách `Retain` trước khi dọn môi trường.
