@@ -29,15 +29,18 @@ def invoke(client, name, payload):
 
 def run(args, evidence):
     session = boto3.Session(region_name=args.region)
+    identity = session.client("sts").get_caller_identity()
+    evidence["account"] = identity["Account"]
+    evidence["caller_arn"] = identity.get("Arn")
+    evidence["learner_lab_session_confirmed"] = bool(getattr(args, "learner_lab_active", False))
+    if evidence["account"] != args.expected_account:
+        raise RuntimeError("Smoke account differs from the recorded deployment")
     cf = session.client("cloudformation")
     stack = cf.describe_stacks(StackName=args.stack)["Stacks"][0]
     if {tag["Key"]: tag["Value"] for tag in stack.get("Tags", [])}.get("Project") != "TextractDocumentDigitization":
         raise RuntimeError("Stack is not tagged as this project")
     outputs = {item["OutputKey"]: item["OutputValue"] for item in stack["Outputs"]}
     bucket, table_name = outputs["BucketName"], outputs["TableName"]
-    evidence["account"] = session.client("sts").get_caller_identity()["Account"]
-    if evidence["account"] != args.expected_account:
-        raise RuntimeError("Smoke account differs from the recorded deployment")
     evidence["resources"] = outputs
     s3, functions = session.client("s3"), session.client("lambda")
     for name in ("ProcessorName", "CollectorName", "ExporterName"):
@@ -48,7 +51,11 @@ def run(args, evidence):
     table = session.resource("dynamodb").Table(table_name)
     directory = Path(args.samples)
     manifest = json.loads((directory / "ground_truth.json").read_text(encoding="utf-8"))
+    if manifest.get("synthetic") is not True:
+        raise ValueError("AWS smoke accepts only the project's synthetic sample dataset")
     documents = manifest["documents"] if args.all else manifest["documents"][:2]
+    if args.all and len(documents) < 30:
+        raise ValueError("Full accuracy smoke requires at least 30 ground-truth documents")
     uploads = []
     for document in documents:
         key = document["s3_key"]
@@ -133,6 +140,7 @@ def smoke_run(args):
             args.expected_code_sha256 = base64.b64encode(bytes.fromhex(args.package_sha256)).decode()
             artifact_run.update_environment(region=args.region, stack=args.stack)
             run(args, evidence)
+            artifact_run.update_environment(account=evidence.get("account"))
             artifact_run.register("exports", "exports")
             artifact_run.check("core_smoke")
             artifact_run.check("email_receipt", "NOT_RUN", reason="Manual observation required")
@@ -160,6 +168,8 @@ def main():
     parser.add_argument("--timeout", type=int, default=1800)
     parser.add_argument("--all", action="store_true", help="Upload all >=30 ground-truth documents")
     parser.add_argument("--no-pdf", action="store_true")
+    parser.add_argument("--learner-lab-active", action="store_true", required=True,
+                        help="Confirm AWS Learner Lab is started and its temporary credentials are active")
     args = parser.parse_args()
     artifact_run = smoke_run(args)
     print(f"Core smoke run sealed: {artifact_run.path}; email/output isolation still need manual checks")

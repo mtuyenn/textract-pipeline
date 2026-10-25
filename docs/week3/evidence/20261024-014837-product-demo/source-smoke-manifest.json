@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "run_id": "20261024-014837-week3-product-demo-3988825a",
+  "kind": "aws_smoke",
+  "started_at": "2026-10-24T01:48:38+07:00",
+  "finished_at": "2026-10-24T01:50:51+07:00",
+  "status": "PASS",
+  "git": {
+    "commit": "653d7d1923ea3127750472b895c451e7637a027e",
+    "dirty": true
+  },
+  "environment": {
+    "python": "3.13.7",
+    "region": "us-east-1",
+    "stack": "textract-full",
+    "account": "535709085695"
+  },
+  "dataset": {
+    "name": "baseline-v1",
+    "path": "inputs/dataset",
+    "kind": "directory",
+    "bytes": 2138427,
+    "files": 32,
+    "sha256": "7da21acf50a230940c08aea7c98755471b691e0efe403040b77b97f3c6fbf3e0",
+    "source": {
+      "scope": "repository",
+      "path": "data/samples/baseline-v1"
+    }
+  },
+  "inputs": {
+    "deployment_manifest": {
+      "path": "inputs/deployment-manifest.json",
+      "kind": "file",
+      "bytes": 3184,
+      "sha256": "cdccbfca4a383482a22fdce1d7a5449cab810875d1d350ae22b6b2f5f43a6f3d",
+      "source": {
+        "scope": "repository",
+        "path": "artifacts/runs/20261017-165747-aws-deployment-f0f65a25/manifest.json"
+      }
+    },
+    "dataset": {
+      "path": "inputs/dataset",
+      "kind": "directory",
+      "bytes": 2138427,
+      "files": 32,
+      "sha256": "7da21acf50a230940c08aea7c98755471b691e0efe403040b77b97f3c6fbf3e0",
+      "source": {
+        "scope": "repository",
+        "path": "data/samples/baseline-v1"
+      }
+    }
+  },
+  "packages": {
+    "lambda": {
+      "path": "packages/textract-pipeline.zip",
+      "kind": "file",
+      "bytes": 16661135,
+      "sha256": "f98475f3d1dca36e2f56d31587030bab15b5683e2f91f90d83d49a518a972b13"
+    },
+    "source": {
+      "path": "packages/textract-project-source.zip",
+      "kind": "file",
+      "bytes": 9671989,
+      "sha256": "3626daee00009ccbcc13cea041cc1aa71449705e741870c3bed8957fb24ddec4"
+    }
+  },
+  "artifacts": {
+    "exports": {
+      "path": "exports",
+      "kind": "directory",
+      "bytes": 309886,
+      "files": 5,
+      "sha256": "0e95d8a70da14748f996a04ae3b63e60fb0612ed9e2d79b0d00717f9d66c5cc7"
+    },
+    "smoke": {
+      "path": "smoke.json",
+      "kind": "file",
+      "bytes": 12894,
+      "sha256": "ddf04e5a10e497ee9144f05cf07986afbd10c7fd6ade152dd4b8e2a4fb324d13"
+    }
+  },
+  "checks": {
+    "core_smoke": {
+      "status": "PASS"
+    },
+    "email_receipt": {
+      "status": "NOT_RUN",
+      "reason": "Manual observation required"
+    },
+    "output_negative_invocation": {
+      "status": "NOT_RUN",
+      "reason": "Manual observation required"
+    }
+  },
+  "steps": {
+    "core_smoke": {
+      "status": "PASS",
+      "started_at": "2026-10-24T01:48:38+07:00",
+      "finished_at": "2026-10-24T01:50:51+07:00"
+    }
+  }
+}

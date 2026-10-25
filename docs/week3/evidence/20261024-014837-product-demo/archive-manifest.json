@@ -1,0 +1,219 @@
+{
+  "archived_at": "2026-10-24T01:55:26+07:00",
+  "scope": "Archive of student AWS demo evidence and evaluation inputs; no AWS execution during archive",
+  "source_smoke_run": "artifacts/runs/20261024-014837-week3-product-demo-3988825a",
+  "source_evaluation_run": "artifacts/runs/20261024-015102-evaluation-b21f4135",
+  "note": "Source manifests reference the original run layouts; this archive is not a relabeled aws_smoke/evaluation run. Lambda deployment ZIPs remain in the original run directories.",
+  "files": [
+    {
+      "path": "dataset/async-demo/multipage-form.pdf",
+      "bytes": 206270,
+      "sha256": "07b9ff4a95c928abd54eaa1e71cb248cc17505947a28c0c691f98859c6701abe"
+    },
+    {
+      "path": "dataset/ground_truth.json",
+      "bytes": 54454,
+      "sha256": "5170e3362f580d44c48b29d70c701889dc0f630fede8c11c724943c8918a9ad8"
+    },
+    {
+      "path": "dataset/input/forms/form-002.png",
+      "bytes": 63287,
+      "sha256": "3471f1fa33e106a2845c570d007f12772d09c48281b34e0b43ee59eb60525b1c"
+    },
+    {
+      "path": "dataset/input/forms/form-004.png",
+      "bytes": 63134,
+      "sha256": "3ba7e8f3e0dbad658dae64be25f6cd20b2a040f99b29326351979f4f77221900"
+    },
+    {
+      "path": "dataset/input/forms/form-006.png",
+      "bytes": 62648,
+      "sha256": "b7f3f5c17a9905b6687614ed780b839ab539697def6449f5c90a98c406b9f7c8"
+    },
+    {
+      "path": "dataset/input/forms/form-008.png",
+      "bytes": 63636,
+      "sha256": "af0d595260653924c9bfa8903140ec33b8029b39ffd1106dcb34aaf5e9fd0ae0"
+    },
+    {
+      "path": "dataset/input/forms/form-010.png",
+      "bytes": 62460,
+      "sha256": "2b66769b4572f3170f8be59e9d301c6210642f08025a7f15dc1b5a3b4ebe3d5b"
+    },
+    {
+      "path": "dataset/input/forms/form-012.png",
+      "bytes": 62895,
+      "sha256": "7c888796d43177e7344937b9ec156e75ae8b838983ffe9ccec7408a3a3a53f87"
+    },
+    {
+      "path": "dataset/input/forms/form-014.png",
+      "bytes": 63090,
+      "sha256": "4d8fc2001f16b46a49222e9054c68e30c00eeee12df3431342924052da066380"
+    },
+    {
+      "path": "dataset/input/forms/form-016.png",
+      "bytes": 63771,
+      "sha256": "8d71205588a0368cd8c0aa355e46458671a1acae085262ca4e3e98972c1ff98f"
+    },
+    {
+      "path": "dataset/input/forms/form-018.png",
+      "bytes": 63214,
+      "sha256": "fae452a2ace09c019360ec8430e24913b2dfb46139bcf21ff31d930211ffc37d"
+    },
+    {
+      "path": "dataset/input/forms/form-020.png",
+      "bytes": 62781,
+      "sha256": "17c8313728102a0713bbaea51f9b83d8769205cfe8d8a78f866fbb64af5f2093"
+    },
+    {
+      "path": "dataset/input/forms/form-022.png",
+      "bytes": 63580,
+      "sha256": "ea9b1a0b26d51d6241e60fb1601c476c0503ad516247e115497f2d74c3f67069"
+    },
+    {
+      "path": "dataset/input/forms/form-024.png",
+      "bytes": 63122,
+      "sha256": "b203c24da6fedd01a1b1be22427ff858c556163675f58c9c1773dd4e7d1d850e"
+    },
+    {
+      "path": "dataset/input/forms/form-026.png",
+      "bytes": 64132,
+      "sha256": "bbf965af3e6fec85070a521b4f588509052bfafa9f728b12895b578580bbb6b2"
+    },
+    {
+      "path": "dataset/input/forms/form-028.png",
+      "bytes": 64622,
+      "sha256": "aad5f1b8db0018071d2c251f06881391c1ac26a2aadfae7759ff46e7f1a03441"
+    },
+    {
+      "path": "dataset/input/forms/form-030.png",
+      "bytes": 62784,
+      "sha256": "3c7575203d5bb4b288edcca317135b39ca056ae2eebf51f0f6928089dd68c938"
+    },
+    {
+      "path": "dataset/input/invoices/invoice-001.png",
+      "bytes": 61692,
+      "sha256": "8c69abde6d9c259a12408375c4a5dde5fe3d1c772b7c357e0b3aed50fd949678"
+    },
+    {
+      "path": "dataset/input/invoices/invoice-003.png",
+      "bytes": 60990,
+      "sha256": "bc28d86be495c506de1ff6de856ffd518541b3081224694fd9372219295c4042"
+    },
+    {
+      "path": "dataset/input/invoices/invoice-005.png",
+      "bytes": 62013,
+      "sha256": "8e035344588aeee24ef4d107da79662c7102bf33720cd38acbea78a476a10ba6"
+    },
+    {
+      "path": "dataset/input/invoices/invoice-007.png",
+      "bytes": 62485,
+      "sha256": "4887c3c32453a5e7416b58b15bba40338d4b1a49cada3d713b5762963c06e3be"
+    },
+    {
+      "path": "dataset/input/invoices/invoice-009.png",
+      "bytes": 60792,
+      "sha256": "bed050b199c0ba022504e2721907071903caa8985b5b2c730dea1dcc84bf44d0"
+    },
+    {
+      "path": "dataset/input/invoices/invoice-011.png",
+      "bytes": 61674,
+      "sha256": "498cafc8cc86147f6626c1a22bcd3d84849d2b89359cfcb982c9781c6234abdc"
+    },
+    {
+      "path": "dataset/input/invoices/invoice-013.png",
+      "bytes": 62543,
+      "sha256": "e46ea48dc8074d2f78d7206db73d68ad0fb71422d1aa6fa18deee9da88613054"
+    },
+    {
+      "path": "dataset/input/invoices/invoice-015.png",
+      "bytes": 60890,
+      "sha256": "8f570e03740f5c5ab103af047b5ba1516df3701f7c8378d82e967caed9e49889"
+    },
+    {
+      "path": "dataset/input/invoices/invoice-017.png",
+      "bytes": 62480,
+      "sha256": "3658abc3471b7976c36f00fb08e79877bf29bd1895ab0e786d3976ea5874c467"
+    },
+    {
+      "path": "dataset/input/invoices/invoice-019.png",
+      "bytes": 62277,
+      "sha256": "f723469033119866a22fa89af827150adef4ddfd9fc7ffea59d5320dcd89cd6c"
+    },
+    {
+      "path": "dataset/input/invoices/invoice-021.png",
+      "bytes": 60829,
+      "sha256": "f9990e50c7ae40b70b7db2b44157f6d9e9a12d6651165fe81275d049707e63b8"
+    },
+    {
+      "path": "dataset/input/invoices/invoice-023.png",
+      "bytes": 62745,
+      "sha256": "170a3a52f152e21e87f14db585dc7bac97ece5061e0a2cb209321cb373851ff6"
+    },
+    {
+      "path": "dataset/input/invoices/invoice-025.png",
+      "bytes": 62565,
+      "sha256": "fc717740ee6a947752957f0647fea6ccbc4e92c198b179834214951471487fe7"
+    },
+    {
+      "path": "dataset/input/invoices/invoice-027.png",
+      "bytes": 61606,
+      "sha256": "9763832be78bdd3ab3eec6a3da572ae002f45ead7d827b65dd022d75338419c3"
+    },
+    {
+      "path": "dataset/input/invoices/invoice-029.png",
+      "bytes": 62966,
+      "sha256": "34c1d732d97b5f68f499527dc99066bf24693bf37e764eceb8a54c7b1367cdf6"
+    },
+    {
+      "path": "demo-terminal.txt",
+      "bytes": 11731,
+      "sha256": "010acd135304ec0980d533b0106902029dda78ff4ebae8da7e74bd48581c904f"
+    },
+    {
+      "path": "evaluation.json",
+      "bytes": 4226,
+      "sha256": "cab4c53334e93565e7bf61c195407da32eccd2ec6e9e177ef423c2129ed804c8"
+    },
+    {
+      "path": "exports/documents.csv",
+      "bytes": 13009,
+      "sha256": "0ea102d1e246594b151510f0f25554396fc3189e00c50b96226bfe4ec1184d02"
+    },
+    {
+      "path": "exports/fields.csv",
+      "bytes": 58568,
+      "sha256": "b4d3c7be0ec0f02e2e32b6f70f0b3f9355bc9055a068a86e7c5e2c643351ee64"
+    },
+    {
+      "path": "exports/line_items.csv",
+      "bytes": 54405,
+      "sha256": "8a8f7daf5831b12afe3cc97e6e0eb61ddbc81bb8c3f363e3af747bdb1e584bce"
+    },
+    {
+      "path": "exports/table_cells.csv",
+      "bytes": 146428,
+      "sha256": "4382b188794648ba16853c251fb5c385a0dbfd30f95feac8d892db078e663fab"
+    },
+    {
+      "path": "exports/table_rows.csv",
+      "bytes": 37476,
+      "sha256": "1abdfea0f32755ababe44f1bce702e01d2461c19b9284d3a55f3ab7baf1c0db0"
+    },
+    {
+      "path": "smoke.json",
+      "bytes": 12894,
+      "sha256": "ddf04e5a10e497ee9144f05cf07986afbd10c7fd6ade152dd4b8e2a4fb324d13"
+    },
+    {
+      "path": "source-evaluation-manifest.json",
+      "bytes": 2892,
+      "sha256": "a12a21d574eee5dbe6afd7bfee2f0ef5f5745edb5cb11a1aac8ecad051b8589c"
+    },
+    {
+      "path": "source-smoke-manifest.json",
+      "bytes": 2825,
+      "sha256": "99fe02391904c395a306ddaf6c5b844b7ab6565629705a9fae3a48ec8cc8b208"
+    }
+  ]
+}

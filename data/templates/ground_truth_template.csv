@@ -1,0 +1,6 @@
+s3_key,field_name,expected_value
+input/invoices/INV-0001.png,VENDOR_NAME,ACME OFFICE SUPPLY
+input/invoices/INV-0001.png,INVOICE_RECEIPT_ID,INV-0001
+input/invoices/INV-0001.png,TOTAL,$123.45
+input/forms/FORM-0001.png,Full Name,Nguyen Van An
+input/forms/FORM-0001.png,Department,Finance

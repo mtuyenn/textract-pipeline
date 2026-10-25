@@ -1,4 +1,4 @@
-# WORKLOG DỰ ÁN — TIẾN ĐỘ TUẦN 1 VÀ TUẦN 2
+# WORKLOG DỰ ÁN — TIẾN ĐỘ TUẦN 1, TUẦN 2 VÀ TUẦN 3
 
 > **Dự án:** Số hóa hóa đơn và biểu mẫu với Amazon Textract  
 > **Giảng viên hướng dẫn:** TS. Huỳnh Xuân Phụng  
@@ -71,3 +71,37 @@ Trong tuần 2, nhóm hoàn thiện phần xử lý tài liệu bằng Lambda, �
 - Hoàn thiện mã Lambda, xử lý Textract, xuất CSV và kiểm thử — `9894e142186feae14948effc3670087c8f06e928`: https://github.com/mtuyenn/textract-pipeline/commit/9894e142186feae14948effc3670087c8f06e928
 - Bổ sung Worklog và tài liệu triển khai tuần 2 — `d54211aefbc5ca4678b4197d1e60ace764cca5a5`: https://github.com/mtuyenn/textract-pipeline/commit/d54211aefbc5ca4678b4197d1e60ace764cca5a5
 - Bổ sung báo cáo và ảnh minh chứng tuần 2 — `bbe3342d6e9421f12fdee9a24f39dccc3845b9bf`: https://github.com/mtuyenn/textract-pipeline/commit/bbe3342d6e9421f12fdee9a24f39dccc3845b9bf
+
+## Tuần 3 — Tích hợp, bảo mật, giám sát và đánh giá trên AWS
+
+### Công việc có bằng chứng thực hiện
+
+| Hạng mục | Công việc và kết quả đã ghi nhận | Bằng chứng |
+| --- | --- | --- |
+| Công cụ đánh giá và quản lý run | Cập nhật smoke để xác nhận phiên Learner Lab, account và dữ liệu synthetic; evaluator nhận run thật, lưu snapshot/provenance, đối chiếu bảng theo vị trí hàng/cột cùng trang | `tools/smoke_aws.py`, `tools/evaluate.py`, manifest các run |
+| Batch 30 tài liệu | Ngày 24/10 lúc 00:28, chạy 15 hóa đơn và 15 biểu mẫu qua stack `textract-full`; cả 30 COMPLETED, xuất năm CSV | `20261024-002810-aws-smoke-accuracy-fc93f0c6` |
+| Phân tích độ chính xác | Fields 105/120 (87,5%); line item fields 90/90; table cells sau sửa cách ghép bảng 180/180. Giữ precision và 15 mismatch VENDOR_NAME; không tuyên bố toàn hệ thống chính xác 100% | `20261024-003342-evaluation-table-remap-a35eb328` và các evaluation tiếp theo |
+| Bảo mật | Đối chiếu Console: S3 chặn public, HTTPS-only policy, SSE-S3, Versioning Enabled, tags Project/Owner; ba Lambda chính dùng LabRole. Ghi nhận giới hạn `iam:GetPolicy` của lab | Ảnh Console do nhóm cung cấp trong buổi làm việc; phần bảo mật trong báo cáo tuần 3 |
+| CloudWatch và SNS | Xem dashboard/log groups, retention, hai alarms và lịch sử thay đổi trạng thái; xác nhận subscription của topic chính và email COMPLETED đã nhận | Ảnh CloudWatch/Gmail/SNS trong `docs/week3/assets` và ảnh bổ sung trong cuộc trao đổi |
+| IaC và quản lý tài nguyên | Tiếp tục dùng CloudFormation stack tuần 2; phân biệt bộ `textract-full-*` với bộ tuần 1, xác định bucket cũ vẫn chứa ZIP triển khai; chưa thực hiện cleanup | Deployment manifest và báo cáo tuần 2/3 |
+| Demo sản phẩm trên AWS | Ngày 24/10 từ 01:48:38 đến 01:50:51, chạy 30 ảnh + PDF hai trang: 31/31 COMPLETED, duplicate được chặn, xuất/tải CSV. Evaluation lúc 01:51:02–01:51:03 chấm 30 ảnh và tái lập kết quả trước đó | `20261024-014837-week3-product-demo-3988825a`, `20261024-015102-evaluation-b21f4135` |
+| Tổng hợp hồ sơ | Viết báo cáo tuần 3, liên kết run/ảnh, cập nhật tiến độ vốn còn ghi NOT_RUN từ 11/10; kiểm tra hash/size các run được đối chiếu | `docs/week3/README.md`, `docs/plan.md`, các manifest |
+
+### Phân công và số giờ
+
+Hai thành viên của nhóm là Ninh Nguyễn Minh Tuyên (24110372) và Nguyễn Quốc Việt (24110381). Bằng chứng hiện có xác nhận các kết quả chung ở bảng trên; không đủ để xác định chính xác phần việc và số giờ thực tế của từng người. Phiên CLI trong minh chứng sử dụng tài khoản Learner Lab có MSSV 24110372, nhưng thời gian bắt đầu/kết thúc run là thời gian thực thi chương trình, không phải tổng giờ làm việc của cá nhân.
+
+| MSSV | Họ và tên | Phân bổ công việc thực tế theo cá nhân | Số giờ thực tế tuần 3 |
+| --- | --- | --- | --- |
+| 24110372 | Ninh Nguyễn Minh Tuyên | Chưa có nguồn xác nhận đầy đủ; tham chiếu các kết quả chung đã ghi nhận ở trên | Chưa xác nhận |
+| 24110381 | Nguyễn Quốc Việt | Chưa có nguồn xác nhận đầy đủ; tham chiếu các kết quả chung đã ghi nhận ở trên | Chưa xác nhận |
+
+Yêu cầu tối thiểu của môn học là 8 giờ/SV/tuần. Không dùng số giờ tối thiểu làm số giờ thực tế nếu chưa có nhật ký xác nhận. Phần này được ghi nhận là thông tin hồ sơ còn thiếu, không suy diễn từ số phút script chạy.
+
+### Phần AI hỗ trợ
+
+AI hỗ trợ đọc source/bằng chứng, cập nhật công cụ smoke/evaluation, phân tích mismatch và cách ghép bảng, hướng dẫn thao tác Console, soạn báo cáo/worklog và kiểm tra tính toàn vẹn file. Các lượt AWS được sinh viên thực thi trong phiên Learner Lab của mình. Việc chấm lại offline của trợ lý được ghi riêng, không thay thế bằng chứng chạy Textract thật. Sinh viên cần giải thích được cấu hình/mã nguồn và cách tính số liệu khi vấn đáp.
+
+**Báo cáo tuần 3:** [README](docs/week3/README.md). Phép thử độc lập upload output để đo invocation trước/sau chưa có kết quả hoàn chỉnh và không được ghi PASS. Chi phí cuối kỳ, video demo và cleanup được theo dõi trong kế hoạch tuần 4.
+
+**Bộ minh chứng demo mới:** [20261024-014837-product-demo](docs/week3/evidence/20261024-014837-product-demo/README.md), gồm 30 ảnh tổng hợp + PDF + ground truth, năm CSV thật, kết quả smoke/evaluation, manifest và terminal; có lệnh tái lập chấm offline.

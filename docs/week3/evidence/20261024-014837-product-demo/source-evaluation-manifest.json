@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "run_id": "20261024-015102-evaluation-b21f4135",
+  "kind": "evaluation",
+  "started_at": "2026-10-24T01:51:02+07:00",
+  "finished_at": "2026-10-24T01:51:03+07:00",
+  "status": "PASS",
+  "git": {
+    "commit": "653d7d1923ea3127750472b895c451e7637a027e",
+    "dirty": true
+  },
+  "environment": {
+    "python": "3.13.7",
+    "region": "us-east-1",
+    "stack": "textract-full",
+    "account": "535709085695"
+  },
+  "dataset": {
+    "name": "dataset",
+    "path": "inputs/dataset",
+    "kind": "directory",
+    "bytes": 2138427,
+    "files": 32,
+    "sha256": "7da21acf50a230940c08aea7c98755471b691e0efe403040b77b97f3c6fbf3e0",
+    "source": {
+      "scope": "repository",
+      "path": "artifacts/runs/20261024-014837-week3-product-demo-3988825a/inputs/dataset"
+    }
+  },
+  "inputs": {
+    "dataset": {
+      "path": "inputs/dataset",
+      "kind": "directory",
+      "bytes": 2138427,
+      "files": 32,
+      "sha256": "7da21acf50a230940c08aea7c98755471b691e0efe403040b77b97f3c6fbf3e0",
+      "source": {
+        "scope": "repository",
+        "path": "artifacts/runs/20261024-014837-week3-product-demo-3988825a/inputs/dataset"
+      }
+    },
+    "exports": {
+      "path": "inputs/exports",
+      "kind": "directory",
+      "bytes": 309886,
+      "files": 5,
+      "sha256": "0e95d8a70da14748f996a04ae3b63e60fb0612ed9e2d79b0d00717f9d66c5cc7",
+      "source": {
+        "scope": "repository",
+        "path": "artifacts/runs/20261024-014837-week3-product-demo-3988825a/exports"
+      }
+    },
+    "source_smoke_manifest": {
+      "path": "inputs/source-smoke-manifest.json",
+      "kind": "file",
+      "bytes": 2825,
+      "sha256": "99fe02391904c395a306ddaf6c5b844b7ab6565629705a9fae3a48ec8cc8b208",
+      "source": {
+        "scope": "repository",
+        "path": "artifacts/runs/20261024-014837-week3-product-demo-3988825a/manifest.json"
+      }
+    },
+    "source_smoke_evidence": {
+      "path": "inputs/source-smoke.json",
+      "kind": "file",
+      "bytes": 12894,
+      "sha256": "ddf04e5a10e497ee9144f05cf07986afbd10c7fd6ade152dd4b8e2a4fb324d13",
+      "source": {
+        "scope": "repository",
+        "path": "artifacts/runs/20261024-014837-week3-product-demo-3988825a/smoke.json"
+      }
+    }
+  },
+  "packages": {},
+  "artifacts": {
+    "evaluation": {
+      "path": "evaluation.json",
+      "kind": "file",
+      "bytes": 4226,
+      "sha256": "cab4c53334e93565e7bf61c195407da32eccd2ec6e9e177ef423c2129ed804c8"
+    }
+  },
+  "checks": {
+    "evaluation": {
+      "status": "PASS",
+      "documents": 30,
+      "meaning": "Scoring completed; no accuracy threshold enforced"
+    }
+  },
+  "steps": {
+    "evaluation": {
+      "status": "PASS",
+      "started_at": "2026-10-24T01:51:02+07:00",
+      "finished_at": "2026-10-24T01:51:03+07:00"
+    }
+  }
+}

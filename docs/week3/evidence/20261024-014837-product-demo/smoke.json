@@ -1,0 +1,288 @@
+{
+  "started_at": "2026-10-24T01:48:38+07:00",
+  "region": "us-east-1",
+  "result": "PASSED_CORE_SMOKE",
+  "account": "535709085695",
+  "caller_arn": "arn:aws:sts::535709085695:assumed-role/voclabs/user5483057=24110372@student.hcmute.edu.vn",
+  "learner_lab_session_confirmed": true,
+  "resources": {
+    "TableName": "textract-full-results",
+    "BucketName": "textract-full-535709085695-us-east-1",
+    "PollerName": "textract-full-poller",
+    "TopicArn": "arn:aws:sns:us-east-1:535709085695:textract-full-notifications",
+    "ProcessorName": "textract-full-processor",
+    "CollectorName": "textract-full-collector",
+    "ExporterName": "textract-full-exporter"
+  },
+  "package_sha256": "f98475f3d1dca36e2f56d31587030bab15b5683e2f91f90d83d49a518a972b13",
+  "uploads": [
+    {
+      "key": "input/invoices/invoice-001.png",
+      "document_id": "d0caacee34604b26f34a8c7f596ef4fa370017eaab0934d50d112400292d5644",
+      "version_id": "FF2lltAJg8.7SRs6byBJluTjroiM7ECT",
+      "etag": "70f361342564e128fb5a6333457953b8"
+    },
+    {
+      "key": "input/forms/form-002.png",
+      "document_id": "0d684192539f3a8ad8040da7a6d39f6ead5dd518d75fffc6ecf832787ff54b46",
+      "version_id": "Wv_pt5gWZ6msz_nU199mcSdH6yKK_bw.",
+      "etag": "0c27937c9e4670c977a56969ea27f641"
+    },
+    {
+      "key": "input/invoices/invoice-003.png",
+      "document_id": "ec8f8cdbd2b7bf048be13866c224634b3eb74cfc40b22040451ce3addea4ea8e",
+      "version_id": "7qS78d9zX1LyywdkBSmrtWc0b_DH7cP5",
+      "etag": "da4ddee5ccdd9b6aee578280898d0e4a"
+    },
+    {
+      "key": "input/forms/form-004.png",
+      "document_id": "2ce89dbf33da7a6022450267008f57b48313284c92b2c0f6df3925f6fd002407",
+      "version_id": "_X9Q2khr7LoIgJ9ZrsLstyPoijG22VTg",
+      "etag": "47a888de49fa2aadebad3d553dcd946a"
+    },
+    {
+      "key": "input/invoices/invoice-005.png",
+      "document_id": "0fe24228ee57cac7882cd5061905643875c8693164cd15444c347d5d49179d86",
+      "version_id": "QQD12DjPAMsFeequxZwiM0iXgfo4WIKD",
+      "etag": "947b3a61b38cbd8f0dc7b28b6be1edec"
+    },
+    {
+      "key": "input/forms/form-006.png",
+      "document_id": "cd2e4e9509e5b85904c5160583a88757b177e0a19a2287822e1a52a83cb06820",
+      "version_id": "__xVAnSKzPsENAXpZsCosHODI._EczDV",
+      "etag": "8c6bd49f536b381bf066f133d12c0b48"
+    },
+    {
+      "key": "input/invoices/invoice-007.png",
+      "document_id": "f90112c2e6c88b4f1e7ebc244368e522731e75fbd04b178227e157985fd8ae6a",
+      "version_id": "ycNef0Thu6UrcefWBx_1HPXt1T.QCdGe",
+      "etag": "4468d73c69e659c9769c83b34f0c753f"
+    },
+    {
+      "key": "input/forms/form-008.png",
+      "document_id": "9aa4c9ff8b5820c089f68e181a6ff508f839cd7844a5b263551a42930b8ece4c",
+      "version_id": "tZfZ04AFno9NBv6QuDNJVdMJzgm.SQqn",
+      "etag": "990ef783c96b9d5c1f2cd8039cc0555c"
+    },
+    {
+      "key": "input/invoices/invoice-009.png",
+      "document_id": "5e22e8175991793a2ccd6c65508028ef4c78dc24e8647cb352af597868c6b0c7",
+      "version_id": "Rh1oaOrdFtTc8byDogLaYo5XLayA0fQ7",
+      "etag": "e0ce98e8c9555f5ff61d59a46eed5094"
+    },
+    {
+      "key": "input/forms/form-010.png",
+      "document_id": "cbcdcd48b229c560e2fdbc04dcd69cc731191657ed86303293de636632562b86",
+      "version_id": "sfjhfMYLfyeb.jN_RBn_KJFndhfNQGnd",
+      "etag": "706826846dde399d8b8033dcecd8f170"
+    },
+    {
+      "key": "input/invoices/invoice-011.png",
+      "document_id": "f387c55462921b1c7a43a01dbc1904be9b133d0dbe5716db16a7c60ae143db78",
+      "version_id": "g8Jn6L00rJDo8TUmKdWTkz3TlWPLadh1",
+      "etag": "9812bc68304a9a8e8873add7e631dd6b"
+    },
+    {
+      "key": "input/forms/form-012.png",
+      "document_id": "67c3e9a3f45d0a2182e8fca7face7fbd64410a81d7b105c09f4f6696f93731ac",
+      "version_id": "1Hxn.NYSR28GpiWWJ6ZSH2jjq1riXRpU",
+      "etag": "4dc181131138a5537e6aa236d19b3e60"
+    },
+    {
+      "key": "input/invoices/invoice-013.png",
+      "document_id": "5d4509772e944b8ee1100165c941f9446edba3943c6588b094e4e7cc40eb473e",
+      "version_id": "NMd_ahD0eeK.uKe2SEVfXLnLy3LbBRs6",
+      "etag": "f7cc89c1d5350cb97284cecc7e6e6117"
+    },
+    {
+      "key": "input/forms/form-014.png",
+      "document_id": "5c7d28ac9f5711328bb604810c533acde012d4172fcd473b38acf96b08115520",
+      "version_id": "zTW6.RXdRef3ktxOKqFTQDxocGKgHB4f",
+      "etag": "555788c72fd48f578c1c698a2952e9f0"
+    },
+    {
+      "key": "input/invoices/invoice-015.png",
+      "document_id": "39ba33e7b4d1f7ed57ba0111e44853154b9d1dfd7771eaab73c52dde7ef37666",
+      "version_id": "GCUD5LEPpqMKwg6WP6i8R9RVT1yLVkaa",
+      "etag": "948c602be9c475d88789886f92dabc6a"
+    },
+    {
+      "key": "input/forms/form-016.png",
+      "document_id": "a7dd8a747c387561735efaa17e4e2b9f0fb1dd452a87df76aeb4798e9e3ea7e5",
+      "version_id": "KPqiEmxSc2R12qP6ldjyoWQr91CMh9y7",
+      "etag": "752862414d28c8473e73b7510fc0465d"
+    },
+    {
+      "key": "input/invoices/invoice-017.png",
+      "document_id": "c120a88be5dc3e91364e7c0b81c4f3cbc9045e9ab37c2e508fcd625ab379f17c",
+      "version_id": "TwAqBmkJBJBPyfRGArOmZTNriOA6hPDE",
+      "etag": "b7e45b2dad750878958db871162d6de9"
+    },
+    {
+      "key": "input/forms/form-018.png",
+      "document_id": "5c0111d7ddee99963581800fc5db2919ad0b65e44060c500fc19d22d35cdd7d6",
+      "version_id": "bB0iKsJkfXpPzOaVlULORwHpIVmJbJYu",
+      "etag": "5f48505a4f6bc950e7fb0ae5d9b74a58"
+    },
+    {
+      "key": "input/invoices/invoice-019.png",
+      "document_id": "c2d8196915b4ef1294965aeebb9be3404e855f75a70c860f9041be7c8cb1bd3e",
+      "version_id": "iLn19DDfps664Ko6ZaUoCc8RUPkn6_3O",
+      "etag": "3b9b2873df5e4a6dff9f023a6fb6981f"
+    },
+    {
+      "key": "input/forms/form-020.png",
+      "document_id": "d894a5e6bb433fbe1b0ce53cc28e0c2b0aac6129747e437808984b6085e1e503",
+      "version_id": "5RUf7rV7Q2URmvIhhjCBfMBXb4A0B5YX",
+      "etag": "83e8d4c9f0ab2e4c3b8532acd3869eaf"
+    },
+    {
+      "key": "input/invoices/invoice-021.png",
+      "document_id": "347e86534f943208e41a2a513e36893ea1fe9794a124d893602ae9f9bdd3355d",
+      "version_id": "KbD3oaAJgTpdEYYqPKaBJH8.Be1Q5Qyt",
+      "etag": "d1a3d38ada8fb8a5b5dcab0ceba51464"
+    },
+    {
+      "key": "input/forms/form-022.png",
+      "document_id": "ea0883dc9138cc41d6fe3bc999e8858d221a9d6f1701dd957480367f0bfd53c2",
+      "version_id": "iVotzS52HI8cPhmJYBgW_qDwTJXO_Kee",
+      "etag": "44c199cac395e883ba1590abb434819e"
+    },
+    {
+      "key": "input/invoices/invoice-023.png",
+      "document_id": "20ef4fd8c96198595c5c80caff29327b1da07495240ae7d5f39a4adbdee252ba",
+      "version_id": "sFh1AkiF4J5ud.VgYwyJWQU0fPfmUDBu",
+      "etag": "f3aa6bcf4d2c8297217360a55cb10b93"
+    },
+    {
+      "key": "input/forms/form-024.png",
+      "document_id": "65092a34d08b698689a03c0d9efa9111062bc7401de55d55e75603f5c9044aa0",
+      "version_id": "fz6WH6K2ZmXwVf2XD5XR8wssLZ8llux_",
+      "etag": "ee66a4fb44e65d8dd70b75630021f13c"
+    },
+    {
+      "key": "input/invoices/invoice-025.png",
+      "document_id": "44194e08e0ebf23db99f28e1a610abe12cac29760475fbc16f9dfa56bf914abf",
+      "version_id": "zt83dOxE4TzAEEBkpQeNFhfvrErSTh7I",
+      "etag": "6f2d427a7fd95b21e181dfa26693a87c"
+    },
+    {
+      "key": "input/forms/form-026.png",
+      "document_id": "46cd12c4005a26a41b3df8396f9ecc9b1c0b0986381340cd1169224bd750423e",
+      "version_id": "VTJKrvoGYa69qGK97dLDDcz3rkmAeFxE",
+      "etag": "e787f53e5f95dce3697920bd79e3bb55"
+    },
+    {
+      "key": "input/invoices/invoice-027.png",
+      "document_id": "1a2ccc5db7768b11c9517d13c144e9e2c1a293eebd1ab5f56f08243b2b6c8f7d",
+      "version_id": "W_ZrAdhr1MHDZ4WPwV1ESUqVcqIHwGHD",
+      "etag": "8ac52742dc85905e12cdb3537484b93d"
+    },
+    {
+      "key": "input/forms/form-028.png",
+      "document_id": "c643f1075b79df2cd0dd0094fd67f7390ee74c04e6d2b64d2b34a66432c8db1f",
+      "version_id": ".Ta5XWUyC33XHOkpTZdMFIKRGA4tuBiV",
+      "etag": "acfdb2afa8f2ab6221ca0185200c6145"
+    },
+    {
+      "key": "input/invoices/invoice-029.png",
+      "document_id": "5b943114918089b19a8fa6d441bf764426b2d6ad2ae8b32869b3deb586384e2a",
+      "version_id": "AIS29XkyKuSPDlLvelR8FcsZ4uahexoW",
+      "etag": "7a3c4bf264ea66cc90ad4a6d9f8f5d84"
+    },
+    {
+      "key": "input/forms/form-030.png",
+      "document_id": "daa39f95ae2f6512105f78ec30fa653da3af8c5767097c719d067cad52c0f909",
+      "version_id": "bKO9KfD1X.hhC4qCfvVhEgxBTZaK8p7j",
+      "etag": "1fbcad88fbeac909e20495fc90216332"
+    },
+    {
+      "key": "input/forms/multipage-form.pdf",
+      "document_id": "25849f38ca9aade90b5cae2945205552f434d640229098ad0593878703776aec"
+    }
+  ],
+  "states": {
+    "d0caacee34604b26f34a8c7f596ef4fa370017eaab0934d50d112400292d5644": "COMPLETED",
+    "0d684192539f3a8ad8040da7a6d39f6ead5dd518d75fffc6ecf832787ff54b46": "COMPLETED",
+    "ec8f8cdbd2b7bf048be13866c224634b3eb74cfc40b22040451ce3addea4ea8e": "COMPLETED",
+    "2ce89dbf33da7a6022450267008f57b48313284c92b2c0f6df3925f6fd002407": "COMPLETED",
+    "0fe24228ee57cac7882cd5061905643875c8693164cd15444c347d5d49179d86": "COMPLETED",
+    "cd2e4e9509e5b85904c5160583a88757b177e0a19a2287822e1a52a83cb06820": "COMPLETED",
+    "f90112c2e6c88b4f1e7ebc244368e522731e75fbd04b178227e157985fd8ae6a": "COMPLETED",
+    "9aa4c9ff8b5820c089f68e181a6ff508f839cd7844a5b263551a42930b8ece4c": "COMPLETED",
+    "5e22e8175991793a2ccd6c65508028ef4c78dc24e8647cb352af597868c6b0c7": "COMPLETED",
+    "cbcdcd48b229c560e2fdbc04dcd69cc731191657ed86303293de636632562b86": "COMPLETED",
+    "f387c55462921b1c7a43a01dbc1904be9b133d0dbe5716db16a7c60ae143db78": "COMPLETED",
+    "67c3e9a3f45d0a2182e8fca7face7fbd64410a81d7b105c09f4f6696f93731ac": "COMPLETED",
+    "5d4509772e944b8ee1100165c941f9446edba3943c6588b094e4e7cc40eb473e": "COMPLETED",
+    "5c7d28ac9f5711328bb604810c533acde012d4172fcd473b38acf96b08115520": "COMPLETED",
+    "39ba33e7b4d1f7ed57ba0111e44853154b9d1dfd7771eaab73c52dde7ef37666": "COMPLETED",
+    "a7dd8a747c387561735efaa17e4e2b9f0fb1dd452a87df76aeb4798e9e3ea7e5": "COMPLETED",
+    "c120a88be5dc3e91364e7c0b81c4f3cbc9045e9ab37c2e508fcd625ab379f17c": "COMPLETED",
+    "5c0111d7ddee99963581800fc5db2919ad0b65e44060c500fc19d22d35cdd7d6": "COMPLETED",
+    "c2d8196915b4ef1294965aeebb9be3404e855f75a70c860f9041be7c8cb1bd3e": "COMPLETED",
+    "d894a5e6bb433fbe1b0ce53cc28e0c2b0aac6129747e437808984b6085e1e503": "COMPLETED",
+    "347e86534f943208e41a2a513e36893ea1fe9794a124d893602ae9f9bdd3355d": "COMPLETED",
+    "ea0883dc9138cc41d6fe3bc999e8858d221a9d6f1701dd957480367f0bfd53c2": "COMPLETED",
+    "20ef4fd8c96198595c5c80caff29327b1da07495240ae7d5f39a4adbdee252ba": "COMPLETED",
+    "65092a34d08b698689a03c0d9efa9111062bc7401de55d55e75603f5c9044aa0": "COMPLETED",
+    "44194e08e0ebf23db99f28e1a610abe12cac29760475fbc16f9dfa56bf914abf": "COMPLETED",
+    "46cd12c4005a26a41b3df8396f9ecc9b1c0b0986381340cd1169224bd750423e": "COMPLETED",
+    "1a2ccc5db7768b11c9517d13c144e9e2c1a293eebd1ab5f56f08243b2b6c8f7d": "COMPLETED",
+    "c643f1075b79df2cd0dd0094fd67f7390ee74c04e6d2b64d2b34a66432c8db1f": "COMPLETED",
+    "5b943114918089b19a8fa6d441bf764426b2d6ad2ae8b32869b3deb586384e2a": "COMPLETED",
+    "daa39f95ae2f6512105f78ec30fa653da3af8c5767097c719d067cad52c0f909": "COMPLETED",
+    "25849f38ca9aade90b5cae2945205552f434d640229098ad0593878703776aec": "COMPLETED"
+  },
+  "duplicate": {
+    "results": [
+      {
+        "document_id": "d0caacee34604b26f34a8c7f596ef4fa370017eaab0934d50d112400292d5644",
+        "status": "DUPLICATE_OR_IN_PROGRESS"
+      }
+    ]
+  },
+  "export": {
+    "exports": {
+      "documents": {
+        "rows": 68,
+        "s3_uri": "s3://textract-full-535709085695-us-east-1/output/exports/documents.csv"
+      },
+      "fields": {
+        "rows": 367,
+        "s3_uri": "s3://textract-full-535709085695-us-east-1/output/exports/fields.csv"
+      },
+      "line_items": {
+        "rows": 64,
+        "s3_uri": "s3://textract-full-535709085695-us-east-1/output/exports/line_items.csv"
+      },
+      "table_cells": {
+        "rows": 760,
+        "s3_uri": "s3://textract-full-535709085695-us-east-1/output/exports/table_cells.csv"
+      },
+      "table_rows": {
+        "rows": 266,
+        "s3_uri": "s3://textract-full-535709085695-us-east-1/output/exports/table_rows.csv"
+      }
+    }
+  },
+  "output_filter_configuration": {
+    "Id": "YjI4OGRmY2ItNzdiYS00MTE4LWFlZTUtMTQwY2M0YjI5NDEx",
+    "LambdaFunctionArn": "arn:aws:lambda:us-east-1:535709085695:function:textract-full-processor",
+    "Events": [
+      "s3:ObjectCreated:*"
+    ],
+    "Filter": {
+      "Key": {
+        "FilterRules": [
+          {
+            "Name": "Prefix",
+            "Value": "input/"
+          }
+        ]
+      }
+    }
+  },
+  "email_receipt": "MANUAL_CHECK_REQUIRED",
+  "output_negative_invocation_test": "MANUAL_CHECK_REQUIRED; configuration verified only"
+}
