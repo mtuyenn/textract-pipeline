@@ -104,4 +104,6 @@ AI hỗ trợ đọc source/bằng chứng, cập nhật công cụ smoke/evalua
 
 **Báo cáo tuần 3:** [README](docs/week3/README.md). Phép thử độc lập upload output để đo invocation trước/sau chưa có kết quả hoàn chỉnh và không được ghi PASS. Chi phí cuối kỳ, video demo và cleanup được theo dõi trong kế hoạch tuần 4.
 
+**Commit công việc tuần 3:** `f736267c6b8ea0e99cb941c87195dc7de6d29d9b` — [Hoàn thiện báo cáo và minh chứng tuần 3](https://github.com/mtuyenn/textract-pipeline/commit/f736267c6b8ea0e99cb941c87195dc7de6d29d9b).
+
 **Bộ minh chứng demo mới:** [20261024-014837-product-demo](docs/week3/evidence/20261024-014837-product-demo/README.md), gồm 30 ảnh tổng hợp + PDF + ground truth, năm CSV thật, kết quả smoke/evaluation, manifest và terminal; có lệnh tái lập chấm offline.

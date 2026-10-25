@@ -51,7 +51,7 @@ Các yêu cầu chức năng chính đã được demo: xử lý hóa đơn, bi�
 - [Template CloudFormation](https://github.com/mtuyenn/textract-pipeline/blob/main/infra/template.yaml), [mã Lambda](https://github.com/mtuyenn/textract-pipeline/tree/main/src/textract_pipeline) và [kiểm thử](https://github.com/mtuyenn/textract-pipeline/tree/main/tests).
 - [Kế hoạch dự án](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/plan.md), [hồ sơ kiểm chứng](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/verification.md), [hướng dẫn triển khai](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/guides/deployment.md), [hướng dẫn kiểm thử](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/guides/testing.md), [hướng dẫn vận hành](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/guides/operations.md) và [worklog](https://github.com/mtuyenn/textract-pipeline/blob/main/WORKLOG.md).
 
-Các liên kết trên trỏ tới nhánh `main`; commit tuần 3 sẽ được ghi trong Worklog sau khi đẩy thay đổi lên GitHub.
+Các liên kết trên trỏ tới nhánh `main`. [Commit tuần 3](https://github.com/mtuyenn/textract-pipeline/commit/f736267c6b8ea0e99cb941c87195dc7de6d29d9b) chứa mã nguồn, báo cáo và bộ minh chứng đã nêu.
 
 ## Khai báo sử dụng AI trong form
 
