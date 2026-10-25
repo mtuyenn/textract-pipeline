@@ -98,8 +98,6 @@ Thời gian dưới đây là ước tính theo các đầu việc đã thực h
 
 ### Ghi chú và việc tiếp theo
 
-Nhóm có dùng ChatGPT/Codex để hỗ trợ rà mã nguồn, diễn giải kết quả evaluator và soạn thảo nội dung. Thành viên nhóm tự chạy các lệnh AWS trong Learner Lab, thao tác trên Console và đối chiếu kết quả. Bộ mẫu hiện là tài liệu tổng hợp tiếng Anh nên chưa đại diện cho tài liệu thực tế hoặc tiếng Việt.
-
 Trong tuần 4, nhóm sẽ tiếp tục phân tích Collector Errors và mismatch `VENDOR_NAME`, chạy kiểm thử hồi quy, theo dõi chi phí, chuẩn bị demo nghiệm thu và rà soát tài nguyên có chính sách `Retain` trước khi dọn môi trường.
 
 **Báo cáo tuần 3:** [Báo cáo Word](docs/week3/BaoCaoTuan3.docx) · [Báo cáo Markdown](docs/week3/README.md)
