@@ -21,11 +21,12 @@ Trong tuần cuối, nhóm chạy lại bộ mẫu 30 tài liệu, tổng hợp 
 
 ## Mã nguồn và minh chứng trên GitHub
 
+- **Commit tuần 4:** [Bổ sung báo cáo và minh chứng tuần 4](https://github.com/mtuyenn/textract-pipeline/commit/1e75abfdc0e77d4f95104666271b8584affee912).
 - **Mã nguồn:** [Repository textract-pipeline](https://github.com/mtuyenn/textract-pipeline), [CloudFormation template](../../infra/template.yaml), [script chạy thử AWS](../../tools/smoke_aws.py) và [script đánh giá ground truth](../../tools/evaluate.py).
 - **Báo cáo và quá trình làm:** [Báo cáo cuối kỳ DOCX](../BaoCaoCuoiKy.docx), [bản PDF](../BaoCaoCuoiKy.pdf) và [worklog tuần 1–4](../../WORKLOG.md).
 - **Video demo:** [video_demo.mp4 — 8 phút 38 giây](../video_demo.mp4). File video được cấu hình Git LFS vì dung lượng vượt giới hạn file thông thường của GitHub.
 - **Lượt chạy demo AWS ngày 29/10:** [Tóm tắt kết quả](evidence/20261029-172921-30-document-demo/demo-summary.json), [manifest của lượt chạy](evidence/20261029-172921-30-document-demo/manifest.json), [documents.csv](evidence/20261029-172921-30-document-demo/documents.csv), [fields.csv](evidence/20261029-172921-30-document-demo/fields.csv), [line_items.csv](evidence/20261029-172921-30-document-demo/line_items.csv), [table_cells.csv](evidence/20261029-172921-30-document-demo/table_cells.csv) và [table_rows.csv](evidence/20261029-172921-30-document-demo/table_rows.csv).
-- **Lượt đánh giá ground truth ngày 29/10:** [Kết quả evaluator](evidence/20261029-175734-evaluation/evaluation.json), [manifest](evidence/20261029-175734-evaluation/manifest.json) và [bộ mẫu cùng ground truth](../../data/samples/baseline-v1/).
+- **Lượt đánh giá ground truth ngày 29/10:** [Kết quả evaluator](evidence/20261029-175734-evaluation/evaluation.json), [manifest](evidence/20261029-175734-evaluation/manifest.json) và [ground_truth.json](../../data/samples/baseline-v1/ground_truth.json).
 
 CSV là bản xuất dữ liệu đang có trong DynamoDB tại thời điểm chạy; số dòng trong CSV không phải số tài liệu dùng để tính độ chính xác. Evaluator tính trên 30 ảnh có ground truth. Manifest cũng ghi rõ các bước cần kiểm tra thủ công chưa được xác nhận trong lượt smoke này.
 
