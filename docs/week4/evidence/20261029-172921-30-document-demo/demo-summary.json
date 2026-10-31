@@ -1,0 +1,25 @@
+{
+  "run_id": "20261029-172921-30-document-demo-26ec8937",
+  "started_at": "2026-10-29T17:29:23+07:00",
+  "account": "535709085695",
+  "region": "us-east-1",
+  "stack": "textract-full",
+  "result": "PASSED_CORE_SMOKE",
+  "documents_uploaded": 30,
+  "document_statuses": {
+    "COMPLETED": 30
+  },
+  "duplicate_test": "DUPLICATE_OR_IN_PROGRESS",
+  "export_rows": {
+    "documents": 98,
+    "fields": 521,
+    "line_items": 94,
+    "table_cells": 1060,
+    "table_rows": 371
+  },
+  "manual_checks": {
+    "email_receipt": "MANUAL_CHECK_REQUIRED",
+    "output_negative_invocation_test": "MANUAL_CHECK_REQUIRED; configuration verified only"
+  },
+  "note": "caller_arn is omitted from this summary; detailed check status is in manifest.json."
+}

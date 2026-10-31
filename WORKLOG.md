@@ -1,4 +1,4 @@
-# WORKLOG DỰ ÁN — TIẾN ĐỘ TUẦN 1, TUẦN 2 VÀ TUẦN 3
+# WORKLOG DỰ ÁN — TIẾN ĐỘ TUẦN 1–4
 
 > **Dự án:** Số hóa hóa đơn và biểu mẫu với Amazon Textract  
 > **Giảng viên hướng dẫn:** TS. Huỳnh Xuân Phụng  
@@ -59,7 +59,7 @@ Trong tuần 2, nhóm hoàn thiện phần xử lý tài liệu bằng Lambda, �
 
 **Tài liệu tuần 2:** [README](docs/week2/README.md), [báo cáo](docs/week2/BaoCaoTuan2.docx), [bằng chứng và CSV](docs/week2/evidence/).
 
-### Kế hoạch tuần 3
+### Mục tiêu tuần 3
 
 - Chạy pipeline với bộ ít nhất 30 tài liệu mẫu có dữ liệu chuẩn (ground truth) để đánh giá kết quả trích xuất trên Textract thật.
 - Đối chiếu kết quả với ground truth, tổng hợp độ chính xác theo loại tài liệu và nhóm trường, rồi lưu kết quả đánh giá làm minh chứng.
@@ -96,8 +96,40 @@ Thời gian dưới đây là ước tính theo các đầu việc đã thực h
 | **24110372** | **Ninh Nguyễn Minh Tuyên** | Chạy batch 30 tài liệu và demo 31 tài liệu trên Learner Lab (3 giờ); kiểm tra trạng thái, chống trùng, tài liệu lỗi và CSV (2 giờ); đối chiếu ground truth, xem mismatch và kết quả evaluator (3 giờ); tổng hợp kết quả demo và viết báo cáo (2 giờ). | **10 giờ** |
 | **24110381** | **Nguyễn Quốc Việt** | Rà soát stack, cấu hình bucket và quyền Lambda (2 giờ); kiểm tra dashboard, log group và alarm CloudWatch (2 giờ); xác nhận SNS subscription và email (1,5 giờ); đối chiếu CSV/chi phí và chuẩn bị phần tổng kết, kế hoạch tuần 4 (2,5 giờ). | **8 giờ** |
 
-### Ghi chú và việc tiếp theo
-
-Trong tuần 4, nhóm sẽ tiếp tục phân tích Collector Errors và mismatch `VENDOR_NAME`, chạy kiểm thử hồi quy, theo dõi chi phí, chuẩn bị demo nghiệm thu và rà soát tài nguyên có chính sách `Retain` trước khi dọn môi trường.
-
 **Báo cáo tuần 3:** [Báo cáo Word](docs/week3/BaoCaoTuan3.docx) · [Báo cáo Markdown](docs/week3/README.md)
+
+## Tuần 4 — Demo, đo lường và hoàn thiện bàn giao
+
+Trong tuần 4, nhóm quay video demo trên AWS, chạy lượt kiểm thử thống kê gần nhất ngày 29/10, hoàn thiện báo cáo cuối kỳ và dọn dẹp tài nguyên sau khi lưu các dữ liệu cần bàn giao.
+
+### Công việc đã làm
+
+- Quay và rà soát video demo luồng xử lý trên AWS, từ tải tài liệu lên S3 đến trạng thái hoàn tất và các tệp CSV đầu ra.
+- Chạy batch 30 ảnh PNG tổng hợp ngày 29/10 trên account `535709085695`, Region `us-east-1`. Cả 30 tài liệu hoàn tất; kiểm tra trạng thái và mã lỗi trong `documents.csv`.
+- Tổng hợp kết quả đo: độ trễ mỗi ảnh tính từ `created_at` đến `completed_at` có trung vị 2,42 giây, trung bình 2,60 giây, khoảng 1,74–4,22 giây. Lượt batch kéo dài 44 giây; đây là tốc độ quan sát của một lô nhỏ, không phải kết quả stress test.
+- Rà lại lịch sử CloudWatch Collector Errors và cập nhật báo cáo rằng nguyên nhân datapoint khác 0 chưa xác định; lượt chạy 29/10 không có lỗi cấp tài liệu nhưng không thay thế số đo Lambda Errors của Collector.
+- Hoàn thiện báo cáo cuối kỳ, bổ sung kết quả hiệu năng, giới hạn kiểm thử, phân tích lỗi, cost evidence và tổng kết đóng góp theo thành viên.
+- Ghi nhận Learner Lab hiển thị mức dùng `$4.10/$50`; Cost Explorer/Billing bị chặn quyền với role sinh viên, nên không kết luận số liệu này là breakdown chi phí theo dịch vụ/tag.
+- Dọn dẹp tài nguyên AWS sau khi lưu dữ liệu và minh chứng cần bàn giao; rà soát trạng thái tài nguyên sau cleanup.
+
+### Phân công công việc tuần 4
+
+| MSSV | Họ và tên | Công việc thực hiện | Số giờ |
+|:---:|---|---|:---:|
+| **24110372** | **Ninh Nguyễn Minh Tuyên** | Quay và rà soát video demo; chạy batch 30 tài liệu ngày 29/10; kiểm tra trạng thái, CSV và kết quả evaluator; tổng hợp thống kê độ trễ; rà lịch sử Collector Errors và cập nhật phần kiểm thử trong báo cáo. | **8 giờ** |
+| **24110381** | **Nguyễn Quốc Việt** | Viết và hoàn thiện báo cáo cuối kỳ; tổng hợp cost evidence và ghi nhận giới hạn quyền Billing; dọn dẹp tài nguyên AWS sau khi lưu dữ liệu cần bàn giao; kiểm tra trạng thái sau cleanup và rà soát tệp bàn giao. | **8 giờ** |
+
+## Tổng kết công việc trong bốn tuần
+
+| Tuần | Công việc và kết quả chính | Tuyên | Việt |
+|:---:|---|:---:|:---:|
+| **1** | Thiết kế kiến trúc và dựng nền tảng AWS: VPC, subnet, S3, DynamoDB, SNS, Lambda; cấu hình trigger `input/` và chạy smoke test. | 10 giờ | 8 giờ |
+| **2** | Hoàn thiện pipeline, triển khai CloudFormation; tích hợp Textract đồng bộ/bất đồng bộ, Collector, DynamoDB, SNS và Exporter; kiểm tra PDF, chống trùng và năm CSV. | 12 giờ | 10 giờ |
+| **3** | Chạy baseline 30 ảnh và demo 31 tài liệu có PDF; đánh giá với ground truth; kiểm tra bảo mật, routing, CloudWatch, alarm, SNS và CSV. | 10 giờ* | 8 giờ* |
+| **4** | Quay video demo; chạy batch thống kê 30 ảnh; phân tích hiệu năng và lỗi; hoàn thiện báo cáo, tổng hợp cost evidence và dọn dẹp tài nguyên. | 8 giờ | 8 giờ |
+| **Tổng cộng theo số giờ đang ghi** | Bốn tuần triển khai và hoàn thiện đồ án. | **40 giờ** | **34 giờ** |
+
+
+### Kết quả chung sau bốn tuần
+
+Nhóm đã thiết kế, triển khai và kiểm thử pipeline serverless tiếp nhận hóa đơn, biểu mẫu và PDF nhiều trang trên AWS. Hệ thống kết nối S3, Lambda, Textract, DynamoDB, EventBridge, SNS và CloudWatch; hỗ trợ xử lý đồng bộ/bất đồng bộ, chống xử lý trùng, từ chối đầu vào không hợp lệ và xuất năm CSV. Nhóm đã xử lý bộ baseline 30 ảnh tổng hợp, đánh giá kết quả với ground truth, quay video demo và hoàn thiện báo cáo. Các giới hạn còn lại được ghi rõ, gồm bộ dữ liệu synthetic, chưa kiểm thử tải đồng thời quy mô lớn, nguyên nhân Collector Errors lịch sử chưa xác định, và quyền Billing của Learner Lab không cho xem chi phí chi tiết theo dịch vụ/tag.

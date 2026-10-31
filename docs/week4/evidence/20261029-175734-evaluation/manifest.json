@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "run_id": "20261029-175734-evaluation-4571c033",
+  "kind": "evaluation",
+  "started_at": "2026-10-29T17:57:34+07:00",
+  "finished_at": "2026-10-29T17:57:35+07:00",
+  "status": "PASS",
+  "git": {
+    "commit": "de855d9a8d542741e5896b7c0eb003ceaca1ab9c",
+    "dirty": true
+  },
+  "environment": {
+    "python": "3.13.7",
+    "region": "us-east-1",
+    "stack": "textract-full",
+    "account": "535709085695"
+  },
+  "dataset": {
+    "name": "dataset",
+    "path": "inputs/dataset",
+    "kind": "directory",
+    "bytes": 2138427,
+    "files": 32,
+    "sha256": "7da21acf50a230940c08aea7c98755471b691e0efe403040b77b97f3c6fbf3e0",
+    "source": {
+      "scope": "repository",
+      "path": "artifacts/runs/20261029-172921-30-document-demo-26ec8937/inputs/dataset"
+    }
+  },
+  "inputs": {
+    "dataset": {
+      "path": "inputs/dataset",
+      "kind": "directory",
+      "bytes": 2138427,
+      "files": 32,
+      "sha256": "7da21acf50a230940c08aea7c98755471b691e0efe403040b77b97f3c6fbf3e0",
+      "source": {
+        "scope": "repository",
+        "path": "artifacts/runs/20261029-172921-30-document-demo-26ec8937/inputs/dataset"
+      }
+    },
+    "exports": {
+      "path": "inputs/exports",
+      "kind": "directory",
+      "bytes": 437593,
+      "files": 5,
+      "sha256": "2a07440010036fa8b3c830702d38c20d1d2e083748550fe9e4360675b7e88b2c",
+      "source": {
+        "scope": "repository",
+        "path": "artifacts/runs/20261029-172921-30-document-demo-26ec8937/exports"
+      }
+    },
+    "source_smoke_manifest": {
+      "path": "inputs/source-smoke-manifest.json",
+      "kind": "file",
+      "bytes": 2823,
+      "sha256": "9f7d18b18dbf8290730bc0f4e92dfee971a88fa366f790f3a6c7ac891388e3c5",
+      "source": {
+        "scope": "repository",
+        "path": "artifacts/runs/20261029-172921-30-document-demo-26ec8937/manifest.json"
+      }
+    },
+    "source_smoke_evidence": {
+      "path": "inputs/source-smoke.json",
+      "kind": "file",
+      "bytes": 12657,
+      "sha256": "6f52c028f8fff7cc259d49ebbbced3a7111522507774825856c76b284235c431",
+      "source": {
+        "scope": "repository",
+        "path": "artifacts/runs/20261029-172921-30-document-demo-26ec8937/smoke.json"
+      }
+    }
+  },
+  "packages": {},
+  "artifacts": {
+    "evaluation": {
+      "path": "evaluation.json",
+      "kind": "file",
+      "bytes": 4224,
+      "sha256": "a25bfaed13029be00fc28579caf490de324882edec772d8328bb82d2e26eefa8"
+    }
+  },
+  "checks": {
+    "evaluation": {
+      "status": "PASS",
+      "documents": 30,
+      "meaning": "Scoring completed; no accuracy threshold enforced"
+    }
+  },
+  "steps": {
+    "evaluation": {
+      "status": "PASS",
+      "started_at": "2026-10-29T17:57:34+07:00",
+      "finished_at": "2026-10-29T17:57:35+07:00"
+    }
+  }
+}

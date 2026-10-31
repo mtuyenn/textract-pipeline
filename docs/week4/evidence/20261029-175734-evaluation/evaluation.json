@@ -1,0 +1,157 @@
+{
+  "document_count": 30,
+  "document_statuses": {
+    "COMPLETED": 30
+  },
+  "metrics": {
+    "fields": {
+      "correct": 105,
+      "expected": 120,
+      "predicted": 154,
+      "accuracy": 0.875,
+      "precision": 0.6818181818181818
+    },
+    "line_item_fields": {
+      "correct": 90,
+      "expected": 90,
+      "predicted": 150,
+      "accuracy": 1.0,
+      "precision": 0.6
+    },
+    "table_cells": {
+      "correct": 180,
+      "expected": 180,
+      "predicted": 300,
+      "accuracy": 1.0,
+      "precision": 0.6
+    }
+  },
+  "line_items": {
+    "correct": 30,
+    "expected": 30,
+    "predicted": 30,
+    "accuracy": 1.0,
+    "precision": 1.0
+  },
+  "mismatches": [
+    {
+      "dataset": "fields",
+      "s3_key": "input/invoices/invoice-001.png",
+      "field_name": "VENDOR_NAME",
+      "value": "SAMPLE OFFICE SUPPLY 2",
+      "page": 1
+    },
+    {
+      "dataset": "fields",
+      "s3_key": "input/invoices/invoice-003.png",
+      "field_name": "VENDOR_NAME",
+      "value": "SAMPLE OFFICE SUPPLY 1",
+      "page": 1
+    },
+    {
+      "dataset": "fields",
+      "s3_key": "input/invoices/invoice-005.png",
+      "field_name": "VENDOR_NAME",
+      "value": "SAMPLE OFFICE SUPPLY 3",
+      "page": 1
+    },
+    {
+      "dataset": "fields",
+      "s3_key": "input/invoices/invoice-007.png",
+      "field_name": "VENDOR_NAME",
+      "value": "SAMPLE OFFICE SUPPLY 2",
+      "page": 1
+    },
+    {
+      "dataset": "fields",
+      "s3_key": "input/invoices/invoice-009.png",
+      "field_name": "VENDOR_NAME",
+      "value": "SAMPLE OFFICE SUPPLY 1",
+      "page": 1
+    },
+    {
+      "dataset": "fields",
+      "s3_key": "input/invoices/invoice-011.png",
+      "field_name": "VENDOR_NAME",
+      "value": "SAMPLE OFFICE SUPPLY 3",
+      "page": 1
+    },
+    {
+      "dataset": "fields",
+      "s3_key": "input/invoices/invoice-013.png",
+      "field_name": "VENDOR_NAME",
+      "value": "SAMPLE OFFICE SUPPLY 2",
+      "page": 1
+    },
+    {
+      "dataset": "fields",
+      "s3_key": "input/invoices/invoice-015.png",
+      "field_name": "VENDOR_NAME",
+      "value": "SAMPLE OFFICE SUPPLY 1",
+      "page": 1
+    },
+    {
+      "dataset": "fields",
+      "s3_key": "input/invoices/invoice-017.png",
+      "field_name": "VENDOR_NAME",
+      "value": "SAMPLE OFFICE SUPPLY 3",
+      "page": 1
+    },
+    {
+      "dataset": "fields",
+      "s3_key": "input/invoices/invoice-019.png",
+      "field_name": "VENDOR_NAME",
+      "value": "SAMPLE OFFICE SUPPLY 2",
+      "page": 1
+    },
+    {
+      "dataset": "fields",
+      "s3_key": "input/invoices/invoice-021.png",
+      "field_name": "VENDOR_NAME",
+      "value": "SAMPLE OFFICE SUPPLY 1",
+      "page": 1
+    },
+    {
+      "dataset": "fields",
+      "s3_key": "input/invoices/invoice-023.png",
+      "field_name": "VENDOR_NAME",
+      "value": "SAMPLE OFFICE SUPPLY 3",
+      "page": 1
+    },
+    {
+      "dataset": "fields",
+      "s3_key": "input/invoices/invoice-025.png",
+      "field_name": "VENDOR_NAME",
+      "value": "SAMPLE OFFICE SUPPLY 2",
+      "page": 1
+    },
+    {
+      "dataset": "fields",
+      "s3_key": "input/invoices/invoice-027.png",
+      "field_name": "VENDOR_NAME",
+      "value": "SAMPLE OFFICE SUPPLY 1",
+      "page": 1
+    },
+    {
+      "dataset": "fields",
+      "s3_key": "input/invoices/invoice-029.png",
+      "field_name": "VENDOR_NAME",
+      "value": "SAMPLE OFFICE SUPPLY 3",
+      "page": 1
+    }
+  ],
+  "normalization": "NFKC, trim/case/whitespace; decimal normalization only for explicitly numeric field names",
+  "table_matching": "Map each expected table to the Textract table on the same page with greatest row/column overlap; score cells by row, column, and normalized value. Textract table_number is an output ordinal, not a stable semantic identifier.",
+  "source_smoke_run": {
+    "run_id": "20261029-172921-30-document-demo-26ec8937",
+    "status": "PASS",
+    "region": "us-east-1",
+    "stack": "textract-full",
+    "account": "535709085695"
+  },
+  "dataset": {
+    "synthetic": true,
+    "document_count": 30,
+    "language": "English"
+  }
+}
