@@ -1,79 +1,76 @@
-# Cây thư mục và Quy tắc tổ chức dự án
+# Cấu trúc dự án hiện tại
 
-Tài liệu này định nghĩa cấu trúc phân tầng và ranh giới trách nhiệm (Architecture Boundaries) của từng thành phần trong hệ thống pipeline xử lý tài liệu.
+Tài liệu này phản ánh mã nguồn, tài liệu và bằng chứng hiện có trong repository. `artifacts/`, môi trường Python và cache là dữ liệu phát sinh tại máy, được Git bỏ qua và không phải mã nguồn bàn giao.
 
----
-
-## 1. Cấu trúc cây thư mục tổng thể
+## Cây thư mục
 
 ```text
 textract-pipeline/
 ├── src/textract_pipeline/
-│   ├── handlers/       # Điểm vào của các hàm AWS Lambda
-│   ├── processing/     # Logic nghiệp vụ xử lý bóc tách Textract và xuất file CSV
-│   ├── aws/            # Giao tiếp với dịch vụ AWS (S3, DynamoDB, SNS)
-│   ├── config.py       # Cấu hình tham số và biến môi trường
-│   └── models.py       # Khai báo cấu trúc dữ liệu nội bộ
+│   ├── aws/                  # Adapter boto3 cho Textract, S3, DynamoDB, SNS
+│   ├── handlers/             # Entry point cho Processor, Collector, Exporter
+│   ├── processing/           # Xử lý tài liệu, parsing, finalize và CSV export
+│   ├── config.py             # Đọc và kiểm tra cấu hình Lambda
+│   └── models.py             # Kiểu dữ liệu và trạng thái nội bộ
 ├── infra/
-│   └── template.yaml   # Hạ tầng dạng mã (IaC) tự động hóa bằng CloudFormation
-├── tools/              # Kịch bản đóng gói ZIP, deploy, test, chấm điểm và dọn dẹp
-├── tests/              # Bộ kiểm thử tự động offline (Unit tests & Integration tests)
+│   └── template.yaml         # CloudFormation cho pipeline textract-full
+├── tools/
+│   ├── events/               # Event mẫu cho smoke test và gọi Exporter/Collector
+│   ├── bundle_source.py      # Đóng gói snapshot mã nguồn
+│   ├── cleanup_aws.py        # Backup và cleanup stack AWS
+│   ├── cleanup.ps1           # Wrapper PowerShell cho cleanup
+│   ├── deploy.py              # Điều phối deployment run
+│   ├── deploy.ps1             # Wrapper PowerShell cho deploy
+│   ├── evaluate.py            # Đối chiếu CSV với ground truth
+│   ├── generate_samples.py   # Sinh tài liệu synthetic
+│   ├── package.py             # Tạo gói Lambda
+│   ├── run_artifacts.py      # Snapshot, manifest và hash của mỗi lượt chạy
+│   ├── smoke_aws.py           # Smoke test trên AWS
+│   └── verify_package.py     # Kiểm tra gói Lambda
+├── tests/
+│   ├── aws/                  # Kiểm tra adapter AWS
+│   ├── handlers/             # Kiểm tra Lambda handlers
+│   ├── processing/           # Kiểm tra parser, pipeline và exporter
+│   └── tools/                # Kiểm tra package, run artifacts và evaluator
 ├── data/
-│   ├── samples/baseline-v1/  # Bộ 30 tài liệu mẫu chuẩn hóa phục vụ nghiệm thu
-│   └── templates/            # Bảng mẫu đối chiếu đáp án (Ground-truth template)
+│   ├── samples/baseline-v1/  # 30 ảnh synthetic, ground truth và PDF demo 2 trang
+│   └── templates/            # Mẫu CSV ground truth
 ├── docs/
-│   ├── architecture.md       # Thiết kế kiến trúc hoàn chỉnh và giải pháp mạng
-│   ├── architecture-target.png # Sơ đồ luồng dịch vụ AWS tổng quan
-│   ├── dynamodb.md           # Thiết kế cơ sở dữ liệu DynamoDB (PK, SK, WorkIndex)
-│   ├── plan.md               # Kế hoạch thực hiện và nghiệm thu qua 4 giai đoạn
-│   ├── verification.md       # Báo cáo kiểm chứng kết quả chạy test tự động
-│   ├── guides/               # Hướng dẫn chi tiết: deploy, test và vận hành
-│   └── week1/                # Báo cáo, sơ đồ và ảnh minh chứng thực tế Tuần 1
-├── artifacts/          # Thư mục chứa file ZIP và kết quả chạy tạm (bị Git bỏ qua)
-├── README.md           # Trang giới thiệu tổng quan đề tài và hướng dẫn cài đặt
-├── .gitignore          # Danh sách chặn các file rác và môi trường tạm
-├── pyproject.toml      # Cấu hình dự án Python và thư viện phát triển
-└── requirements-lambda.txt # Danh sách thư viện Python đóng gói cho Lambda
+│   ├── assets/aws-architecture-icons-2026q3/ # Icon AWS và ghi nguồn
+│   ├── guides/               # Hướng dẫn deploy, test, vận hành và cleanup
+│   ├── week1/                # README, báo cáo PDF và evidence nền tảng
+│   ├── week2/                # README, báo cáo DOCX, ảnh và evidence deploy/smoke
+│   ├── week3/                # README, báo cáo DOCX, ảnh và evidence 30 tài liệu
+│   ├── week4/                # Thư mục hiện có placeholder rỗng
+│   ├── architecture-target.png # Sơ đồ kiến trúc pipeline đang chạy
+│   ├── architecture.md       # Luồng xử lý, IAM, VPC tuần 1 và giới hạn
+│   ├── dynamodb.md            # Mô hình khóa và item DynamoDB
+│   ├── structure.md           # Tài liệu cấu trúc repository này
+│   ├── verification.md       # Kết quả kiểm chứng local ngày 11/10/2026
+│   └── video_demo.mp4        # Video demo
+├── artifacts/                # Dữ liệu sinh khi build/test; bị Git bỏ qua
+├── AGENTS.md                 # Quy tắc cộng tác trong repository
+├── CLAUDE.md                 # Trỏ tới AGENTS.md
+├── README.md                 # Giới thiệu, kiến trúc và hướng dẫn sử dụng
+├── WORKLOG.md                # Công việc, phân công và giờ theo tuần
+├── pyproject.toml            # Metadata package và cấu hình pytest
+├── requirements-lambda.txt  # Dependency được đóng gói cho Lambda
+└── .gitignore                # Quy tắc bỏ qua môi trường/cache/artifacts
 ```
 
----
+## Trách nhiệm các phần chính
 
-## 2. Ranh giới kiến trúc mã nguồn (Code Boundaries)
+- **`src/textract_pipeline/`** chứa mã chạy trong Lambda: Processor nhận tài liệu từ S3, Collector lấy kết quả Textract bất đồng bộ, Exporter tạo các CSV tổng hợp.
+- **`infra/template.yaml`** khai báo stack pipeline bằng CloudFormation. VPC tuần 1 là tài nguyên nền tảng riêng; Lambda không gắn vào VPC đó.
+- **`tools/`** chứa các lệnh đóng gói, deploy, smoke test, đánh giá, lưu run artifacts và cleanup.
+- **`tests/`** kiểm thử logic xử lý và công cụ ở máy local; các test này không thay thế bằng chứng chạy thật trên AWS.
+- **`data/samples/baseline-v1/`** là bộ mẫu chuẩn trong source. Các bản sao tạo cho từng lượt chạy được lưu dưới `artifacts/`.
+- **`docs/week1/`–`docs/week3/`** lưu báo cáo tuần và bằng chứng tương ứng; `WORKLOG.md` tổng hợp phân công và thời gian của cả bốn tuần.
+- **`artifacts/`**, `.venv`, `__pycache__`, `.pytest_cache` và `*.egg-info` là dữ liệu/môi trường cục bộ; không được đưa vào ZIP mã Lambda.
 
-Mã nguồn được phân tách theo mô hình kiến trúc phân tầng rõ ràng nhằm đảm bảo tính độc lập và dễ kiểm thử:
+## Ghi chú trạng thái tài liệu
 
-- **`handlers/` (Tầng tiếp nhận sự kiện - Presentation / Entry Layer):**  
-  Là điểm đón nhận các sự kiện từ AWS (S3 Event, EventBridge Scheduled Rule, hoặc gọi thủ công qua Console). Tầng này chịu trách nhiệm bóc tách ngữ cảnh (Event/Context) từ Lambda rồi chuyển tiếp vào tầng xử lý nghiệp vụ, không chứa logic tính toán phức tạp.
-
-- **`processing/` (Tầng nghiệp vụ lõi - Core Domain Layer):**  
-  Nắm giữ toàn bộ logic xử lý chính của bài toán: điều phối luồng tài liệu, thuật toán bóc tách JSON Textract (Key-Value, Tables, Line Items), cơ chế khóa tránh chạy trùng (Lease Lock), và chuyển đổi kết quả thành 5 file CSV. Tầng này độc lập với môi trường ngoài và nhận các kết nối AWS thông qua tham số truyền vào.
-
-- **`aws/` (Tầng hạ tầng kết nối - Infrastructure / Data Access Layer):**  
-  Quản lý việc gọi SDK `boto3` để giao tiếp với các dịch vụ AWS (Textract, S3, DynamoDB, SNS). Chịu trách nhiệm lưu trữ an toàn, xử lý phân vùng dữ liệu và chia tách file lớn sang S3 để chống tràn giới hạn 400KB của DynamoDB.
-
-- **`tools/` (Tầng công cụ hỗ trợ vận hành - DevOps / Utility Layer):**  
-  Chứa các script dòng lệnh phục vụ đóng gói ZIP, tự động triển khai stack, sinh dữ liệu mẫu, kiểm thử E2E và dọn dẹp tài nguyên. Toàn bộ thư mục này **tuyệt đối không bị đóng gói vào file ZIP của Lambda** để giữ kích thước hàm luôn nhẹ nhất.
-
-- **`data/samples/baseline-v1/` (Tập dữ liệu chuẩn hóa):**  
-  Bộ dữ liệu chính thức gồm 30 tài liệu (15 hóa đơn, 15 biểu mẫu + 1 PDF nhiều trang) kèm đáp án chuẩn `ground_truth.json` dùng để đánh giá độ chính xác của hệ thống.
-
----
-
-## 3. Trách nhiệm của các tài liệu kỹ thuật (Documentation Owners)
-
-Mỗi file trong thư mục `docs/` đảm nhận một vai trò cụ thể trong kiến trúc hệ thống:
-
-- **`docs/architecture.md`:** Bản thiết kế kiến trúc toàn diện mô tả luồng dữ liệu (Sync / Async), cơ chế xử lý lỗi, retry và quyết định đặt Lambda bên ngoài VPC để tối ưu chi phí.
-- **`docs/dynamodb.md`:** Đặc tả chi tiết lược đồ NoSQL của bảng DynamoDB (khóa chính PK, khóa sắp xếp SK, các loại item META, FIELD, LINE, CELL và sparse GSI WorkIndex).
-- **`docs/plan.md`:** Kế hoạch thực hiện đồ án, các ràng buộc của môn học trên AWS Academy Learner Lab và checklist nghiệm thu qua từng tuần.
-- **`docs/guides/`:** Bộ cẩm nang thực hành từng bước bao gồm: hướng dẫn triển khai (`deployment.md`), hướng dẫn chạy test (`testing.md`), và hướng dẫn vận hành / dọn dẹp (`operations.md`).
-- **`docs/verification.md`:** Báo cáo ghi nhận kết quả chạy 88 bài unit test cục bộ nhằm chứng minh độ tin cậy của mã nguồn.
-- **`docs/week1/`:** Nơi lưu trữ tài liệu báo cáo, sơ đồ và bằng chứng ảnh chụp màn hình thực tế của Giai đoạn 1 (dựng nền tảng ban đầu).
-
----
-
-## 4. Khu vực dữ liệu phát sinh tạm thời (Generated Artifacts)
-
-- Thư mục **`artifacts/`** là nơi chứa các file phát sinh trong quá trình build và chạy test trên máy local, thư mục này được `.gitignore` chặn lại để không làm nặng kho Git.
-- **`artifacts/packages/`:** Chứa file ZIP `textract-pipeline.zip` tạm thời sau mỗi lần chạy lệnh build.
-- **`artifacts/runs/<run-id>/`:** Mỗi lần chạy thử nghiệm đánh giá hoặc deploy sẽ tự động tạo một thư mục riêng theo mã phiên chạy (Run ID) để lưu vết mã hash, file kết quả và bằng chứng kiểm thử một cách minh bạch.
+- `docs/architecture-target.png` chỉ mô tả pipeline đang chạy; VPC tuần 1 được giải thích bằng chữ trong `docs/architecture.md`, không nằm trong sơ đồ pipeline.
+- `docs/verification.md` là hồ sơ kiểm thử local tại ngày 11/10/2026, không phải trạng thái hiện tại của deployment AWS.
+- `docs/week4/` hiện chỉ có README rỗng và thư mục `assets/` rỗng; nội dung tuần 4 được ghi trong `WORKLOG.md` và video ở `docs/video_demo.mp4`.
+- `docs/week3/week3-output-check.csv` hiện chỉ chứa marker `week3,synthetic`; không phải kết quả kiểm thử hay bằng chứng AWS.

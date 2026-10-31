@@ -1,119 +1,135 @@
-# Đồ án Cuối kỳ: Hệ thống Số hóa Hóa đơn và Biểu mẫu tự động với Amazon Textract
+# Pipeline số hóa hóa đơn và biểu mẫu với Amazon Textract
 
-> **Môn học:** Điện toán đám mây (Cloud Computing)  
-> **Giảng viên hướng dẫn:** TS. Huỳnh Xuân Phụng  
-> **Mã học phần:** 261CLCO332779_05  
-> **Nhóm sinh viên thực hiện:**  
-> - Ninh Nguyễn Minh Tuyên - MSSV: 24110372  
-> - Nguyễn Quốc Việt - MSSV: 24110381  
+Dự án môn Điện toán đám mây xây dựng pipeline serverless trên AWS để tiếp nhận tài liệu scan, trích xuất dữ liệu và lưu kết quả có cấu trúc. Môi trường triển khai là AWS Academy Learner Lab; bộ dữ liệu đánh giá gồm tài liệu tổng hợp bằng tiếng Anh, không đại diện cho mọi hóa đơn hoặc biểu mẫu thực tế.
 
----
+## Chức năng
 
-## 1. Giới thiệu đề tài & Bài toán thực tế
+- Nhận tài liệu từ Amazon S3; trigger chỉ theo dõi prefix **input/**.
+- Dùng Amazon Textract AnalyzeExpense cho hóa đơn và AnalyzeDocument với FORMS, TABLES cho biểu mẫu.
+- Lambda Processor xử lý ảnh một trang đồng bộ; PDF/TIFF nhiều trang dùng API bất đồng bộ, được Lambda Collector tiếp tục polling theo lịch EventBridge.
+- Lưu trạng thái và dữ liệu có cấu trúc trong DynamoDB; lưu JSON và CSV trong cùng bucket S3.
+- Lambda Exporter được gọi riêng để tạo năm CSV tổng hợp trong **output/exports/**.
+- Gửi thông báo trạng thái qua SNS; theo dõi log, metric và cảnh báo bằng CloudWatch.
 
-Trong công việc kế toán và hành chính văn phòng, việc nhập liệu thủ công từ hóa đơn giấy, biên lai thanh toán hay các biểu mẫu khảo sát tốn rất nhiều thời gian và rất dễ sai sót. 
+S3 chỉ phát sự kiện từ **input/**; thao tác ghi vào **output/** không được thiết kế để gọi Processor. Phép thử âm xác nhận không có invocation vẫn cần được kiểm tra riêng bằng log/metric trong cửa sổ thời gian phù hợp; smoke script không tự xác nhận phép thử này.
 
-Đề tài này của nhóm hướng đến việc xây dựng một **pipeline xử lý tài liệu thông minh và hoàn toàn tự động trên nền tảng AWS (Serverless Architecture)**. Hệ thống cho phép người dùng chỉ cần tải file scan (ảnh hoặc PDF) lên kho lưu trữ đám mây, toàn bộ quy trình nhận diện chữ, bóc tách bảng biểu, phân tích số tiền, lưu trữ và gửi thông báo qua email sẽ được thực hiện tự động trong vài giây.
+## Kiến trúc
 
-Dự án được triển khai và tối ưu chi phí trong môi trường **AWS Academy Learner Lab**.
+![Sơ đồ kiến trúc stack textract-full trên AWS](docs/architecture-target.png)
 
----
+- Sơ đồ PNG để chèn vào báo cáo: [docs/architecture-target.png](docs/architecture-target.png)
+- Luồng xử lý, IAM, VPC và giới hạn: [docs/architecture.md](docs/architecture.md)
+- Icon dịch vụ lấy từ bộ AWS Architecture Icons chính thức; thông tin nguồn nằm trong [docs/assets/aws-architecture-icons-2026q3/README.md](docs/assets/aws-architecture-icons-2026q3/README.md).
 
-## 2. Hệ thống làm được những gì?
+Sơ đồ chỉ mô tả các tài nguyên pipeline trong **infra/template.yaml**. VPC được dựng ở tuần 1 như hạ tầng nền riêng, không thuộc luồng xử lý tài liệu; Lambda không gắn vào VPC này và template CloudFormation không tạo VPC. Stack dùng LabRole có sẵn, triển khai trong một Region; sơ đồ không thể hiện failover đa Region.
 
-- ⚡ **Xử lý đa dạng định dạng:** Hỗ trợ cả file ảnh đơn trang (PNG, JPEG) và tài liệu nhiều trang phức tạp (PDF, TIFF).
-- 🧠 **Trích xuất thông minh với Amazon Textract:**
-  - Nhận diện các cặp `Key - Value` (Ví dụ: Tên khách hàng, Ngày lập, Mã số thuế).
-  - Tự động bóc tách cấu trúc bảng biểu (`Tables`) mà không làm xáo trộn cột/hàng.
-  - Phân tích chuyên sâu hóa đơn tài chính: Đọc tổng tiền, tiền thuế, danh sách các mặt hàng chi tiết (`Line Items`).
-- 🔄 **Xử lý bất đồng bộ chống nghẽn (Async + Polling):** Với file PDF nhiều trang, hệ thống kích hoạt cơ chế đọc ngầm bất đồng bộ và dùng EventBridge quét định kỳ 1 phút/lần, khắc phục hoàn toàn giới hạn timeout 15 phút của Lambda.
-- 📊 **Tự động xuất file CSV:** Sau khi đọc xong, hệ thống tự động xuất 5 file CSV cấu trúc chuẩn lưu về S3 để người dùng dễ dàng mở bằng Excel.
-- 📩 **Thông báo tức thì qua Email:** Tích hợp Amazon SNS để gửi email báo ngay khi tài liệu xử lý xong hoặc báo lỗi khi gặp file hỏng.
+## Lựa chọn dịch vụ và ràng buộc
 
----
+| Dịch vụ | Vai trò và lý do chọn | Bảo mật, khả dụng và chi phí |
+| --- | --- | --- |
+| Amazon S3 | Điểm nhận tài liệu và nơi lưu kết quả; S3 event tách thao tác upload khỏi xử lý. | Bucket riêng tư, Block Public Access, SSE-S3, versioning, HTTPS-only; trigger lọc input/. Dữ liệu/version lưu lâu có thể tiếp tục phát sinh phí. |
+| AWS Lambda | Tách Processor, Collector và Exporter theo nhiệm vụ; không cần máy chủ thường trực. | Dùng LabRole có sẵn và không gắn VPC. Khả năng mở rộng của dịch vụ không thay thế kiểm thử tải của dự án. |
+| Amazon Textract | Trích xuất hóa đơn, key-value và bảng; API bất đồng bộ phù hợp tài liệu nhiều trang. | Chi phí phụ thuộc loại API và số trang xử lý; kết quả được đánh giá riêng với ground truth. |
+| Amazon DynamoDB | Giữ trạng thái, lease, JobId và bản ghi chi tiết; WorkIndex giúp Collector tìm job đến hạn. | PAY_PER_REQUEST phù hợp tải thử nhỏ, biến động; dung lượng dữ liệu và số lần đọc/ghi vẫn ảnh hưởng chi phí. |
+| Amazon EventBridge | Gọi Collector theo lịch mỗi phút để tiếp tục job bất đồng bộ. | Tạo lượt gọi định kỳ kể cả khi không có job; có thể tắt rule khi không cần chạy pipeline. |
+| Amazon SNS | Gửi email trạng thái và nhận thông báo từ CloudWatch alarms. | Chỉ dùng topic của dự án và subscription đã xác nhận. |
+| Amazon CloudWatch | Lưu log, theo dõi metric, dashboard và hai alarms. | Log group được đặt retention 14 ngày; thời gian lưu log ảnh hưởng dung lượng và chi phí. |
 
-## 3. Kiến trúc hệ thống trên AWS
+Hệ thống được kiểm thử trong us-east-1, không có cấu hình hoặc phép thử khôi phục liên vùng. Pipeline không dùng VPC tuần 1; Lambda không gắn VPC nên không cần NAT Gateway cho luồng serverless hiện tại.
 
-```
-[Người dùng tải file]
-        │ (Hóa đơn / Form: PNG, JPG, PDF)
-        ▼
-  [S3: input/] 
-        │ 
-        ├─────────────────────────────────────────┐
-        ▼ (Sự kiện ObjectCreated)                 ▼ (Quét định kỳ 1 phút/lần)
- [Processor Lambda]                        [Collector Lambda] (EventBridge)
-        │                                         │
-        ├─ Ảnh 1 trang: Textract Sync             └─ PDF nhiều trang: Textract Async
-        └─ PDF nhiều trang: Gửi Job sang Textract     (Gom trang & xử lý tiếp)
-        │                                         │
-        └────────────────────┬────────────────────┘
-                             ▼
-              [Finalize & Parse kết quả]
-              - Bóc tách Key-Value, Bảng biểu, Chi tiết hóa đơn
-              - Nén JSON thô & JSON kết quả lưu lên S3
-              - Ghi chi tiết vào Amazon DynamoDB
-              - Xuất 5 file CSV tài liệu lên S3
-              - Gửi email thông báo qua Amazon SNS
-```
+## Mã nguồn và tài liệu
 
-### Các dịch vụ AWS được sử dụng:
-1. **Amazon S3:** Lưu trữ file scan đầu vào (`input/`), file kết quả JSON nén (`raw-results/`, `parsed-results/`) và các file CSV (`output/`).
-2. **AWS Lambda:** Bộ não điều phối xử lý theo mô hình Serverless gồm 3 hàm: `Processor` (đón nhận file), `Collector` (gom trang PDF), `Exporter` (xuất báo cáo tổng).
-3. **Amazon Textract:** Dịch vụ AI/ML nhận diện ký tự quang học (OCR) và bóc tách cấu trúc biểu mẫu.
-4. **Amazon DynamoDB:** Cơ sở dữ liệu NoSQL lưu trữ trạng thái xử lý, trường dữ liệu, dòng hàng và chống trùng lặp (Lease lock).
-5. **Amazon SNS:** Gửi thông báo kết quả xử lý về email sinh viên.
-6. **Amazon EventBridge & CloudWatch:** Lập lịch gọi Lambda định kỳ, ghi log nhật ký và cảnh báo khi có sự cố.
+~~~text
+infra/template.yaml               CloudFormation cho stack pipeline
+src/textract_pipeline/             Mã Lambda và logic xử lý
+tools/deploy.ps1                   Triển khai một deployment run đã kiểm tra
+tools/cleanup.ps1                  Backup rồi cleanup stack
+tools/smoke_aws.py                 Smoke test AWS
+tools/evaluate.py                  Đối chiếu CSV với ground truth
+data/samples/baseline-v1/          30 ảnh mẫu và ground truth
+docs/architecture.md               Thiết kế và giới hạn kiến trúc
+docs/guides/deployment.md          Hướng dẫn triển khai chi tiết
+docs/guides/testing.md             Hướng dẫn smoke, accuracy và kiểm tra thủ công
+docs/guides/operations.md          Vận hành, giám sát, chi phí, cleanup
+docs/week1/ ... docs/week4/        Tài liệu và bằng chứng theo tuần
+WORKLOG.md                         Worklog và đóng góp theo tuần
+~~~
 
----
+## Chuẩn bị môi trường local
 
-## 4. Cấu trúc thư mục mã nguồn
+Cần Python 3.12 trở lên và AWS CLI v2 cho các bước cần gọi AWS.
 
-Nhóm tổ chức cây thư mục chuẩn mực, phân tách rõ ràng giữa code chạy trên Lambda, hạ tầng CloudFormation và công cụ kiểm thử:
-
-```text
-├── docs/                        # Tài liệu báo cáo, sơ đồ kiến trúc, hướng dẫn vận hành
-│   ├── week1/                   # Báo cáo, sơ đồ và bằng chứng thực hiện của Tuần 1
-│   ├── architecture.md          # Tài liệu thiết kế kiến trúc chi tiết
-│   ├── dynamodb.md              # Thiết kế bảng DynamoDB (PK, SK, WorkIndex)
-│   └── guides/                  # Hướng dẫn deploy, test và dọn dẹp tài nguyên
-├── infra/
-│   └── template.yaml            # File CloudFormation tự động dựng toàn bộ hạ tầng AWS
-├── src/textract_pipeline/       # Mã nguồn chính chạy trên AWS Lambda
-│   ├── handlers/                # Các điểm vào của Lambda (Processor, Collector, Exporter)
-│   ├── processing/              # Logic bóc tách dữ liệu Textract, xuất file CSV
-│   └── aws/                     # Các module kết nối AWS SDK (Boto3)
-├── tests/                       # Toàn bộ 88 bài unit test kiểm thử offline (Pass 100%)
-├── tools/                       # Kịch bản tự động đóng gói ZIP, deploy và đánh giá
-└── data/samples/                # Bộ dữ liệu 30 tài liệu mẫu (Invoices & Forms) để kiểm thử
-```
-
----
-
-## 5. Hướng dẫn chạy thử nghiệm tại Local
-
-Dự án hỗ trợ chạy kiểm thử toàn bộ logic trích xuất trên máy local mà không tốn chi phí AWS:
-
-```powershell
-# 1. Khởi tạo môi trường ảo Python
-python -m venv .venv
-.venv\Scripts\activate
-
-# 2. Cài đặt các thư viện phụ thuộc
+~~~powershell
+py -3.12 -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
 pip install -e ".[dev]"
+~~~
 
-# 3. Chạy toàn bộ 88 unit tests
-pytest -ra
+Có thể chạy bộ unit test offline bằng **python -m pytest -ra**. Hướng dẫn kiểm thử AWS và những phần cần xác nhận thủ công nằm trong [docs/guides/testing.md](docs/guides/testing.md).
 
-# 4. Đóng gói code thành file ZIP nạp cho Lambda
-python tools/package.py
-```
+Không lưu AWS access key, secret key hoặc session token vào Git, source code, ảnh chụp hay báo cáo. Chỉ dùng temporary credentials do Learner Lab cấp. Trước khi gọi AWS, xác nhận account và Region:
 
----
+~~~powershell
+aws sts get-caller-identity --region us-east-1 --no-cli-pager
+aws configure get region
+~~~
 
-## 6. Kế hoạch triển khai qua 4 tuần
+## Triển khai CloudFormation
 
-- **Tuần 1:** Tìm hiểu dịch vụ AWS, thiết kế kiến trúc hệ thống, dựng nền tảng trên AWS (VPC, S3, DynamoDB, SNS, Lambda skeleton) và chạy smoke test ban đầu. *(Đã hoàn thành)*
-- **Tuần 2:** Xây dựng chức năng lõi: Viết mã nguồn Lambda bóc tách dữ liệu Textract, xử lý bảng biểu, xuất CSV và chạy unit test. *(Đã hoàn thành code local)*
-- **Tuần 3:** Tự động hóa hạ tầng (IaC) với CloudFormation, thiết lập giám sát CloudWatch Metrics, Alarms và tích hợp toàn diện.
-- **Tuần 4:** Kiểm thử tổng thể trên bộ 30 tài liệu mẫu, đánh giá độ chính xác (Accuracy/F1-score), thống kê chi phí Learner Lab, hoàn thiện báo cáo và video demo.
+Chỉ deploy sau khi Start Learner Lab, nạp temporary credentials cho AWS CLI và kiểm tra đúng account/Region. Script mặc định yêu cầu account **535709085695**; không bỏ qua guard này nếu chưa xác nhận mình đang dùng đúng lab. Tài khoản khác cần được chọn rõ ràng bằng tham số **-ExpectedAccount**.
+
+Tạo package, kiểm tra package và source snapshot, sau đó deploy đúng run đã kiểm tra:
+
+~~~powershell
+$deploymentRun = "artifacts/runs/$(Get-Date -Format yyyyMMdd-HHmmss)-aws-deployment-$([guid]::NewGuid().ToString('N').Substring(0,8))"
+
+.venv/Scripts/python.exe tools/package.py --run-dir $deploymentRun --kind aws_deployment
+.venv/Scripts/python.exe tools/verify_package.py --run-dir $deploymentRun
+.venv/Scripts/python.exe tools/bundle_source.py --run-dir $deploymentRun
+
+./tools/deploy.ps1 -RunDir $deploymentRun -ArtifactBucket textract-pipeline-535709085695 -Region us-east-1 -Prefix textract-full -Owner 24110372-24110381 -Email 'EMAIL_NHAN_THONG_BAO'
+~~~
+
+Thay **EMAIL_NHAN_THONG_BAO** bằng địa chỉ email của người nhận SNS. Sau deploy, xác nhận stack CREATE_COMPLETE hoặc UPDATE_COMPLETE, subscription SNS Confirmed, trigger S3 lọc đúng input/, EventBridge rule có trạng thái dự kiến và CloudWatch resources tồn tại. Chi tiết từng bước và lựa chọn nâng cấp tài nguyên tuần 1 xem [docs/guides/deployment.md](docs/guides/deployment.md).
+
+## Chạy thử trên AWS
+
+Sau khi deploy thành công, có thể chạy smoke nhỏ với hai PNG và một PDF nhiều trang:
+
+~~~powershell
+.venv/Scripts/python.exe tools/smoke_aws.py --stack textract-full --region us-east-1 --learner-lab-active --deployment-run $deploymentRun
+~~~
+
+Đường dẫn run kết quả được in ra terminal. Đối chiếu smoke.json, trạng thái DynamoDB, CSV, SNS email và CloudWatch. Smoke script kiểm tra cấu hình prefix nhưng không tự khẳng định upload vào output/ không tạo invocation; kiểm tra âm này được hướng dẫn riêng trong [docs/guides/testing.md](docs/guides/testing.md).
+
+Đánh giá accuracy trên ít nhất 30 mẫu cần dùng run riêng và ground truth tương ứng. Làm theo các bước trong [docs/guides/testing.md](docs/guides/testing.md); không coi việc 30 tài liệu hoàn tất là chỉ số accuracy.
+
+## Cleanup và kiểm tra trạng thái cuối
+
+Chỉ cleanup sau khi lưu báo cáo, video, CSV và bằng chứng cần bàn giao. Lệnh dưới đây kiểm tra project tag, yêu cầu xác nhận đúng tên bucket, tắt lịch và trigger, chờ invocation đang chạy rồi backup object versions cùng DynamoDB items trước khi xóa stack:
+
+~~~powershell
+./tools/cleanup.ps1 -Stack textract-full -Region us-east-1
+~~~
+
+**Mặc định script giữ lại bucket S3 dữ liệu và DynamoDB table** do DeletionPolicy: Retain; bucket chứa ZIP triển khai (artifact bucket) cũng không bị xóa. Các resource còn lại vẫn có thể phát sinh phí lưu trữ. Vì vậy, xóa stack không đồng nghĩa đã xóa mọi tài nguyên. Kiểm tra riêng CloudFormation, Lambda/EventBridge, S3, DynamoDB và artifact bucket sau cleanup.
+
+Chỉ dùng **-PurgeData** nếu đã lưu và kiểm tra backup, được phép xóa dữ liệu, và chọn chế độ này khi stack vẫn còn tồn tại:
+
+~~~powershell
+./tools/cleanup.ps1 -Stack textract-full -Region us-east-1 -PurgeData
+~~~
+
+**-PurgeData** xóa mọi version/delete marker trong bucket dữ liệu rồi xóa bucket và table; không thể giữ lại VersionId cũ khi khôi phục. Script không xóa artifact bucket hoặc LabRole. Hướng dẫn cleanup thủ công cho tài nguyên tuần 1 nằm trong [docs/guides/operations.md](docs/guides/operations.md).
+
+End Lab chỉ kết thúc phiên truy cập; không thay thế việc cleanup và kiểm tra tài nguyên còn tồn tại.
+
+## Tài liệu
+
+- [Thiết kế kiến trúc](docs/architecture.md)
+- [Worklog nhóm](WORKLOG.md)
+- [Hướng dẫn triển khai](docs/guides/deployment.md)
+- [Hướng dẫn kiểm thử](docs/guides/testing.md)
+- [Hướng dẫn vận hành và cleanup](docs/guides/operations.md)
+- [Báo cáo và minh chứng tuần 3](docs/week3/README.md)

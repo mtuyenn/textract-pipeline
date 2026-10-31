@@ -53,7 +53,7 @@ flowchart TD
     W -->|alarm| N
 ```
 
-Sơ đồ đích dạng ảnh: [PNG để chèn báo cáo](architecture-target.png) · [SVG](architecture-target.svg). Sơ đồ Mermaid phía trên mô tả chi tiết luồng; ảnh dùng để trình bày tổng quan.
+Sơ đồ kiến trúc pipeline: [PNG để chèn báo cáo](architecture-target.png). Sơ đồ dùng icon AWS chính thức; các icon đã chọn và nguồn tải được ghi trong [tài liệu icon](assets/aws-architecture-icons-2026q3/README.md). Khung AWS Region mô tả các tài nguyên pipeline trong infra/template.yaml. VPC nền tảng tuần 1 không được vẽ vì không thuộc luồng xử lý của pipeline; template không tạo VPC và Lambda không gắn vào VPC đó.
 
 ## 3. VPC nền tảng và vị trí của Lambda
 
