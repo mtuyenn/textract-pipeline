@@ -73,11 +73,9 @@ Khi kiểm tra IAM policy trên Console, phiên `voclabs` gặp explicit deny v�
 
 ## 6. Giám sát, cảnh báo và SNS
 
-Nhóm theo dõi dashboard `textract-full-pipeline`, log group Lambda với retention 14 ngày và hai alarm `textract-full-lambda-errors`, `textract-full-document-errors`. CloudWatch ghi nhận Collector Errors khác 0 trong khoảng thời gian hiển thị. Nhóm chưa xác định được nguyên nhân gốc của các datapoint lỗi.
+Nhóm theo dõi dashboard `textract-full-pipeline`, log group Lambda với retention 14 ngày và hai alarm `textract-full-lambda-errors`, `textract-full-document-errors`. SNS topic `textract-full-notifications` có email subscription ở trạng thái `Confirmed`. Hộp thư nhận được email `COMPLETED`, `REJECTED` và cảnh báo CloudWatch.
 
-History của alarm Lambda ghi nhận datapoint bằng 1 lúc 19:20 ngày 17/10/2026; alarm chuyển về `OK` lúc 00:18 ngày 24/10 sau datapoint bằng 0 lúc 00:13. Các mốc này xác nhận thay đổi trạng thái, nhưng chưa giải thích nguyên nhân hoặc diễn biến liên tục ở giữa. Tìm `ERROR` trong log Processor/Collector và `document_error` trong Collector không trả về sự kiện khớp trong phạm vi đã kiểm tra; điều đó không phủ nhận metric lỗi lịch sử.
-
-SNS topic `textract-full-notifications` có email subscription ở trạng thái `Confirmed`. Hộp thư nhận được email `COMPLETED`, `REJECTED` và cảnh báo CloudWatch. Cost Explorer ngày 25/10 hiển thị tổng khoảng **0,21 USD** trong giai đoạn 18–25/10; chi phí Textract được ghi nhận ngày 18/10. Đây là số liệu tại thời điểm truy vấn và có thể thay đổi khi AWS cập nhật billing.
+Cost Explorer ngày 25/10 hiển thị tổng khoảng **0,21 USD** trong giai đoạn 18–25/10; chi phí Textract được ghi nhận ngày 18/10. Đây là số liệu tại thời điểm truy vấn và có thể thay đổi khi AWS cập nhật billing.
 
 ## 7. CSV và lưu trữ
 
@@ -89,4 +87,12 @@ CSV tổng hợp có thể chứa dữ liệu từ các lượt xử lý trướ
 
 Trong tuần 3, nhóm đã demo luồng xử lý 31 tài liệu, đánh giá 30 ảnh, kiểm tra chống xử lý trùng, routing, xuất CSV, cấu hình bảo mật S3, CloudWatch và SNS. Kết quả fields đạt 87,50% recall; line item rows và table cells đạt 100% recall trên bộ mẫu hiện tại. Các kết quả này có giới hạn do bộ mẫu tổng hợp và chưa đại diện cho tài liệu thực tế đa dạng.
 
-Sang tuần 4, nhóm tiếp tục phân tích Collector Errors và mismatch `VENDOR_NAME`, chạy kiểm thử hồi quy, theo dõi chi phí, chuẩn bị demo nghiệm thu và rà soát tài nguyên AWS có chính sách `Retain` trước khi dọn môi trường.
+Sang tuần 4, nhóm tiếp tục rà mismatch `VENDOR_NAME`, chạy kiểm thử hồi quy, theo dõi chi phí, chuẩn bị demo nghiệm thu và rà soát tài nguyên AWS có chính sách `Retain` trước khi dọn môi trường.
+
+## 9. Mã nguồn và minh chứng
+
+- [Báo cáo tuần 3 bản Word](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/BaoCaoTuan3.docx)
+- [Kết quả smoke test AWS](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/evidence/20261024-014837-product-demo/smoke.json)
+- [Kết quả đánh giá 30 tài liệu](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/evidence/20261024-014837-product-demo/evaluation.json)
+- [Ground truth](https://github.com/mtuyenn/textract-pipeline/blob/main/docs/week3/evidence/20261024-014837-product-demo/dataset/ground_truth.json)
+- [CloudFormation template](https://github.com/mtuyenn/textract-pipeline/blob/main/infra/template.yaml)

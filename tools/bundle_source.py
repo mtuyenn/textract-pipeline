@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def build(output):
-    files = [ROOT / name for name in ("README.md", "pyproject.toml",
+    files = [ROOT / name for name in ("README.md", "WORKLOG.md", "pyproject.toml",
         "requirements-lambda.txt", ".gitignore", "AGENTS.md")]
     for directory in ("src/textract_pipeline", "tools", "tests", "infra", "docs", "data"):
         files.extend(file for file in (ROOT / directory).rglob("*") if file.is_file()

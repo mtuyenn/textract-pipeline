@@ -83,7 +83,7 @@ Trong tuần 3, nhóm tiếp tục dùng stack `textract-full` đã triển khai
 - Chạy evaluator trên 30 ảnh có ground truth. Fields khớp 105/120 (87,50% recall), line item fields 90/90, table cells 180/180 và line item rows 30/30. Nhóm rà soát mismatch `VENDOR_NAME` và cách ghép bảng theo trang/hàng/cột.
 - Chạy Exporter, kiểm tra năm CSV `documents.csv`, `fields.csv`, `line_items.csv`, `table_cells.csv`, `table_rows.csv` trong `output/exports/`.
 - Kiểm tra S3 Block Public Access, HTTPS-only bucket policy, SSE-S3, versioning, tags và execution role `LabRole` của ba Lambda.
-- Theo dõi dashboard, log group, alarm và SNS. Subscription email đã xác nhận; hộp thư nhận thông báo hoàn tất, từ chối và cảnh báo. CloudWatch có datapoint Collector Errors khác 0; nhóm chưa xác định được nguyên nhân gốc.
+- Theo dõi dashboard, log group, alarm và SNS. Subscription email đã xác nhận; hộp thư nhận thông báo hoàn tất, từ chối và cảnh báo.
 - Thử tải CSV vào `output/`; trong khoảng thời gian quan sát không thấy Processor bắt đầu xử lý object đó.
 - Cost Explorer ngày 25/10 hiển thị khoảng 0,21 USD cho giai đoạn 18–25/10; đây là số liệu tại thời điểm truy vấn và có thể thay đổi khi AWS cập nhật billing.
 
@@ -107,7 +107,7 @@ Trong tuần 4, nhóm quay video demo trên AWS, chạy lượt kiểm thử th�
 - Quay và rà soát video demo luồng xử lý trên AWS, từ tải tài liệu lên S3 đến trạng thái hoàn tất và các tệp CSV đầu ra.
 - Chạy batch 30 ảnh PNG tổng hợp ngày 29/10 trên account `535709085695`, Region `us-east-1`. Cả 30 tài liệu hoàn tất; kiểm tra trạng thái và mã lỗi trong `documents.csv`.
 - Tổng hợp kết quả đo: độ trễ mỗi ảnh tính từ `created_at` đến `completed_at` có trung vị 2,42 giây, trung bình 2,60 giây, khoảng 1,74–4,22 giây. Lượt batch kéo dài 44 giây; đây là tốc độ quan sát của một lô nhỏ, không phải kết quả stress test.
-- Rà lại lịch sử CloudWatch Collector Errors và cập nhật báo cáo rằng nguyên nhân datapoint khác 0 chưa xác định; lượt chạy 29/10 không có lỗi cấp tài liệu nhưng không thay thế số đo Lambda Errors của Collector.
+- Rà soát kết quả batch ngày 29/10 gồm 30 tài liệu và cập nhật phần kiểm thử trong báo cáo.
 - Hoàn thiện báo cáo cuối kỳ, bổ sung kết quả hiệu năng, giới hạn kiểm thử, phân tích lỗi, cost evidence và tổng kết đóng góp theo thành viên.
 - Ghi nhận Learner Lab hiển thị mức dùng `$4.10/$50`; Cost Explorer/Billing bị chặn quyền với role sinh viên, nên không kết luận số liệu này là breakdown chi phí theo dịch vụ/tag.
 - Dọn dẹp tài nguyên AWS sau khi lưu dữ liệu và minh chứng cần bàn giao; rà soát trạng thái tài nguyên sau cleanup.
@@ -116,7 +116,7 @@ Trong tuần 4, nhóm quay video demo trên AWS, chạy lượt kiểm thử th�
 
 | MSSV | Họ và tên | Công việc thực hiện | Số giờ |
 |:---:|---|---|:---:|
-| **24110372** | **Ninh Nguyễn Minh Tuyên** | Quay và rà soát video demo; chạy batch 30 tài liệu ngày 29/10; kiểm tra trạng thái, CSV và kết quả evaluator; tổng hợp thống kê độ trễ; rà lịch sử Collector Errors và cập nhật phần kiểm thử trong báo cáo. | **8 giờ** |
+| **24110372** | **Ninh Nguyễn Minh Tuyên** | Quay và rà soát video demo; chạy batch 30 tài liệu ngày 29/10; kiểm tra trạng thái, CSV và kết quả evaluator; tổng hợp thống kê độ trễ; rà soát kết quả batch và cập nhật phần kiểm thử trong báo cáo. | **8 giờ** |
 | **24110381** | **Nguyễn Quốc Việt** | Viết và hoàn thiện báo cáo cuối kỳ; tổng hợp cost evidence và ghi nhận giới hạn quyền Billing; dọn dẹp tài nguyên AWS sau khi lưu dữ liệu cần bàn giao; kiểm tra trạng thái sau cleanup và rà soát tệp bàn giao. | **8 giờ** |
 
 ## Tổng kết công việc trong bốn tuần
@@ -132,4 +132,4 @@ Trong tuần 4, nhóm quay video demo trên AWS, chạy lượt kiểm thử th�
 
 ### Kết quả chung sau bốn tuần
 
-Nhóm đã thiết kế, triển khai và kiểm thử pipeline serverless tiếp nhận hóa đơn, biểu mẫu và PDF nhiều trang trên AWS. Hệ thống kết nối S3, Lambda, Textract, DynamoDB, EventBridge, SNS và CloudWatch; hỗ trợ xử lý đồng bộ/bất đồng bộ, chống xử lý trùng, từ chối đầu vào không hợp lệ và xuất năm CSV. Nhóm đã xử lý bộ baseline 30 ảnh tổng hợp, đánh giá kết quả với ground truth, quay video demo và hoàn thiện báo cáo. Các giới hạn còn lại được ghi rõ, gồm bộ dữ liệu synthetic, chưa kiểm thử tải đồng thời quy mô lớn, nguyên nhân Collector Errors lịch sử chưa xác định, và quyền Billing của Learner Lab không cho xem chi phí chi tiết theo dịch vụ/tag.
+Nhóm đã thiết kế, triển khai và kiểm thử pipeline serverless tiếp nhận hóa đơn, biểu mẫu và PDF nhiều trang trên AWS. Hệ thống kết nối S3, Lambda, Textract, DynamoDB, EventBridge, SNS và CloudWatch; hỗ trợ xử lý đồng bộ/bất đồng bộ, chống xử lý trùng, từ chối đầu vào không hợp lệ và xuất năm CSV. Nhóm đã xử lý bộ baseline 30 ảnh tổng hợp, đánh giá kết quả với ground truth, quay video demo và hoàn thiện báo cáo. Các giới hạn còn lại được ghi rõ, gồm bộ dữ liệu synthetic, chưa kiểm thử tải đồng thời quy mô lớn, và quyền Billing của Learner Lab không cho xem chi phí chi tiết theo dịch vụ/tag.

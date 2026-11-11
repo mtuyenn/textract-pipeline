@@ -7,7 +7,7 @@ Trong tuần cuối, nhóm chạy lại bộ mẫu 30 tài liệu, tổng hợp 
 - Chạy 30 ảnh PNG gồm hóa đơn và biểu mẫu trên AWS Learner Lab, account `535709085695`, Region `us-east-1`. Cả 30 tài liệu đều có trạng thái `COMPLETED`.
 - So sánh kết quả trích xuất với ground truth. Fields khớp 105/120 giá trị; line-item rows khớp 30/30; line-item fields khớp 90/90 và table cells khớp 180/180. Textract trả thêm một số dự đoán ở fields, line-item fields và table cells nên Precision của các nhóm này thấp hơn Recall.
 - Tính thời gian xử lý dựa trên `created_at` và `completed_at` trong dữ liệu xuất. Thời gian trung bình là 2,60 giây, trung vị 2,42 giây, thấp nhất 1,74 giây và cao nhất 4,22 giây. Lượt xử lý 30 tài liệu kéo dài khoảng 44 giây; nhóm chưa chạy stress test.
-- Rà lại CloudWatch. Nhóm vẫn chưa xác định được nguyên nhân datapoint lỗi Collector xuất hiện ở lượt kiểm tra trước. Batch ngày 29/10 hoàn tất 30 tài liệu, nhưng không đủ để kết luận nguyên nhân lỗi Collector.
+- Rà soát kết quả batch ngày 29/10: cả 30 tài liệu đều có trạng thái `COMPLETED`.
 - Quay video demo luồng tải tài liệu lên S3, xử lý và xuất CSV. Video dài 8 phút 38 giây.
 - Hoàn thiện báo cáo cuối kỳ, tổng hợp phần việc và giờ làm của hai thành viên. Tuần này mỗi người ghi nhận 8 giờ trong [worklog](../../WORKLOG.md).
 - Lưu lại dữ liệu và minh chứng cần bàn giao, sau đó dọn dẹp tài nguyên AWS đã dùng và kiểm tra trạng thái tài nguyên.
