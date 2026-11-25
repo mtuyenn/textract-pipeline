@@ -73,4 +73,4 @@ textract-pipeline/
 - `docs/architecture-target.png` chỉ mô tả pipeline đang chạy; VPC tuần 1 được giải thích bằng chữ trong `docs/architecture.md`, không nằm trong sơ đồ pipeline.
 - `docs/verification.md` là hồ sơ kiểm thử local tại ngày 11/10/2026, không phải trạng thái hiện tại của deployment AWS.
 - `docs/week4/` hiện chỉ có README rỗng và thư mục `assets/` rỗng; nội dung tuần 4 được ghi trong `WORKLOG.md` và video ở `docs/video_demo.mp4`.
-- `docs/week3/week3-output-check.csv` hiện chỉ chứa marker `week3,synthetic`; không phải kết quả kiểm thử hay bằng chứng AWS.
+- `docs/week3/week3-output-check.csv` hiện chỉ chứa marker `week3,synthetic`; không phải kết quả kiểm thử hay bằng chứng AWS. 
